@@ -25,6 +25,8 @@ namespace ColorfulBox
         public MainPage()
         {
             this.InitializeComponent();
+           
         }
+
     }
 }

@@ -95,10 +95,26 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ColorAndRadiusToTransformXBridge.cs" />
+    <Compile Include="ColorPalette.cs" />
+    <Compile Include="ColorPoint.cs" />
+    <Compile Include="ColorPointVisual.cs" />
+    <Compile Include="ColorToAngleConverter.cs" />
+    <Compile Include="ColorToBrushConverter.cs" />
+    <Compile Include="DelegateCommand.cs" />
+    <Compile Include="DelegateCommand{T}.cs" />
+    <Compile Include="DragDeltaCommandParameter.cs" />
+    <Compile Include="DragStartedCommandParameter.cs" />
+    <Compile Include="HsvWheel.cs" />
+    <Compile Include="HsvWheelColorPalette.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManipulationBridge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaturationToRadiusConverter.cs" />
+    <Compile Include="TemplatedParentBridge.cs" />
+    <Compile Include="VisualTreeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -107,6 +123,7 @@
     <None Include="ColorfulBox_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\HsvWheel.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -125,12 +142,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>5.2.3</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp">
+      <Version>1.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="WinRTXamlToolkit.UWP">
+      <Version>2.3.0</Version>
+    </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

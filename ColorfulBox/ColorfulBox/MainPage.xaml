@@ -8,6 +8,27 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <local:HsvWheelColorPalette x:Name="ColorPalette">
+            <local:ColorPoint x:Name="colorPoint"
+                              Color="LightGreen" />
+            <local:ColorPoint Color="Red" />
+        </local:HsvWheelColorPalette>
+        <ItemsControl ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ItemsSource="{Binding ElementName=ColorPalette,Path=ColorPoints}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
 
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Page>
