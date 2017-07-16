@@ -97,7 +97,7 @@ namespace ColorfulBox
 
             target.ManipulationDelta += (s, e) =>
             {
-                var commandParameter = new DragDeltaCommandParameter(target, e.Position);
+                var commandParameter = new DragDeltaCommandParameter(target, new Windows.Foundation.Point(e.Delta.Translation.X,e.Delta.Translation.Y));
                 newValue.Execute(commandParameter);
             };
         }

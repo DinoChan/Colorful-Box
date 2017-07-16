@@ -3,6 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ColorfulBox">
 
+    <local:ColorToAngleConverter x:Key="ColorToAngleConverter" />
+    <local:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+    
     <Style TargetType="local:HsvWheel">
         <Setter Property="Template">
             <Setter.Value>
@@ -54,13 +57,13 @@
                         <local:HsvWheel x:Name="Wheel" />
                         <ItemsControl ItemsSource="{TemplateBinding ColorPoints}">
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate >
+                                <DataTemplate  >
                                     <Grid x:Name="ItemTemplateRoot">
                                         <Grid.Resources>
-                                            <!--<local:ColorPoint x:Name="c"/>-->
+                                           
                                             <local:ColorAndRadiusToTransformXBridge x:Key="SaturationAndRadiusToTransformXBridge"
                                                                                     AttachedElement="{Binding ElementName=ItemTemplateRoot}"
-                                                                                    Color="{Binding ElementName=ItemTemplateRoot,Path=DataContext.Color}" />
+                                                                                    Color="{Binding Color}" />
 
                                             <!--<local:ColorAndRadiusToTransformXBridge x:Key="SaturationAndRadiusToTransformXBridge2"
                                                                                     AttachedElement="{Binding ElementName=ItemTemplateRoot}"
@@ -70,6 +73,7 @@
                                                                 VerticalAlignment="Center"
                                                                 RenderTransformOrigin="0.5,0.5"
                                                                 ColorPoint="{Binding}"
+                                                                ManipulationMode="TranslateY,TranslateX"
                                                                 local:ManipulationBridge.DragDeltaCommand="{Binding Source={StaticResource TemplatedParentBridge},Path=TemplatedParent.ColorPointVisualDragDeltaCommand}"
                                                                 local:ManipulationBridge.DragStartedCommand="{Binding Source={StaticResource TemplatedParentBridge},Path=TemplatedParent.ColorPointVisualDragStartedCommand}">
                                             <local:ColorPointVisual.RenderTransform>
