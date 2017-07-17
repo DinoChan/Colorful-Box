@@ -53,7 +53,7 @@ namespace ColorfulBox
             var distanceOfX = point.X - centerPoint.X;
             var distanceOfY = point.Y - centerPoint.Y;
 
-            var theta = Math.Atan2(-distanceOfY, distanceOfX);
+            var theta = Math.Atan2(distanceOfY, distanceOfX);
 
             if (theta < 0)
                 theta += 2 * Math.PI;

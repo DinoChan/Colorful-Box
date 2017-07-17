@@ -16,7 +16,7 @@ namespace ColorfulBox
             if (value is Color)
             {
                 var hsvColor = Microsoft.Toolkit.Uwp.ColorHelper.ToHsv((Color)value);
-                return -hsvColor.H;
+                return hsvColor.H;
             }
             return 0d;
         }
