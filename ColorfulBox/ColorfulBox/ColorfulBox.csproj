@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ArgbColorBridge.cs" />
     <Compile Include="ColorAndRadiusToTransformXBridge.cs" />
     <Compile Include="ColorPalette.cs" />
     <Compile Include="ColorPoint.cs" />
@@ -124,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\HsvWheel.png" />
+    <Content Include="Assets\Wheel.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

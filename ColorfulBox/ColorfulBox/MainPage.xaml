@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:toolkit="using:WinRTXamlToolkit.Controls"
       mc:Ignorable="d">
-
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -16,21 +16,47 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <local:HsvWheelColorPalette x:Name="ColorPalette" Margin="20">
-            <local:ColorPoint x:Name="colorPoint"
-                              Color="LightGreen" />
+
+        <local:HsvWheelColorPalette x:Name="ColorPalette"
+                                    Margin="20">
+            <local:ColorPoint Color="LightGreen" />
             <local:ColorPoint Color="Red" />
+            <local:ColorPoint Color="Blue" />
+            <local:ColorPoint Color="Yellow" />
+            <local:ColorPoint Color="Purple" />
         </local:HsvWheelColorPalette>
         <ItemsControl ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                      ItemsSource="{Binding ElementName=ColorPalette,Path=ColorPoints}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
+                      Grid.Column="1"
+                      ItemsSource="{Binding ElementName=ColorPalette,Path=ColorPoints}"
+                      Margin="0,20,20,20">
 
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:Name="ColorPointDataTemplate"
+                              x:DataType="local:ColorPoint">
+                    <Grid>
+                        <Grid.Resources>
+                            <local:ArgbColorBridge  x:Key="ArgbColorBridge"
+                                                    Color="{Binding Color,Mode=TwoWay}" />
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="{Binding Color,Converter={StaticResource ColorToBrushConverter}}"
+                                   Width="100"
+                                   Height="150" />
+                        <StackPanel Grid.Column="1">
+                            <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
+                                                   Maximum="255" ValueBarVisibility="Collapsed"
+                                                   Foreground="White"/>
+                            <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
+                                                   Maximum="255"
+                                                   ValueBarVisibility="Collapsed" />
+                            <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
+                                                   Maximum="255"
+                                                   ValueBarVisibility="Collapsed" />
+                        </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

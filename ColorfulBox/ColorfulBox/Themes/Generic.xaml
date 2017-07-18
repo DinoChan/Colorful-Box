@@ -4,7 +4,7 @@
     xmlns:local="using:ColorfulBox">
 
     <local:ColorToAngleConverter x:Key="ColorToAngleConverter" />
-    <local:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+ 
     
     <Style TargetType="local:HsvWheel">
         <Setter Property="Template">
@@ -54,7 +54,8 @@
                             <local:TemplatedParentBridge x:Key="TemplatedParentBridge"
                                                          TemplatedParent="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Grid.Resources>
-                        <local:HsvWheel x:Name="Wheel" />
+                        <Image Source="ms-appx:///Assets/Wheel.png" />
+                        <!--<local:HsvWheel x:Name="Wheel" />-->
                         <ItemsControl ItemsSource="{TemplateBinding ColorPoints}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate  >

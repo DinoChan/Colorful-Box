@@ -1,8 +1,10 @@
-﻿<Application
-    x:Class="ColorfulBox.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ColorfulBox"
-    RequestedTheme="Dark">
+﻿<Application x:Class="ColorfulBox.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:ColorfulBox"
+             RequestedTheme="Dark">
+    <Application.Resources>
+        <local:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+    </Application.Resources>
 
 </Application>
