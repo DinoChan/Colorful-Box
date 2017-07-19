@@ -37,6 +37,12 @@
                         <Grid.Resources>
                             <local:ArgbColorBridge  x:Key="ArgbColorBridge"
                                                     Color="{Binding Color,Mode=TwoWay}" />
+                            <local:ArgbConverter x:Key="RedConverter"
+                                                 Model="Red" />
+                            <local:ArgbConverter x:Key="GreenConverter"
+                                                 Model="Green" />
+                            <local:ArgbConverter x:Key="BlueConverter"
+                                                 Model="Blue" />
                         </Grid.Resources>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -46,15 +52,55 @@
                                    Width="100"
                                    Height="150" />
                         <StackPanel Grid.Column="1">
-                            <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
-                                                   Maximum="255" ValueBarVisibility="Collapsed"
-                                                   Foreground="White"/>
-                            <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
-                                                   Maximum="255"
-                                                   ValueBarVisibility="Collapsed" />
-                            <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
-                                                   Maximum="255"
-                                                   ValueBarVisibility="Collapsed" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <local:ColorGradient Width="200"
+                                                     Minimum="0"
+                                                     Maximum="255"
+                                                     Color="{Binding Color}"
+                                                     Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
+                                                     ColorConverter="{StaticResource RedConverter}" />
+                                <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
+                                                       Maximum="255"
+                                                       ValueBarVisibility="Collapsed"
+                                                       Foreground="White"
+                                                       Grid.Column="1" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <local:ColorGradient Width="200"
+                                                     Minimum="0"
+                                                     Maximum="255"
+                                                     Color="{Binding Color}"
+                                                     Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
+                                                     ColorConverter="{StaticResource GreenConverter}" />
+                                <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
+                                                       Maximum="255"
+                                                       ValueBarVisibility="Collapsed"
+                                                       Grid.Column="1" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <local:ColorGradient Width="200"
+                                                     Minimum="0"
+                                                     Maximum="255"
+                                                     Color="{Binding Color}"
+                                                     Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
+                                                     ColorConverter="{StaticResource BlueConverter}" />
+                                <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
+                                                       Maximum="255"
+                                                       ValueBarVisibility="Collapsed"
+                                                       Grid.Column="1" />
+                            </Grid>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
