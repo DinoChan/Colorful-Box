@@ -50,7 +50,7 @@
                         </Grid.ColumnDefinitions>
                         <Rectangle Fill="{Binding Color,Converter={StaticResource ColorToBrushConverter}}"
                                    Width="100"
-                                   Height="150" />
+                                   Height="100" />
                         <StackPanel Grid.Column="1">
                             <Grid>
                                 <Grid.ColumnDefinitions>
