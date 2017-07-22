@@ -82,6 +82,7 @@
                                                      ColorConverter="{StaticResource GreenConverter}" />
                                 <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
                                                        Maximum="255"
+                                                       Foreground="White"
                                                        ValueBarVisibility="Collapsed"
                                                        Grid.Column="1" />
                             </Grid>
@@ -98,6 +99,7 @@
                                                      ColorConverter="{StaticResource BlueConverter}" />
                                 <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
                                                        Maximum="255"
+                                                       Foreground="White"
                                                        ValueBarVisibility="Collapsed"
                                                        Grid.Column="1" />
                             </Grid>

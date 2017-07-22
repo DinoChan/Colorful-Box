@@ -125,16 +125,16 @@
                             <Style x:Key="SliderThumbStyle"
                                    TargetType="Thumb">
                                 <Setter Property="BorderThickness"
-                                        Value="0" />
-                                <Setter Property="Background"
+                                        Value="3" />
+                                <Setter Property="BorderBrush"
                                         Value="{ThemeResource SliderThumbBackground}" />
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Thumb">
-                                            <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                                    Background="{TemplateBinding Background}"
-                                                    CornerRadius="4" />
+                                            <Ellipse Stroke="{TemplateBinding BorderBrush}"
+                                                    StrokeThickness="{TemplateBinding BorderThickness}"
+                                                 
+                                                  />
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
@@ -149,7 +149,7 @@
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
                                                                        Storyboard.TargetName="HorizontalThumb">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SliderThumbBackgroundPressed}" />
@@ -202,7 +202,7 @@
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
                                                                        Storyboard.TargetName="HorizontalThumb">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SliderThumbBackgroundPointerOver}" />
@@ -256,21 +256,17 @@
                               Control.IsTemplateFocusTarget="True"
                               Grid.Row="1">
                             <Grid x:Name="HorizontalTemplate"
-                                  MinHeight="44">
+                               Height="20">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="18" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="18" />
-                                </Grid.RowDefinitions>
+                               
                                 <Rectangle x:Name="HorizontalTrackRect"
                                            Grid.ColumnSpan="3"
                                            Grid.RowSpan="3"
-                                           Grid.Row="1">
+                                           Grid.Row="0">
                                     <Rectangle.Fill>
                                         <LinearGradientBrush StartPoint="0,0.5"
                                                              EndPoint="1,0.5">
@@ -283,7 +279,7 @@
                                 </Rectangle>
                                 <Rectangle x:Name="HorizontalDecreaseRect"
                                            Fill="{TemplateBinding Foreground}"
-                                           Grid.Row="1" />
+                                      Opacity="0"/>
                                 <TickBar x:Name="TopTickBar"
                                          Grid.ColumnSpan="3"
                                          Fill="{ThemeResource SliderTickBarFill}"
@@ -295,14 +291,14 @@
                                          Grid.ColumnSpan="3"
                                          Fill="{ThemeResource SliderInlineTickBarFill}"
                                          Height="{ThemeResource SliderTrackThemeHeight}"
-                                         Grid.Row="1"
+                                     
                                          Visibility="Collapsed" />
                                 <TickBar x:Name="BottomTickBar"
                                          Grid.ColumnSpan="3"
                                          Fill="{ThemeResource SliderTickBarFill}"
                                          Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
                                          Margin="0,4,0,0"
-                                         Grid.Row="2"
+                                       
                                          Visibility="Collapsed"
                                          VerticalAlignment="Top" />
                                 <Thumb x:Name="HorizontalThumb"
@@ -310,11 +306,10 @@
                                        Grid.Column="1"
                                        DataContext="{TemplateBinding Value}"
                                        FocusVisualMargin="-14,-6,-14,-6"
-                                       Height="24"
-                                       Grid.Row="0"
-                                       Grid.RowSpan="3"
+                                       Height="20"
+                                  
                                        Style="{StaticResource SliderThumbStyle}"
-                                       Width="8" />
+                                       Width="20" />
                             </Grid>
                         </Grid>
                     </Grid>
