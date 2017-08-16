@@ -109,7 +109,6 @@
     <Compile Include="DelegateCommand{T}.cs" />
     <Compile Include="DragDeltaCommandParameter.cs" />
     <Compile Include="DragStartedCommandParameter.cs" />
-    <Compile Include="HsvWheel.cs" />
     <Compile Include="HsvWheelColorPalette.cs" />
     <Compile Include="IColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">

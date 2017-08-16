@@ -5,19 +5,6 @@
     <local:ColorToAngleConverter x:Key="ColorToAngleConverter" />
 
 
-    <Style TargetType="local:HsvWheel">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:HsvWheel">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Image x:Name="ImageElement" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <Style TargetType="local:ColorPointVisual">
         <Setter Property="Template">
