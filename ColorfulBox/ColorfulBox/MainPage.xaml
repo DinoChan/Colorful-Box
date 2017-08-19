@@ -25,10 +25,11 @@
             <local:ColorPoint Color="Yellow" />
             <local:ColorPoint Color="Purple" />
         </local:HsvWheelColorPalette>
-        <ItemsControl ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                      Grid.Column="1"
-                      ItemsSource="{Binding ElementName=ColorPalette,Path=ColorPoints}"
-                      Margin="0,20,20,20">
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  Grid.Column="1"
+                  ItemsSource="{Binding ElementName=ColorPalette,Path=ColorPoints}"
+                  SelectedItem="{Binding ElementName=ColorPalette,Path=SelectedColorPoint,Mode=TwoWay}"
+                  Margin="0,20,20,20">
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate x:Name="ColorPointDataTemplate"
@@ -107,6 +108,6 @@
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        </ListView>
     </Grid>
 </Page>
