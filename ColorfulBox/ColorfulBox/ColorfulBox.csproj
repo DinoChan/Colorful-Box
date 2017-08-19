@@ -103,22 +103,22 @@
     <Compile Include="ColorPalette.cs" />
     <Compile Include="ColorPoint.cs" />
     <Compile Include="ColorPointVisual.cs" />
-    <Compile Include="ColorToAngleConverter.cs" />
-    <Compile Include="ColorToBrushConverter.cs" />
-    <Compile Include="DelegateCommand.cs" />
-    <Compile Include="DelegateCommand{T}.cs" />
-    <Compile Include="DragDeltaCommandParameter.cs" />
-    <Compile Include="DragStartedCommandParameter.cs" />
+    <Compile Include="Converters\ColorToAngleConverter.cs" />
+    <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Common\DelegateCommand.cs" />
+    <Compile Include="Common\DelegateCommand{T}.cs" />
+    <Compile Include="Common\DragDeltaCommandParameter.cs" />
+    <Compile Include="Common\DragStartedCommandParameter.cs" />
     <Compile Include="HsvWheelColorPalette.cs" />
     <Compile Include="IColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ManipulationBridge.cs" />
+    <Compile Include="Common\ManipulationBridge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaturationToRadiusConverter.cs" />
-    <Compile Include="TemplatedParentBridge.cs" />
-    <Compile Include="VisualTreeExtensions.cs" />
+    <Compile Include="Converters\SaturationToRadiusConverter.cs" />
+    <Compile Include="Common\TemplatedParentBridge.cs" />
+    <Compile Include="Common\VisualTreeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
