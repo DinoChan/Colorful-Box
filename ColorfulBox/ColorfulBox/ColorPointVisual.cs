@@ -13,9 +13,15 @@ using Windows.UI.Xaml.Controls.Primitives;
 namespace ColorfulBox
 {
     [TemplatePart(Name = ThumbElementName, Type = typeof(Thumb))]
+    [TemplateVisualState(Name = IsSelectedName, GroupName = SelectedStates)]
+    [TemplateVisualState(Name = UnSelectedName, GroupName = SelectedStates)]
+
     public class ColorPointVisual : Control
     {
         private const string ThumbElementName = "ThumbElement";
+        private const string SelectedStates = "SelectedStates";
+        private const string IsSelectedName = "IsSelected";
+        private const string UnSelectedName = "UnSelected";
 
         /// <summary>
         ///     标识 ColorPoint 依赖属性。
@@ -23,14 +29,16 @@ namespace ColorfulBox
         public static readonly DependencyProperty ColorPointProperty =
             DependencyProperty.Register("ColorPoint", typeof(ColorPoint), typeof(ColorPointVisual), new PropertyMetadata(null, OnColorPointChanged));
 
-    
-       
 
-    
+
+
+
         public ColorPointVisual()
         {
             DefaultStyleKey = typeof(ColorPointVisual);
         }
+
+
 
 
         /// <summary>
@@ -57,6 +65,46 @@ namespace ColorfulBox
         }
 
 
-     
+        /// <summary>
+        /// 获取或设置IsSelected的值
+        /// </summary>  
+        public bool IsSelected
+        {
+            get { return (bool)GetValue(IsSelectedProperty); }
+            set { SetValue(IsSelectedProperty, value); }
+        }
+
+        /// <summary>
+        /// 标识 IsSelected 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty IsSelectedProperty =
+            DependencyProperty.Register("IsSelected", typeof(bool), typeof(ColorPointVisual), new PropertyMetadata(false, OnIsSelectedChanged));
+
+        private static void OnIsSelectedChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            ColorPointVisual target = obj as ColorPointVisual;
+            bool oldValue = (bool)args.OldValue;
+            bool newValue = (bool)args.NewValue;
+            if (oldValue != newValue)
+                target.OnIsSelectedChanged(oldValue, newValue);
+        }
+
+        protected virtual void OnIsSelectedChanged(bool oldValue, bool newValue)
+        {
+            UpdateVisualStates(true);
+        }
+
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            UpdateVisualStates(false);
+        }
+
+        private void UpdateVisualStates(bool useTransitions)
+        {
+
+            VisualStateManager.GoToState(this, IsSelected ? IsSelectedName : UnSelectedName, useTransitions);
+        }
     }
 }

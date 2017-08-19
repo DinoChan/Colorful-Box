@@ -8,118 +8,163 @@ using Windows.UI.Xaml.Markup;
 
 namespace ColorfulBox
 {
-	[ContentProperty(Name = nameof(ColorPoints))]
-	public class ColorPalette : Control
-	{
-		/// <summary>
-		///     标识 ColorPoints 依赖属性。
-		/// </summary>
-		public static readonly DependencyProperty ColorPointsProperty =
-			DependencyProperty.Register("ColorPoints", typeof(Collection<ColorPoint>), typeof(ColorPalette),
-				new PropertyMetadata(null, OnColorPointsChanged));
+    [ContentProperty(Name = nameof(ColorPoints))]
+    public class ColorPalette : Control
+    {
+        #region Constants
 
+        #endregion
 
-		public ColorPalette()
-		{
-			ColorPoints = new ObservableCollection<ColorPoint>();
-			ColorPointVisualDragStartedCommand = new DelegateCommand<object>(ColorPointVisualDragStarted);
-			ColorPointVisualDragDeltaCommand = new DelegateCommand<object>(ColorPointVisualDragDelta);
-		}
-
-		public ICommand ColorPointVisualDragStartedCommand { get; }
-
-		public ICommand ColorPointVisualDragDeltaCommand { get; }
-
-		/// <summary>
-		///     获取或设置ColorPoints的值
-		/// </summary>
-		public Collection<ColorPoint> ColorPoints
-		{
-			get => (Collection<ColorPoint>) GetValue(ColorPointsProperty);
-			set => SetValue(ColorPointsProperty, value);
-		}
+        #region Dependency Properties
+        /// <summary>
+        ///     标识 ColorPoints 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty ColorPointsProperty =
+            DependencyProperty.Register("ColorPoints", typeof(Collection<ColorPoint>), typeof(ColorPalette), new PropertyMetadata(null, OnColorPointsChanged));
 
 
 
-		/// <summary>
-		/// 获取或设置SelectedColorPoint的值
-		/// </summary>  
-		public ColorPoint SelectedColorPoint
-		{
-			get { return (ColorPoint)GetValue(SelectedColorPointProperty); }
-			set { SetValue(SelectedColorPointProperty, value); }
-		}
+        private static void OnColorPointsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            var target = obj as ColorPalette;
+            var oldValue = (Collection<ColorPoint>)args.OldValue;
+            var newValue = (Collection<ColorPoint>)args.NewValue;
+            if (oldValue != newValue)
+                target.OnColorPointsChanged(oldValue, newValue);
+        }
 
-		/// <summary>
-		/// 标识 SelectedColorPoint 依赖属性。
-		/// </summary>
-		public static readonly DependencyProperty SelectedColorPointProperty =
-			DependencyProperty.Register("SelectedColorPoint", typeof(ColorPoint), typeof(ColorPalette), new PropertyMetadata(null, OnSelectedColorPointChanged));
+        /// <summary>
+        /// 标识 SelectedColorPoint 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty SelectedColorPointProperty =
+            DependencyProperty.Register("SelectedColorPoint", typeof(ColorPoint), typeof(ColorPalette), new PropertyMetadata(null, OnSelectedColorPointChanged));
 
-		private static void OnSelectedColorPointChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-		{
-			ColorPalette target = obj as ColorPalette;
-			ColorPoint oldValue = (ColorPoint)args.OldValue;
-			ColorPoint newValue = (ColorPoint)args.NewValue;
-			if (oldValue != newValue)
-				target.OnSelectedColorPointChanged(oldValue, newValue);
-		}
+        private static void OnSelectedColorPointChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            ColorPalette target = obj as ColorPalette;
+            ColorPoint oldValue = (ColorPoint)args.OldValue;
+            ColorPoint newValue = (ColorPoint)args.NewValue;
+            if (oldValue != newValue)
+                target.OnSelectedColorPointChanged(oldValue, newValue);
+        }
+        #endregion
 
-		protected virtual void OnSelectedColorPointChanged(ColorPoint oldValue, ColorPoint newValue)
-		{
-		}
+        #region Constructors
+        public ColorPalette()
+        {
+            ColorPoints = new ObservableCollection<ColorPoint>();
+            ColorPointVisualDragStartedCommand = new DelegateCommand<object>(ColorPointVisualDragStarted);
+            ColorPointVisualDragDeltaCommand = new DelegateCommand<object>(ColorPointVisualDragDelta);
+        }
+        #endregion
 
-		private static void OnColorPointsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-		{
-			var target = obj as ColorPalette;
-			var oldValue = (Collection<ColorPoint>) args.OldValue;
-			var newValue = (Collection<ColorPoint>) args.NewValue;
-			if (oldValue != newValue)
-				target.OnColorPointsChanged(oldValue, newValue);
-		}
+        #region Properties
+
+        public ICommand ColorPointVisualDragStartedCommand { get; }
+
+        public ICommand ColorPointVisualDragDeltaCommand { get; }
+
+        /// <summary>
+        ///     获取或设置ColorPoints的值
+        /// </summary>
+        public Collection<ColorPoint> ColorPoints
+        {
+            get => (Collection<ColorPoint>)GetValue(ColorPointsProperty);
+            set => SetValue(ColorPointsProperty, value);
+        }
 
 
-		protected virtual void OnColorPointsChanged(Collection<ColorPoint> oldValue, Collection<ColorPoint> newValue)
-		{
-			var notifyCollectionChanged = oldValue as INotifyCollectionChanged;
-			if (notifyCollectionChanged != null)
-				notifyCollectionChanged.CollectionChanged -= OnColorPointsCollectionChanged;
 
-			notifyCollectionChanged = newValue as INotifyCollectionChanged;
+        /// <summary>
+        /// 获取或设置SelectedColorPoint的值
+        /// </summary>  
+        public ColorPoint SelectedColorPoint
+        {
+            get { return (ColorPoint)GetValue(SelectedColorPointProperty); }
+            set { SetValue(SelectedColorPointProperty, value); }
+        }
 
-			if (notifyCollectionChanged != null)
-				notifyCollectionChanged.CollectionChanged += OnColorPointsCollectionChanged;
-		}
+        #endregion
 
-		protected virtual void OnColorPointsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-		}
+        #region Events
 
-		protected virtual ColorPointVisual CreateColorPointVisual(ColorPoint colorPoint)
-		{
-			return new ColorPointVisual();
-		}
+        #endregion
 
-		private void ColorPointVisualDragStarted(object param)
-		{
-			var parameter = param as DragStartedCommandParameter;
-			if (parameter != null)
-				OnColorPointVisualDragStarted(parameter.ColorPointVisual, parameter.Position);
-		}
+        #region Fields
+        private ColorPointVisual _selectedColorPointVisual;
+        #endregion
 
-		private void ColorPointVisualDragDelta(object param)
-		{
-			var parameter = param as DragDeltaCommandParameter;
-			if (parameter != null)
-				OnColorPointVisualDragDelta(parameter.ColorPointVisual, parameter.Translation);
-		}
+        #region Override Methods
 
-		protected virtual void OnColorPointVisualDragStarted(ColorPointVisual colorPointVisual, Point position)
-		{
-		}
+        protected virtual void OnSelectedColorPointChanged(ColorPoint oldValue, ColorPoint newValue)
+        {
+        }
 
-		protected virtual void OnColorPointVisualDragDelta(ColorPointVisual colorPointVisual, Point position)
-		{
-		}
-	}
+
+
+
+        protected virtual void OnColorPointsChanged(Collection<ColorPoint> oldValue, Collection<ColorPoint> newValue)
+        {
+            var notifyCollectionChanged = oldValue as INotifyCollectionChanged;
+            if (notifyCollectionChanged != null)
+                notifyCollectionChanged.CollectionChanged -= OnColorPointsCollectionChanged;
+
+            notifyCollectionChanged = newValue as INotifyCollectionChanged;
+
+            if (notifyCollectionChanged != null)
+                notifyCollectionChanged.CollectionChanged += OnColorPointsCollectionChanged;
+        }
+
+        protected virtual void OnColorPointsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+        }
+
+        protected virtual void OnColorPointVisualDragStarted(ColorPointVisual colorPointVisual, Point position)
+        {
+        }
+
+        protected virtual void OnColorPointVisualDragDelta(ColorPointVisual colorPointVisual, Point position)
+        {
+        }
+        #endregion
+
+        #region Public Methods
+
+        #endregion
+
+        #region Event Methods
+
+        #endregion
+
+        #region Private Methods
+        private void ColorPointVisualDragStarted(object param)
+        {
+            var parameter = param as DragStartedCommandParameter;
+            if (parameter == null)
+                return;
+
+            OnColorPointVisualDragStarted(parameter.ColorPointVisual, parameter.Position);
+            SelectedColorPoint = parameter.ColorPointVisual.ColorPoint;
+            if (_selectedColorPointVisual != null)
+                _selectedColorPointVisual.IsSelected = false;
+
+            _selectedColorPointVisual = parameter.ColorPointVisual;
+            _selectedColorPointVisual.IsSelected = true;
+        }
+
+        private void ColorPointVisualDragDelta(object param)
+        {
+            var parameter = param as DragDeltaCommandParameter;
+            if (parameter != null)
+                OnColorPointVisualDragDelta(parameter.ColorPointVisual, parameter.Translation);
+        }
+        #endregion
+
+
+        //protected virtual ColorPointVisual CreateColorPointVisual(ColorPoint colorPoint)
+        //{
+        //	return new ColorPointVisual();
+        //}
+
+    }
 }

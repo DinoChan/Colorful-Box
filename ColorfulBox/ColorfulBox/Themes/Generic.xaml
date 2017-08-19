@@ -18,11 +18,24 @@
                                Style="{StaticResource ThumbStyle}"
                                Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=ColorPoint.Color,Converter={StaticResource ColorToBrushConverter}}" />-->
 
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="SelectedStates">
+                                <VisualState x:Name="IsSelected">
+                                    <VisualState.Setters>
+                                        <Setter Target="ellipse.(Shape.StrokeThickness)"
+                                                Value="5" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="UnSelected" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
                         <!--<Ellipse Stroke="Black"
                                  StrokeThickness="1" />-->
-                        <Ellipse Stroke="White"
+                        <Ellipse x:Name="ellipse"
+                                 Stroke="White"
                                  StrokeThickness="3"
-                                 Fill="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=ColorPoint.Color,Converter={StaticResource ColorToBrushConverter}}" />
+                                 Fill="{Binding ColorPoint.Color, Converter={StaticResource ColorToBrushConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
 
                     </Grid>
                 </ControlTemplate>
