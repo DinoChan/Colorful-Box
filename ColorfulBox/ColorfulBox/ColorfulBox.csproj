@@ -107,14 +107,11 @@
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Common\DelegateCommand.cs" />
     <Compile Include="Common\DelegateCommand{T}.cs" />
-    <Compile Include="Common\DragDeltaCommandParameter.cs" />
-    <Compile Include="Common\DragStartedCommandParameter.cs" />
     <Compile Include="HsvWheelColorPalette.cs" />
     <Compile Include="IColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\ManipulationBridge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\SaturationToRadiusConverter.cs" />
     <Compile Include="Common\TemplatedParentBridge.cs" />

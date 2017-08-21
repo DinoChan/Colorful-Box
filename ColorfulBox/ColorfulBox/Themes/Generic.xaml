@@ -12,12 +12,6 @@
                 <ControlTemplate TargetType="local:ColorPointVisual">
                     <Grid  Height="30"
                            Width="30">
-                        <!--<Thumb x:Name="ThumbElement"
-                               Height="30"
-                               Width="30" IsHitTestVisible="False"
-                               Style="{StaticResource ThumbStyle}"
-                               Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=ColorPoint.Color,Converter={StaticResource ColorToBrushConverter}}" />-->
-
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SelectedStates">
                                 <VisualState x:Name="IsSelected">
@@ -29,14 +23,101 @@
                                 <VisualState x:Name="UnSelected" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                                <Ellipse x:Name="ellipse"
+                                 Stroke="White"
+                                 StrokeThickness="3"
+                                 Fill="{Binding ColorPoint.Color, Converter={StaticResource ColorToBrushConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
 
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="HsvWheelColorPointVisualStyle" TargetType="local:ColorPointVisual">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ColorPointVisual">
+                    <Grid  Height="30"
+                           Width="30"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           RenderTransformOrigin="0.5,0.5"
+                           ManipulationMode="TranslateY,TranslateX"
+                           x:Name="LayoutRoot">
+                      
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <!--<PointerUpThemeAnimation Storyboard.TargetName="LayoutRoot" />-->
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+
+                                        <!--<PointerDownThemeAnimation TargetName="LayoutRoot" />-->
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Target="ellipse.(Shape.StrokeThickness)" Value="4"/>
+                                    </VisualState.Setters>
+                                    <Storyboard>
+
+                                        <!--<PointerUpThemeAnimation Storyboard.TargetName="LayoutRoot"  />-->
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="PointerOverSelected">
+                                    <VisualState.Setters>
+                                        <Setter Target="ellipse.(Shape.StrokeThickness)" Value="4"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="PressedSelected">
+                                    <VisualState.Setters>
+                                        <Setter Target="ellipse.(Shape.StrokeThickness)" Value="4"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="DisabledStates">
+                                <VisualState x:Name="Enabled" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="LayoutRoot"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         Duration="0"
+                                                         To="{ThemeResource ListViewItemDisabledThemeOpacity}" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.Resources>
+                            <local:ColorAndRadiusToTransformXBridge x:Key="SaturationAndRadiusToTransformXBridge"
+                                                                    AttachedElement="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                                    Color="{Binding Color}" />
+                        </Grid.Resources>
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <TranslateTransform X="{Binding TranslateX, Source={StaticResource SaturationAndRadiusToTransformXBridge}}" />
+                                <RotateTransform Angle="{Binding Color, Converter={StaticResource ColorToAngleConverter}}" />
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+
+                      
                         <!--<Ellipse Stroke="Black"
                                  StrokeThickness="1" />-->
                         <Ellipse x:Name="ellipse"
                                  Stroke="White"
                                  StrokeThickness="3"
-                                 Fill="{Binding ColorPoint.Color, Converter={StaticResource ColorToBrushConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-
+                                 Fill="{Binding Color, Converter={StaticResource ColorToBrushConverter}}" />
+                     
+                      
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -49,51 +130,18 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:HsvWheelColorPalette">
                     <Grid Background="{TemplateBinding Background}">
-                        <Grid.Resources>
-                            <local:TemplatedParentBridge x:Key="TemplatedParentBridge"
-                                                         TemplatedParent="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}" />
-                        </Grid.Resources>
                         <Image Source="ms-appx:///Assets/Wheel.png" />
-                        <!--<local:HsvWheel x:Name="Wheel" />-->
-                        <ItemsControl ItemsSource="{TemplateBinding ColorPoints}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid x:Name="ItemTemplateRoot">
-                                        <Grid.Resources>
-
-                                            <local:ColorAndRadiusToTransformXBridge x:Key="SaturationAndRadiusToTransformXBridge"
-                                                                                    AttachedElement="{Binding ElementName=ItemTemplateRoot}"
-                                                                                    Color="{Binding Color}" />
-
-                                            <!--<local:ColorAndRadiusToTransformXBridge x:Key="SaturationAndRadiusToTransformXBridge2"
-                                                                                    AttachedElement="{Binding ElementName=ItemTemplateRoot}"
-                                                                                    Color="{Binding Color,RelativeSource={ RelativeSource Mode=}}" />-->
-                                        </Grid.Resources>
-                                        <local:ColorPointVisual HorizontalAlignment="Center"
-                                                                VerticalAlignment="Center"
-                                                                RenderTransformOrigin="0.5,0.5"
-                                                                ColorPoint="{Binding}"
-                                                                ManipulationMode="TranslateY,TranslateX"
-                                                                local:ManipulationBridge.DragDeltaCommand="{Binding Source={StaticResource TemplatedParentBridge},Path=TemplatedParent.ColorPointVisualDragDeltaCommand}"
-                                                                local:ManipulationBridge.DragStartedCommand="{Binding Source={StaticResource TemplatedParentBridge},Path=TemplatedParent.ColorPointVisualDragStartedCommand}">
-                                            <local:ColorPointVisual.RenderTransform>
-                                                <TransformGroup>
-                                                    <TranslateTransform X="{Binding Source={StaticResource SaturationAndRadiusToTransformXBridge},Path=TranslateX}" />
-                                                    <RotateTransform Angle="{Binding Color,Converter={StaticResource ColorToAngleConverter}}" />
-                                                </TransformGroup>
-                                            </local:ColorPointVisual.RenderTransform>
-                                        </local:ColorPointVisual>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <Grid />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
+                        <ItemsPresenter/>
                     </Grid>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle" Value="{StaticResource HsvWheelColorPointVisualStyle}"/>
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <Grid/>
+                </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
     </Style>

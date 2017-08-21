@@ -24,6 +24,8 @@ namespace ColorfulBox
         protected override void OnColorPointVisualDragStarted(ColorPointVisual colorPointVisual, Point position)
         {
             base.OnColorPointVisualDragStarted(colorPointVisual, position);
+            _dragOrginalPosition = position;
+            return;
             var bounds = colorPointVisual.GetBoundsRelativeTo(this);
             if (bounds == null)
                 return;

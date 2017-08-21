@@ -27,8 +27,8 @@
         </local:HsvWheelColorPalette>
         <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Grid.Column="1"
-                  ItemsSource="{Binding ElementName=ColorPalette,Path=ColorPoints}"
-                  SelectedItem="{Binding ElementName=ColorPalette,Path=SelectedColorPoint,Mode=TwoWay}"
+                  ItemsSource="{Binding ElementName=ColorPalette,Path=Items}"
+                  SelectedItem="{Binding ElementName=ColorPalette,Path=SelectedItem,Mode=TwoWay}"
                   Margin="0,20,20,20">
 
             <ItemsControl.ItemTemplate>
