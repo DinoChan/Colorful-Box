@@ -101,6 +101,8 @@
     <Compile Include="ColorAndRadiusToTransformXBridge.cs" />
     <Compile Include="ColorGradient.cs" />
     <Compile Include="ColorPalette.cs" />
+    <Compile Include="ColorPaletteStrategies\AnalogousStrategy.cs" />
+    <Compile Include="ColorPaletteStrategies\ColorPaletteStrategy.cs" />
     <Compile Include="ColorPoint.cs" />
     <Compile Include="ColorPointVisual.cs" />
     <Compile Include="Converters\ColorToAngleConverter.cs" />

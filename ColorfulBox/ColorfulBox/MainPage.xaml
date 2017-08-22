@@ -9,23 +9,38 @@
       mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
+            
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
+        <ComboBox Margin="10" x:Name="StrategySelector">
+            <ComboBoxItem Content="Custom" IsSelected="True">
+                <ComboBoxItem.Tag>
+                    <local:ColorPaletteStrategy/>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+            <ComboBoxItem Content="Analogous">
+                <ComboBoxItem.Tag>
+                    <local:AnalogousStrategy/>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+        </ComboBox>
         <local:HsvWheelColorPalette x:Name="ColorPalette"
-                                    Margin="20">
+                                    ColorPaletteStrategy="{Binding SelectedItem.Tag,ElementName=StrategySelector}"
+                                    Margin="20" Grid.Row="1">
             <local:ColorPoint Color="LightGreen" />
             <local:ColorPoint Color="Red" />
-            <local:ColorPoint Color="Blue" />
+            <local:ColorPoint Color="Blue" IsPrimary="True"/>
             <local:ColorPoint Color="Yellow" />
             <local:ColorPoint Color="Purple" />
         </local:HsvWheelColorPalette>
         <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  Grid.Row="1"
                   Grid.Column="1"
                   ItemsSource="{Binding ElementName=ColorPalette,Path=Items}"
                   SelectedItem="{Binding ElementName=ColorPalette,Path=SelectedItem,Mode=TwoWay}"

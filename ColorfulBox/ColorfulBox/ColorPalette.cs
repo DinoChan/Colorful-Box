@@ -16,6 +16,22 @@ namespace ColorfulBox
         #endregion
 
         #region Dependency Properties
+      
+
+        /// <summary>
+        /// 标识 ColorPaletteStrategy 依赖属性。
+        /// </summary>
+        public static readonly DependencyProperty ColorPaletteStrategyProperty =
+            DependencyProperty.Register("ColorPaletteStrategy", typeof(ColorPaletteStrategy), typeof(ColorPalette), new PropertyMetadata(null, OnColorPaletteStrategyChanged));
+
+        private static void OnColorPaletteStrategyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {
+            ColorPalette target = obj as ColorPalette;
+            ColorPaletteStrategy oldValue = (ColorPaletteStrategy)args.OldValue;
+            ColorPaletteStrategy newValue = (ColorPaletteStrategy)args.NewValue;
+            if (oldValue != newValue)
+                target.OnColorPaletteStrategyChanged(oldValue, newValue);
+        }
         #endregion
 
         #region Constructors
@@ -27,9 +43,14 @@ namespace ColorfulBox
 
         #region Properties
 
-    
-
-
+        /// <summary>
+        /// 获取或设置ColorPaletteStrategy的值
+        /// </summary>  
+        public ColorPaletteStrategy ColorPaletteStrategy
+        {
+            get { return (ColorPaletteStrategy)GetValue(ColorPaletteStrategyProperty); }
+            set { SetValue(ColorPaletteStrategyProperty, value); }
+        }
 
         #endregion
 
@@ -63,8 +84,6 @@ namespace ColorfulBox
         }
 
 
-
-
         protected virtual void OnColorPointVisualDragStarted(ColorPointVisual colorPointVisual, Point position)
         {
         }
@@ -72,6 +91,11 @@ namespace ColorfulBox
         protected virtual void OnColorPointVisualDragDelta(ColorPointVisual colorPointVisual, Point position)
         {
         }
+
+        protected virtual void OnColorPaletteStrategyChanged(ColorPaletteStrategy oldValue, ColorPaletteStrategy newValue)
+        {
+        }
+
         #endregion
 
         #region Public Methods

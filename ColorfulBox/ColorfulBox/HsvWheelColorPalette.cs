@@ -40,6 +40,15 @@ namespace ColorfulBox
             colorPointVisual.ColorPoint.Color = GetColor(_dragOrginalPosition);
         }
 
+        protected override void OnColorPaletteStrategyChanged(ColorPaletteStrategy oldValue, ColorPaletteStrategy newValue)
+        {
+            base.OnColorPaletteStrategyChanged(oldValue, newValue);
+            if (newValue == null)
+                return;
+
+            newValue.ChangeColorPoints(this.Items.Cast<ColorPoint>().ToList());
+        }
+
 
         private Color GetColor(Point point)
         {
