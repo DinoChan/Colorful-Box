@@ -11,6 +11,7 @@ namespace ColorfulBox
     public class ColorPoint : DependencyObject
     {
 
+        public event EventHandler<PropertyEventArgs> ColorChanged;
 
         /// <summary>
         /// 获取或设置Color的值
@@ -38,7 +39,7 @@ namespace ColorfulBox
 
         protected virtual void OnColorChanged(Color oldValue, Color newValue)
         {
-
+            ColorChanged?.Invoke(this, new PropertyEventArgs(nameof(Color), oldValue, newValue));
         }
 
 

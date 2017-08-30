@@ -29,7 +29,7 @@ namespace ColorfulBox
             var bounds = colorPointVisual.GetBoundsRelativeTo(this);
             if (bounds == null)
                 return;
-            
+
             _dragOrginalPosition = new Point(bounds.Value.X + bounds.Value.Width / 2, bounds.Value.Y + bounds.Value.Height / 2);
         }
 
@@ -49,6 +49,14 @@ namespace ColorfulBox
             newValue.ChangeColorPoints(this.Items.Cast<ColorPoint>().ToList());
         }
 
+        protected override void OnColorChanged(ColorPoint colorPoint, Color oldValue, Color newValue)
+        {
+            base.OnColorChanged(colorPoint, oldValue, newValue);
+            if (ColorPaletteStrategy == null)
+                return;
+
+            ColorPaletteStrategy.OnColorChanged(colorPoint, oldValue, Items.OfType<ColorPoint>().ToList());
+        }
 
         private Color GetColor(Point point)
         {

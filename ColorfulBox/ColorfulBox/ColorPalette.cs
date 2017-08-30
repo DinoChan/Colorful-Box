@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Windows.Input;
 using Windows.Foundation;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
@@ -16,7 +17,7 @@ namespace ColorfulBox
         #endregion
 
         #region Dependency Properties
-      
+
 
         /// <summary>
         /// 标识 ColorPaletteStrategy 依赖属性。
@@ -37,7 +38,7 @@ namespace ColorfulBox
         #region Constructors
         public ColorPalette()
         {
-          
+
         }
         #endregion
 
@@ -73,15 +74,20 @@ namespace ColorfulBox
         {
             base.PrepareContainerForItemOverride(element, item);
             var visual = element as ColorPointVisual;
-            if (visual == null)
-                return;
+            if (visual != null)
+            {
+                visual.ManipulationStarted -= OnColorPointVisualDragStarted;
+                visual.ManipulationStarted += OnColorPointVisualDragStarted;
 
-            visual.ManipulationStarted -= OnColorPointVisualDragStarted;
-            visual.ManipulationStarted += OnColorPointVisualDragStarted;
+                visual.ManipulationDelta -= OnColorPointVisualDragDelta;
+                visual.ManipulationDelta += OnColorPointVisualDragDelta;
+            }
 
-            visual.ManipulationDelta -= OnColorPointVisualDragDelta;
-            visual.ManipulationDelta += OnColorPointVisualDragDelta;
+            var colorPoint = item as ColorPoint;
+            colorPoint.ColorChanged -= OnColorChanged;
+            colorPoint.ColorChanged += OnColorChanged;
         }
+
 
 
         protected virtual void OnColorPointVisualDragStarted(ColorPointVisual colorPointVisual, Point position)
@@ -96,6 +102,10 @@ namespace ColorfulBox
         {
         }
 
+        protected virtual void OnColorChanged(ColorPoint colorPoint, Color oldValue, Color newValue)
+        {
+
+        }
         #endregion
 
         #region Public Methods
@@ -118,7 +128,7 @@ namespace ColorfulBox
             if (element == null)
                 return;
 
-            var bounds =element.GetBoundsRelativeTo(this);
+            var bounds = element.GetBoundsRelativeTo(this);
             if (bounds == null)
                 return;
 
@@ -131,6 +141,13 @@ namespace ColorfulBox
         {
             OnColorPointVisualDragDelta(sender as ColorPointVisual, new Point(e.Delta.Translation.X, e.Delta.Translation.Y));
         }
+
+        private void OnColorChanged(object sender, PropertyEventArgs e)
+        {
+            OnColorChanged(sender as ColorPoint, (Color)e.OldValue, (Color)e.NewValue);
+        }
+
+
         #endregion
 
 

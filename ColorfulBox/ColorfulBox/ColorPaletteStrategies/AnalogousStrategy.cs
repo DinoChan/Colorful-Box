@@ -10,32 +10,49 @@ namespace ColorfulBox
 {
     public class AnalogousStrategy : ColorPaletteStrategy
     {
+        public AnalogousStrategy()
+        {
+            _degree = 10;
+        }
+
         private bool _isColorsChanging;
+        private double _degree;
 
         public override void ChangeColorPoints(IList<ColorPoint> colorPoints)
         {
-            var primaryColorPoint = colorPoints.FirstOrDefault(p => p.IsPrimary);
-            if (primaryColorPoint == null)
-                return;
-
-            var primaryHsv = primaryColorPoint.Color.ToHsv();
-
-            var primatyIndex = colorPoints.IndexOf(primaryColorPoint);
-            var degree = 10;
-            for (int i = 0; i < colorPoints.Count; i++)
+            _isColorsChanging = true;
+            try
             {
-                if (i == primatyIndex)
-                    continue;
+                var primaryColorPoint = colorPoints.FirstOrDefault(p => p.IsPrimary);
+                if (primaryColorPoint == null)
+                    return;
 
-                var colorPoint = colorPoints[i];
-                var hsvColor = colorPoint.Color.ToHsv();
-                var hue = primaryHsv.H + (i - primatyIndex) * degree;
-                if (hue < 0)
-                    hue += 360;
-                else if (hue > 360)
-                    hue -= 360;
+                var primaryHsv = primaryColorPoint.Color.ToHsv();
 
-                colorPoint.Color = Microsoft.Toolkit.Uwp.ColorHelper.FromHsv(hue, primaryHsv.S, primaryHsv.V);
+                var primatyIndex = colorPoints.IndexOf(primaryColorPoint);
+                for (int i = 0; i < colorPoints.Count; i++)
+                {
+                    if (i == primatyIndex)
+                        continue;
+
+                    var colorPoint = colorPoints[i];
+                    var hsvColor = colorPoint.Color.ToHsv();
+                    var hue = primaryHsv.H + (i - primatyIndex) * _degree;
+                    while (hue < 0)
+                    {
+                        hue += 360;
+                    }
+                    while (hue > 360)
+                    {
+                        hue -= 360;
+                    }
+
+                    colorPoint.Color = Microsoft.Toolkit.Uwp.ColorHelper.FromHsv(hue, primaryHsv.S, primaryHsv.V);
+                }
+            }
+            finally
+            {
+                _isColorsChanging = false;
             }
         }
 
@@ -52,8 +69,20 @@ namespace ColorfulBox
                 if (primaryPoint == null)
                     return;
 
-                if (primaryPoint == colorPoint)
-                    ChangeColorPoints(colorPoints);
+                if (primaryPoint != colorPoint)
+                {
+                    var index = colorPoints.IndexOf(colorPoint);
+                    var hsv = colorPoint.Color.ToHsv();
+                    var primaryHsv = primaryPoint.Color.ToHsv();
+                    var primaryIndex = colorPoints.IndexOf(primaryPoint);
+                    var degreeDifference = hsv.H - primaryHsv.H;
+                    if (degreeDifference < -180)
+                        degreeDifference += 360;
+
+                    _degree = (degreeDifference) / (index - primaryIndex);
+                }
+
+                ChangeColorPoints(colorPoints);
             }
             finally
             {
