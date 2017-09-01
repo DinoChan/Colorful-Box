@@ -27,7 +27,7 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ComboBox Margin="10" x:Name="StrategySelector">
+        <ComboBox Margin="10" x:Name="StrategySelector" Header="Rule">
             <ComboBoxItem Content="Custom" IsSelected="True">
                 <ComboBoxItem.Tag>
                     <local:ColorPaletteStrategy/>
@@ -71,8 +71,8 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Rectangle Fill="{Binding Color,Converter={StaticResource ColorToBrushConverter}}"
-                                   Width="100"
-                                   Height="100" />
+                                   Width="90"
+                                   Height="90" />
                         <StackPanel Grid.Column="1">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -80,6 +80,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <local:ColorGradient Width="200"
+                                                     Margin=" 5,0"
                                                      Minimum="0"
                                                      Maximum="255"
                                                      Color="{Binding Color}"

@@ -7,6 +7,7 @@ using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
+using Microsoft.Toolkit.Uwp.Helpers;
 
 namespace ColorfulBox
 {
@@ -37,7 +38,7 @@ namespace ColorfulBox
         {
             base.OnColorPointVisualDragDelta(colorPointVisual, position);
             _dragOrginalPosition = new Point(_dragOrginalPosition.X + position.X, _dragOrginalPosition.Y + position.Y);
-            colorPointVisual.ColorPoint.Color = GetColor(_dragOrginalPosition);
+            colorPointVisual.ColorPoint.Color = GetColor(_dragOrginalPosition, colorPointVisual.ColorPoint.Color);
         }
 
         protected override void OnColorPaletteStrategyChanged(ColorPaletteStrategy oldValue, ColorPaletteStrategy newValue)
@@ -58,7 +59,7 @@ namespace ColorfulBox
             ColorPaletteStrategy.OnColorChanged(colorPoint, oldValue, Items.OfType<ColorPoint>().ToList());
         }
 
-        private Color GetColor(Point point)
+        private Color GetColor(Point point,Color orginalColor)
         {
             var centerPoint = new Point(ActualWidth / 2, ActualHeight / 2);
             var diameter = ActualWidth < ActualHeight ? ActualWidth : ActualHeight;
@@ -77,8 +78,10 @@ namespace ColorfulBox
             if (theta < 0)
                 theta += 2 * Math.PI;
 
+
+            var orginalHsvColor = orginalColor.ToHsv();
             var hue = (int)(theta / (Math.PI * 2) * 360.0);
-            var color = ColorHelper.FromHsv(hue, saturation, 1);
+            var color = ColorHelper.FromHsv(hue, saturation, orginalHsvColor.V);
             return color;
         }
     }
