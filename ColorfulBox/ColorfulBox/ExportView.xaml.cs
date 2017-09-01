@@ -25,8 +25,10 @@ namespace ColorfulBox
         public ExportView()
         {
             this.InitializeComponent();
-            
+            Loaded += OnLoaded;
         }
+
+      
 
         private string _colorText;
 
@@ -43,29 +45,10 @@ namespace ColorfulBox
         /// 标识 ColorPoints 依赖属性。
         /// </summary>
         public static readonly DependencyProperty ColorPointsProperty =
-            DependencyProperty.Register("ColorPoints", typeof(ColorPointCollection), typeof(ExportView), new PropertyMetadata(null, OnColorPointsChanged));
+            DependencyProperty.Register("ColorPoints", typeof(ColorPointCollection), typeof(ExportView), new PropertyMetadata(null));
 
-        private static void OnColorPointsChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            ExportView target = obj as ExportView;
-           var oldValue = (ColorPointCollection)args.OldValue;
-           var newValue = (ColorPointCollection)args.NewValue;
-            if (oldValue != newValue)
-                target.OnColorPointsChanged(oldValue, newValue);
-        }
 
-        protected virtual void OnColorPointsChanged(ColorPointCollection oldValue, ColorPointCollection newValue)
-        {
-            if (oldValue != null)
-                oldValue.CollectionChanged -= OnColorPointsCollectionChanged;
-
-            if (newValue!=null)
-                newValue.CollectionChanged += OnColorPointsCollectionChanged;
-
-            UpdateText();
-        }
-
-        private void OnColorPointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             UpdateText();
         }
@@ -87,6 +70,7 @@ namespace ColorfulBox
             ExportTextBox.Text = _colorText;
 
         }
+
 
         private void OnCopy(object sender, RoutedEventArgs e)
         {

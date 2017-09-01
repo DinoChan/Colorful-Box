@@ -10,7 +10,7 @@
       mc:Ignorable="d">
     <Page.Resources>
         <local:ColorPointCollection x:Key="ColorPoints">
-            <local:ColorPoint Color="LightGreen" />
+            <local:ColorPoint Color="#FF00EE82" />
             <local:ColorPoint Color="Red" />
             <local:ColorPoint Color="Blue" IsPrimary="True"/>
             <local:ColorPoint Color="Yellow" />
@@ -38,11 +38,11 @@
                     <local:AnalogousStrategy/>
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <ComboBoxItem Content="Complementary">
+            <!--<ComboBoxItem Content="Complementary">
                 <ComboBoxItem.Tag>
                     <local:ComplementaryStrategy/>
                 </ComboBoxItem.Tag>
-            </ComboBoxItem>
+            </ComboBoxItem>-->
         </ComboBox>
         <Rectangle Grid.Row="1" Fill="#33888888" Grid.ColumnSpan="10"/>
         <local:HsvWheelColorPalette x:Name="ColorPalette"

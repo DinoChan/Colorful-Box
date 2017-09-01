@@ -27,33 +27,37 @@ namespace ColorfulBox
 
                 var primaryHsv = primaryColorPoint.Color.ToHsv();
                 primaryHsv.S = 0.76;
-                primaryHsv.V = 1;
                 var primatyIndex = colorPoints.IndexOf(primaryColorPoint);
                 for (int i = 0; i < colorPoints.Count; i++)
                 {
-                    if (i == primatyIndex)
-                        continue;
-
-                    var hue = primaryHsv.H;
                     var colorPoint = colorPoints[i];
-                    if (i > primatyIndex)
+                    if (i == primatyIndex)
                     {
-                        hue += 180;
-                        if (hue > 360)
-                            hue -= 360;
+                        colorPoint.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsv(primaryHsv.H, primaryHsv.S, primaryHsv.V);
                     }
-                    var value = primaryHsv.V;
-                    var saturation = primaryHsv.S;
-                    if (Math.Abs(i - primatyIndex) > 1)
+                    else
                     {
-                        value -= (Math.Abs(i - primatyIndex) - 1) * 0.3;
-                        value = Math.Max(0, value);
+                        var hue = primaryHsv.H;
+                     
+                        if (i > primatyIndex)
+                        {
+                            hue += 180;
+                            if (hue > 360)
+                                hue -= 360;
+                        }
+                        var value = primaryHsv.V;
+                        var saturation = primaryHsv.S;
+                        if (Math.Abs(i - primatyIndex) > 1)
+                        {
+                            value -= (Math.Abs(i - primatyIndex) - 1) * 0.3;
+                            value = Math.Max(0, value);
+                        }
+
+                        saturation *= 1 + Math.Abs(i - primatyIndex) * 0.15;
+                        saturation = Math.Min(1, saturation);
+
+                        colorPoint.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsv(hue, saturation, value);
                     }
-
-                    saturation *= 1 + Math.Abs(i - primatyIndex) * 0.15;
-                    saturation = Math.Min(1, saturation);
-
-                    colorPoint.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsv(hue, saturation, value);
                 }
             }
             finally
@@ -109,7 +113,7 @@ namespace ColorfulBox
                     {
                         saturationRate = 1 + Math.Abs(i - primatyIndex) * 0.15;
                     }
-                    var saturation = pointHsv.S * saturationRate;
+                    var saturation = pointHsv.S / saturationRate;
                     point.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsv(hue, saturation, pointHsv.V);
                 }
             }
