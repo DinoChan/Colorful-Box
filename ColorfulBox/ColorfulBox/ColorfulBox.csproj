@@ -103,6 +103,7 @@
     <Compile Include="ColorPalette.cs" />
     <Compile Include="ColorPaletteStrategies\AnalogousStrategy.cs" />
     <Compile Include="ColorPaletteStrategies\ColorPaletteStrategy.cs" />
+    <Compile Include="ColorPaletteStrategies\ComplementaryStrategy.cs" />
     <Compile Include="ColorPoint.cs" />
     <Compile Include="ColorPointCollection.cs" />
     <Compile Include="ColorPointVisual.cs" />
