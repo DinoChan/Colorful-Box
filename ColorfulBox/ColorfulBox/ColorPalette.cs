@@ -73,8 +73,7 @@ namespace ColorfulBox
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
         {
             base.PrepareContainerForItemOverride(element, item);
-            var visual = element as ColorPointVisual;
-            if (visual != null)
+            if (element is ColorPointVisual visual)
             {
                 visual.ManipulationStarted -= OnColorPointVisualDragStarted;
                 visual.ManipulationStarted += OnColorPointVisualDragStarted;
@@ -120,8 +119,7 @@ namespace ColorfulBox
 
         private void OnColorPointVisualDragStarted(object sender, Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs e)
         {
-            var visual = sender as ColorPointVisual;
-            if (visual != null)
+            if (sender is ColorPointVisual visual)
                 visual.IsSelected = true;
 
             FrameworkElement element = e.OriginalSource as FrameworkElement;

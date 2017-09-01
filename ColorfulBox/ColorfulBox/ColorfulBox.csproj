@@ -12,7 +12,7 @@
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -104,12 +104,16 @@
     <Compile Include="ColorPaletteStrategies\AnalogousStrategy.cs" />
     <Compile Include="ColorPaletteStrategies\ColorPaletteStrategy.cs" />
     <Compile Include="ColorPoint.cs" />
+    <Compile Include="ColorPointCollection.cs" />
     <Compile Include="ColorPointVisual.cs" />
     <Compile Include="Common\PropertyEventArgs.cs" />
     <Compile Include="Converters\ColorToAngleConverter.cs" />
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Common\DelegateCommand.cs" />
     <Compile Include="Common\DelegateCommand{T}.cs" />
+    <Compile Include="ExportView.xaml.cs">
+      <DependentUpon>ExportView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HsvWheelColorPalette.cs" />
     <Compile Include="IColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -143,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ExportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -157,10 +165,10 @@
       <Version>5.2.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp">
-      <Version>1.5.0</Version>
+      <Version>2.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>1.5.0</Version>
+      <Version>2.0.0</Version>
     </PackageReference>
     <PackageReference Include="WinRTXamlToolkit.UWP">
       <Version>2.3.0</Version>

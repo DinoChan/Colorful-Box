@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
-using ColorHelper = Microsoft.Toolkit.Uwp.ColorHelper;
+using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 
 namespace ColorfulBox
 {

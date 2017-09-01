@@ -6,10 +6,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
       xmlns:toolkit="using:WinRTXamlToolkit.Controls"
+  
       mc:Ignorable="d">
+    <Page.Resources>
+        <local:ColorPointCollection x:Key="ColorPoints">
+            <local:ColorPoint Color="LightGreen" />
+            <local:ColorPoint Color="Red" />
+            <local:ColorPoint Color="Blue" IsPrimary="True"/>
+            <local:ColorPoint Color="Yellow" />
+            <local:ColorPoint Color="Purple" />
+        </local:ColorPointCollection>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
-            
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
@@ -30,19 +39,16 @@
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
         </ComboBox>
+        <Rectangle Grid.Row="1" Fill="#33888888" Grid.ColumnSpan="10"/>
         <local:HsvWheelColorPalette x:Name="ColorPalette"
                                     ColorPaletteStrategy="{Binding SelectedItem.Tag,ElementName=StrategySelector}"
-                                    Margin="20" Grid.Row="1">
-            <local:ColorPoint Color="LightGreen" />
-            <local:ColorPoint Color="Red" />
-            <local:ColorPoint Color="Blue" IsPrimary="True"/>
-            <local:ColorPoint Color="Yellow" />
-            <local:ColorPoint Color="Purple" />
+                                    Margin="20" Grid.Row="1" ItemsSource="{StaticResource ColorPoints}">
+
         </local:HsvWheelColorPalette>
         <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Grid.Row="1"
                   Grid.Column="1"
-                  ItemsSource="{Binding ElementName=ColorPalette,Path=Items}"
+                  ItemsSource="{StaticResource ColorPoints}"
                   SelectedItem="{Binding ElementName=ColorPalette,Path=SelectedItem,Mode=TwoWay}"
                   Margin="0,20,20,20">
 
@@ -124,5 +130,20 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListView>
+        <Grid Padding="{ThemeResource ContentDialogPadding}" Grid.Row="2" Grid.ColumnSpan="2">
+            <Button HorizontalAlignment="Right" Content="Export">
+                <Button.Flyout>
+                    <Flyout >
+                        <Flyout.FlyoutPresenterStyle>
+                            <Style TargetType="FlyoutPresenter">
+                                <Setter Property="MinHeight" Value="300"/>
+                                <Setter Property="MinWidth" Value="600"/>
+                            </Style>
+                        </Flyout.FlyoutPresenterStyle>
+                        <local:ExportView ColorPoints="{StaticResource ColorPoints}" />
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Toolkit.Uwp;
+using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.UI;
 
 namespace ColorfulBox
@@ -47,7 +47,7 @@ namespace ColorfulBox
                         hue -= 360;
                     }
 
-                    colorPoint.Color = Microsoft.Toolkit.Uwp.ColorHelper.FromHsv(hue, primaryHsv.S, primaryHsv.V);
+                    colorPoint.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsv(hue, primaryHsv.S, primaryHsv.V);
                 }
             }
             finally

@@ -102,7 +102,7 @@ namespace ColorfulBox
             if (AttachedElement == null)
                 return;
 
-            var hsvColor = Microsoft.Toolkit.Uwp.ColorHelper.ToHsv(Color);
+            var hsvColor = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHsv(Color);
 
             var radius = Math.Min(AttachedElement.ActualWidth, AttachedElement.ActualHeight) / 2;
             TranslateX = hsvColor.S * radius;
