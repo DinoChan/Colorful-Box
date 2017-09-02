@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.UI;
+using System.Diagnostics;
 
 namespace ColorfulBox
 {
@@ -38,7 +39,7 @@ namespace ColorfulBox
                     else
                     {
                         var hue = primaryHsv.H;
-                     
+
                         if (i > primatyIndex)
                         {
                             hue += 180;
@@ -86,15 +87,17 @@ namespace ColorfulBox
                 if (primaryColorPoint != colorPoint)
                 {
                     if (colorPointIndex > primatyIndex)
-                        primaryHsv.H = colorPointHsv.H;
-                    else
                     {
                         primaryHsv.H = colorPointHsv.H + 180;
                         if (primaryHsv.H > 360)
                             primaryHsv.H -= 360;
                     }
+                    else
+                    {
+                        primaryHsv.H = colorPointHsv.H;
+                    }
                 }
-
+                var oldHsv = oldColor.ToHsv();
                 for (int i = 0; i < colorPoints.Count; i++)
                 {
 
@@ -108,12 +111,35 @@ namespace ColorfulBox
                             hue -= 360;
                     }
 
-                    var saturationRate = primaryHsv.S / pointHsv.S;
-                    if (saturationRate == 1 )
+                    var saturation = pointHsv.S;
+                    if (colorPoint == primaryColorPoint)
                     {
-                        saturationRate = 1 + Math.Abs(i - primatyIndex) * 0.15;
+                        if (i == primatyIndex)
+                            continue;
+
+                        var saturationRate =  pointHsv.S/ oldHsv.S;
+                        if (pointHsv.S == 1)
+                        {
+                            saturationRate = 1 + Math.Abs(i - primatyIndex) * 0.15;
+                        }
+                        
+                        saturation = saturationRate* primaryHsv.S  ;
+                        saturation = Math.Min(1, saturation);
+                        if (i == 0)
+                        {
+                            Debug.WriteLine("saturationRate:"+saturationRate);
+                            Debug.WriteLine("oldHsv.S:" + oldHsv.S);
+                            Debug.WriteLine("primaryHsv.S:" + primaryHsv.S);
+                            Debug.WriteLine("saturation:" + saturation);
+                            Debug.WriteLine("pointHsv.S:" + pointHsv.S);
+                        }
                     }
-                    var saturation = pointHsv.S / saturationRate;
+                    //var saturationRate = primaryHsv.S / pointHsv.S;
+                    //if (saturationRate == 1 )
+                    //{
+                    //    saturationRate = 1 + Math.Abs(i - primatyIndex) * 0.15;
+                    //}
+                    //var saturation = primaryHsv.S / saturationRate;
                     point.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsv(hue, saturation, pointHsv.V);
                 }
             }

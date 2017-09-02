@@ -38,11 +38,11 @@
                     <local:AnalogousStrategy/>
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <!--<ComboBoxItem Content="Complementary">
+            <ComboBoxItem Content="Complementary">
                 <ComboBoxItem.Tag>
                     <local:ComplementaryStrategy/>
                 </ComboBoxItem.Tag>
-            </ComboBoxItem>-->
+            </ComboBoxItem>
         </ComboBox>
         <Rectangle Grid.Row="1" Fill="#33888888" Grid.ColumnSpan="10"/>
         <local:HsvWheelColorPalette x:Name="ColorPalette"
