@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,38 +9,60 @@ using Windows.UI.Xaml;
 
 namespace ColorfulBox
 {
-    public class ColorPoint : DependencyObject
+    public class ColorPoint : DependencyObject,INotifyPropertyChanged
     {
 
         public event EventHandler<PropertyEventArgs> ColorChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        /// <summary>
-        /// 获取或设置Color的值
-        /// </summary>  
-        public Color Color
-        {
-            get { return (Color)GetValue(ColorProperty); }
-            set { SetValue(ColorProperty, value); }
-        }
+        ///// <summary>
+        ///// 获取或设置Color的值
+        ///// </summary>  
+        //public Color Color
+        //{
+        //    get { return (Color)GetValue(ColorProperty); }
+        //    set { SetValue(ColorProperty, value); }
+        //}
 
-        /// <summary>
-        /// 标识 Color 依赖属性。
-        /// </summary>
-        public static readonly DependencyProperty ColorProperty =
-            DependencyProperty.Register("Color", typeof(Color), typeof(ColorPoint), new PropertyMetadata(default(Color), OnColorChanged));
+        ///// <summary>
+        ///// 标识 Color 依赖属性。
+        ///// </summary>
+        //public static readonly DependencyProperty ColorProperty =
+        //    DependencyProperty.Register("Color", typeof(Color), typeof(ColorPoint), new PropertyMetadata(default(Color), OnColorChanged));
 
-        private static void OnColorChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            ColorPoint target = obj as ColorPoint;
-            Color oldValue = (Color)args.OldValue;
-            Color newValue = (Color)args.NewValue;
-            if (oldValue != newValue)
-                target.OnColorChanged(oldValue, newValue);
-        }
+        //private static void OnColorChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        //{
+        //    ColorPoint target = obj as ColorPoint;
+        //    Color oldValue = (Color)args.OldValue;
+        //    Color newValue = (Color)args.NewValue;
+        //    if (oldValue != newValue)
+        //        target.OnColorChanged(oldValue, newValue);
+        //}
 
         protected virtual void OnColorChanged(Color oldValue, Color newValue)
         {
             ColorChanged?.Invoke(this, new PropertyEventArgs(nameof(Color), oldValue, newValue));
+        }
+
+
+        private Color _color;
+
+        /// <summary>
+        /// 获取或设置 Color 的值
+        /// </summary>
+        public Color Color
+        {
+            get { return _color; }
+            set
+            {
+                if (_color == value)
+                    return;
+
+                var oldValue = _color;
+                _color = value;
+                OnPropertyChanged("Color");
+                ColorChanged?.Invoke(this, new PropertyEventArgs(nameof(Color), oldValue, _color));
+            }
         }
 
 
@@ -70,6 +93,12 @@ namespace ColorfulBox
 
         protected virtual void OnIsPrimaryChanged(bool oldValue, bool newValue)
         {
+        }
+
+        private void OnPropertyChanged(string propertyName = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

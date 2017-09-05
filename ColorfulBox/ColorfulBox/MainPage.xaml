@@ -6,13 +6,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
       xmlns:toolkit="using:WinRTXamlToolkit.Controls"
-  
       mc:Ignorable="d">
     <Page.Resources>
         <local:ColorPointCollection x:Key="ColorPoints">
             <local:ColorPoint Color="#FF00EE82" />
             <local:ColorPoint Color="Red" />
-            <local:ColorPoint Color="Blue" IsPrimary="True"/>
+            <local:ColorPoint Color="Blue"
+                              IsPrimary="True" />
             <local:ColorPoint Color="Yellow" />
             <local:ColorPoint Color="Purple" />
         </local:ColorPointCollection>
@@ -27,27 +27,34 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ComboBox Margin="10" x:Name="StrategySelector" Header="Rule">
-            <ComboBoxItem Content="Custom" IsSelected="True">
+        <ComboBox Margin="10"
+                  x:Name="StrategySelector"
+                  Header="Rule">
+            <ComboBoxItem Content="Custom"
+                          IsSelected="True">
                 <ComboBoxItem.Tag>
-                    <local:ColorPaletteStrategy/>
+                    <local:ColorPaletteStrategy />
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
             <ComboBoxItem Content="Analogous">
                 <ComboBoxItem.Tag>
-                    <local:AnalogousStrategy/>
+                    <local:AnalogousStrategy />
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <ComboBoxItem Content="Complementary">
+            <!--<ComboBoxItem Content="Complementary">
                 <ComboBoxItem.Tag>
                     <local:ComplementaryStrategy/>
                 </ComboBoxItem.Tag>
-            </ComboBoxItem>
+            </ComboBoxItem>-->
         </ComboBox>
-        <Rectangle Grid.Row="1" Fill="#33888888" Grid.ColumnSpan="10"/>
+        <Rectangle Grid.Row="1"
+                   Fill="#33888888"
+                   Grid.ColumnSpan="10" />
         <local:HsvWheelColorPalette x:Name="ColorPalette"
                                     ColorPaletteStrategy="{Binding SelectedItem.Tag,ElementName=StrategySelector}"
-                                    Margin="20" Grid.Row="1" ItemsSource="{StaticResource ColorPoints}">
+                                    Margin="20"
+                                    Grid.Row="1"
+                                    ItemsSource="{StaticResource ColorPoints}">
 
         </local:HsvWheelColorPalette>
         <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -79,9 +86,10 @@
                                    Width="90"
                                    Height="90" />
                         <StackPanel Grid.Column="1">
-                            <Grid>
+                            <Grid Margin="0,7">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <local:ColorGradient Width="200"
@@ -91,15 +99,24 @@
                                                      Color="{Binding Color}"
                                                      Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
                                                      ColorConverter="{StaticResource RedConverter}" />
-                                <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
+                                <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
                                                        Maximum="255"
                                                        ValueBarVisibility="Collapsed"
                                                        Foreground="White"
-                                                       Grid.Column="1" />
+                                                       Grid.Column="1" />-->
+                                <TextBlock Text="R:"
+                                           Grid.Column="1"
+                                           Foreground="White" />
+                                <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
+                                           Foreground="White"
+                                           Width="25"
+                                           Margin="3,0,0,0"
+                                           Grid.Column="2" />
                             </Grid>
-                            <Grid>
+                            <Grid Margin="0,7">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <local:ColorGradient Width="200"
@@ -108,15 +125,24 @@
                                                      Color="{Binding Color}"
                                                      Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
                                                      ColorConverter="{StaticResource GreenConverter}" />
-                                <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
+                                <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
                                                        Maximum="255"
                                                        Foreground="White"
                                                        ValueBarVisibility="Collapsed"
-                                                       Grid.Column="1" />
+                                                       Grid.Column="1" />-->
+                                <TextBlock Text="G:"
+                                           Grid.Column="1"
+                                           Foreground="White" />
+                                <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
+                                           Foreground="White"
+                                           Width="25"
+                                           Margin="3,0,0,0"
+                                           Grid.Column="2" />
                             </Grid>
-                            <Grid>
+                            <Grid Margin="0,7">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <local:ColorGradient Width="200"
@@ -125,25 +151,38 @@
                                                      Color="{Binding Color}"
                                                      Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
                                                      ColorConverter="{StaticResource BlueConverter}" />
-                                <toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
+                                <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
                                                        Maximum="255"
                                                        Foreground="White"
                                                        ValueBarVisibility="Collapsed"
-                                                       Grid.Column="1" />
+                                                       Grid.Column="1" />-->
+                                <TextBlock Text="B:"
+                                           Grid.Column="1"
+                                           Foreground="White" />
+                                <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
+                                           Foreground="White"
+                                           Width="25"
+                                           Margin="3,0,0,0"
+                                           Grid.Column="2" />
                             </Grid>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListView>
-        <Grid Padding="{ThemeResource ContentDialogPadding}" Grid.Row="2" Grid.ColumnSpan="2">
-            <Button HorizontalAlignment="Right" Content="Export">
+        <Grid Padding="{ThemeResource ContentDialogPadding}"
+              Grid.Row="2"
+              Grid.ColumnSpan="2">
+            <Button HorizontalAlignment="Right"
+                    Content="Export">
                 <Button.Flyout>
-                    <Flyout >
+                    <Flyout>
                         <Flyout.FlyoutPresenterStyle>
                             <Style TargetType="FlyoutPresenter">
-                                <Setter Property="MinHeight" Value="300"/>
-                                <Setter Property="MinWidth" Value="600"/>
+                                <Setter Property="MinHeight"
+                                        Value="300" />
+                                <Setter Property="MinWidth"
+                                        Value="600" />
                             </Style>
                         </Flyout.FlyoutPresenterStyle>
                         <local:ExportView ColorPoints="{StaticResource ColorPoints}" />

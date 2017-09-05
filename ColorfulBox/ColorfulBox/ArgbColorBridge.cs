@@ -79,6 +79,8 @@ namespace ColorfulBox
                     return;
 
                 _a = value;
+                _a = Math.Max(0, _a);
+                _a = Math.Min(255, _a);
                 OnPropertyChanged("A");
                 OnArgbChanged();
             }
@@ -99,6 +101,8 @@ namespace ColorfulBox
                     return;
 
                 _r = value;
+                _r = Math.Max(0, _r);
+                _r = Math.Min(255, _r);
                 OnPropertyChanged("R");
                 OnArgbChanged();
             }
@@ -119,6 +123,8 @@ namespace ColorfulBox
                     return;
 
                 _g = value;
+                _g = Math.Max(0, _g);
+                _g = Math.Min(255, _g);
                 OnPropertyChanged("G");
                 OnArgbChanged();
             }
@@ -139,6 +145,8 @@ namespace ColorfulBox
                     return;
 
                 _b = value;
+                _b = Math.Max(0, _b);
+                _b = Math.Min(255, _b);
                 OnPropertyChanged("B");
                 OnArgbChanged();
             }
