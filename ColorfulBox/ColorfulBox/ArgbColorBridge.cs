@@ -9,7 +9,7 @@ using Windows.UI.Xaml;
 
 namespace ColorfulBox
 {
-    public class ArgbColorBridge : DependencyObject,INotifyPropertyChanged
+    public class ArgbColorBridge : DependencyObject, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -262,7 +262,7 @@ namespace ColorfulBox
         //public static readonly DependencyProperty BProperty =
         //    DependencyProperty.Register("B", typeof(int), typeof(ArgbColorBridge), new PropertyMetadata(0, OnBChanged));
 
-       
+
 
         //private static void OnBChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         //{

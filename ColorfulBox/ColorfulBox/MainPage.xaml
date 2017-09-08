@@ -6,6 +6,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
       xmlns:toolkit="using:WinRTXamlToolkit.Controls"
+      d:DesignHeight="300"
+      d:DesignWidth="600"
       mc:Ignorable="d">
     <Page.Resources>
         <local:ColorPointCollection x:Key="ColorPoints">
@@ -16,6 +18,198 @@
             <local:ColorPoint Color="Yellow" />
             <local:ColorPoint Color="Purple" />
         </local:ColorPointCollection>
+        <DataTemplate x:Key="ArgbModelTemplate">
+            <Grid>
+                <Grid.Resources>
+                    <local:ArgbColorBridge  x:Key="ArgbColorBridge"
+                                            Color="{Binding Color,Mode=TwoWay}" />
+                    <local:ArgbConverter x:Key="RedConverter"
+                                         Model="Red" />
+                    <local:ArgbConverter x:Key="GreenConverter"
+                                         Model="Green" />
+                    <local:ArgbConverter x:Key="BlueConverter"
+                                         Model="Blue" />
+                </Grid.Resources>
+                <StackPanel >
+                    <Grid Margin="0,7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <local:ColorGradient Width="200"
+                                             Margin=" 5,0"
+                                             Minimum="0"
+                                             Maximum="255"
+                                             Color="{Binding Color}"
+                                             Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
+                                             ColorConverter="{StaticResource RedConverter}" />
+                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
+                                                       Maximum="255"
+                                                       ValueBarVisibility="Collapsed"
+                                                       Foreground="White"
+                                                       Grid.Column="1" />-->
+                        <TextBlock Text="R:"
+                                   Grid.Column="1"
+                                   Foreground="White" />
+                        <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
+                                   Foreground="White"
+                                   Width="30"
+                                   Margin="3,0,0,0"
+                                   Grid.Column="2" />
+                    </Grid>
+                    <Grid Margin="0,7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <local:ColorGradient Width="200"
+                                             Minimum="0"
+                                             Maximum="255"
+                                             Color="{Binding Color}"
+                                             Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
+                                             ColorConverter="{StaticResource GreenConverter}" />
+                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
+                                                       Maximum="255"
+                                                       Foreground="White"
+                                                       ValueBarVisibility="Collapsed"
+                                                       Grid.Column="1" />-->
+                        <TextBlock Text="G:"
+                                   Grid.Column="1"
+                                   Foreground="White" />
+                        <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
+                                   Foreground="White"
+                                   Width="30"
+                                   Margin="3,0,0,0"
+                                   Grid.Column="2" />
+                    </Grid>
+                    <Grid Margin="0,7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <local:ColorGradient Width="200"
+                                             Minimum="0"
+                                             Maximum="255"
+                                             Color="{Binding Color}"
+                                             Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
+                                             ColorConverter="{StaticResource BlueConverter}" />
+                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
+                                                       Maximum="255"
+                                                       Foreground="White"
+                                                       ValueBarVisibility="Collapsed"
+                                                       Grid.Column="1" />-->
+                        <TextBlock Text="B:"
+                                   Grid.Column="1"
+                                   Foreground="White" />
+                        <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
+                                   Foreground="White"
+                                   Width="30"
+                                   Margin="3,0,0,0"
+                                   Grid.Column="2" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="HsvbModelTemplate">
+            <Grid>
+                <Grid.Resources>
+                    <local:HsvColorBridge  x:Key="HsvColorBridge"
+                                            Color="{Binding Color,Mode=TwoWay}" />
+                    <local:HsvConverter x:Key="HueConverter"
+                                         Model="Hue" />
+                    <local:HsvConverter x:Key="SaturationConverter"
+                                         Model="Saturation" />
+                    <local:HsvConverter x:Key="ValueConverter"
+                                         Model="Value" />
+                </Grid.Resources>
+                <StackPanel >
+                    <Grid Margin="0,7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <local:ColorGradient Width="200"
+                                             Margin=" 5,0"
+                                             Minimum="0"
+                                             Maximum="360"
+                                             Color="{Binding Color}"
+                                             Value="{Binding Source={StaticResource HsvColorBridge},Path=H,Mode=TwoWay}"
+                                             ColorConverter="{StaticResource HueConverter}" />
+                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
+                                                       Maximum="255"
+                                                       ValueBarVisibility="Collapsed"
+                                                       Foreground="White"
+                                                       Grid.Column="1" />-->
+                        <TextBlock Text="R:"
+                                   Grid.Column="1"
+                                   Foreground="White" />
+                        <TextBlock Text="{Binding Source={StaticResource HsvColorBridge},Path=H,Mode=TwoWay}"
+                                   Foreground="White"
+                                   Width="30"
+                                   Margin="3,0,0,0"
+                                   Grid.Column="2" />
+                    </Grid>
+                    <Grid Margin="0,7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <local:ColorGradient Width="200"
+                                             Minimum="0"
+                                             Maximum="1"
+                                             StepFrequency="0.001" SmallChange="0"
+                                             Color="{Binding Color}"
+                                             Value="{Binding Source={StaticResource HsvColorBridge},Path=S,Mode=TwoWay}"
+                                             ColorConverter="{StaticResource SaturationConverter}" />
+                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
+                                                       Maximum="255"
+                                                       Foreground="White"
+                                                       ValueBarVisibility="Collapsed"
+                                                       Grid.Column="1" />-->
+                        <TextBlock Text="G:"
+                                   Grid.Column="1"
+                                   Foreground="White" />
+                        <TextBlock Text="{Binding Source={StaticResource HsvColorBridge},Path=S,Mode=TwoWay}"
+                                   Foreground="White"
+                                   Width="30"
+                                   Margin="3,0,0,0"
+                                   Grid.Column="2" />
+                    </Grid>
+                    <Grid Margin="0,7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <local:ColorGradient Width="200"
+                                             Minimum="0"
+                                             Maximum="1"
+                                             StepFrequency="0.001" SmallChange="0"
+                                             Color="{Binding Color}"
+                                             Value="{Binding Source={StaticResource HsvColorBridge},Path=V,Mode=TwoWay}"
+                                             ColorConverter="{StaticResource ValueConverter}" />
+                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
+                                                       Maximum="255"
+                                                       Foreground="White"
+                                                       ValueBarVisibility="Collapsed"
+                                                       Grid.Column="1" />-->
+                        <TextBlock Text="B:"
+                                   Grid.Column="1"
+                                   Foreground="White" />
+                        <TextBlock Text="{Binding Source={StaticResource HsvColorBridge},Path=V,Mode=TwoWay}"
+                                   Foreground="White"
+                                   Width="30"
+                                   Margin="3,0,0,0"
+                                   Grid.Column="2" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
@@ -27,6 +221,8 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Rectangle Fill="{ThemeResource CommandBarBackground}"
+                   Grid.ColumnSpan="10" />
         <ComboBox Margin="10"
                   x:Name="StrategySelector"
                   Header="Rule">
@@ -47,9 +243,10 @@
                 </ComboBoxItem.Tag>
             </ComboBoxItem>-->
         </ComboBox>
-        <Rectangle Grid.Row="1"
-                   Fill="#33888888"
-                   Grid.ColumnSpan="10" />
+        <Pivot Grid.Column="1" x:Name="TemplateSelector" Width="300">
+            <PivotItem Header="Rgb" Tag="{StaticResource ArgbModelTemplate}"/>
+            <PivotItem Header="Hsv" Tag="{StaticResource HsvbModelTemplate}"/>
+        </Pivot>
         <local:HsvWheelColorPalette x:Name="ColorPalette"
                                     ColorPaletteStrategy="{Binding SelectedItem.Tag,ElementName=StrategySelector}"
                                     Margin="20"
@@ -68,16 +265,7 @@
                 <DataTemplate x:Name="ColorPointDataTemplate"
                               x:DataType="local:ColorPoint">
                     <Grid>
-                        <Grid.Resources>
-                            <local:ArgbColorBridge  x:Key="ArgbColorBridge"
-                                                    Color="{Binding Color,Mode=TwoWay}" />
-                            <local:ArgbConverter x:Key="RedConverter"
-                                                 Model="Red" />
-                            <local:ArgbConverter x:Key="GreenConverter"
-                                                 Model="Green" />
-                            <local:ArgbConverter x:Key="BlueConverter"
-                                                 Model="Blue" />
-                        </Grid.Resources>
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
@@ -85,97 +273,36 @@
                         <Rectangle Fill="{Binding Color,Converter={StaticResource ColorToBrushConverter}}"
                                    Width="90"
                                    Height="90" />
+
                         <StackPanel Grid.Column="1">
-                            <Grid Margin="0,7">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <local:ColorGradient Width="200"
-                                                     Margin=" 5,0"
-                                                     Minimum="0"
-                                                     Maximum="255"
-                                                     Color="{Binding Color}"
-                                                     Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
-                                                     ColorConverter="{StaticResource RedConverter}" />
-                                <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
-                                                       Maximum="255"
-                                                       ValueBarVisibility="Collapsed"
-                                                       Foreground="White"
-                                                       Grid.Column="1" />-->
-                                <TextBlock Text="R:"
-                                           Grid.Column="1"
-                                           Foreground="White" />
-                                <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
-                                           Foreground="White"
-                                           Width="25"
-                                           Margin="3,0,0,0"
-                                           Grid.Column="2" />
-                            </Grid>
-                            <Grid Margin="0,7">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <local:ColorGradient Width="200"
-                                                     Minimum="0"
-                                                     Maximum="255"
-                                                     Color="{Binding Color}"
-                                                     Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
-                                                     ColorConverter="{StaticResource GreenConverter}" />
-                                <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
-                                                       Maximum="255"
-                                                       Foreground="White"
-                                                       ValueBarVisibility="Collapsed"
-                                                       Grid.Column="1" />-->
-                                <TextBlock Text="G:"
-                                           Grid.Column="1"
-                                           Foreground="White" />
-                                <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
-                                           Foreground="White"
-                                           Width="25"
-                                           Margin="3,0,0,0"
-                                           Grid.Column="2" />
-                            </Grid>
-                            <Grid Margin="0,7">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <local:ColorGradient Width="200"
-                                                     Minimum="0"
-                                                     Maximum="255"
-                                                     Color="{Binding Color}"
-                                                     Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
-                                                     ColorConverter="{StaticResource BlueConverter}" />
-                                <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
-                                                       Maximum="255"
-                                                       Foreground="White"
-                                                       ValueBarVisibility="Collapsed"
-                                                       Grid.Column="1" />-->
-                                <TextBlock Text="B:"
-                                           Grid.Column="1"
-                                           Foreground="White" />
-                                <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
-                                           Foreground="White"
-                                           Width="25"
-                                           Margin="3,0,0,0"
-                                           Grid.Column="2" />
-                            </Grid>
+                            <ContentControl Content="{Binding}" ContentTemplate="{Binding ElementName=TemplateSelector,Path=SelectedItem.Tag}">
+                                <ContentControl.ContentTransitions>
+                                    <TransitionCollection>
+                                        <ContentThemeTransition HorizontalOffset="50" VerticalOffset="0"/>
+                                    </TransitionCollection>
+                                </ContentControl.ContentTransitions>
+                            </ContentControl>
+
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListView>
-        <Grid Padding="{ThemeResource ContentDialogPadding}"
-              Grid.Row="2"
-              Grid.ColumnSpan="2">
-            <Button HorizontalAlignment="Right"
+
+        <!--<Button HorizontalAlignment="Right"
                     Content="Export">
                 <Button.Flyout>
+                  
+                </Button.Flyout>
+            </Button>-->
+        <CommandBar Grid.Row="2"
+                    Grid.ColumnSpan="2">
+            <AppBarButton Label="Export">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets"
+                              Glyph="&#xEDE1;" />
+                </AppBarButton.Icon>
+                <AppBarButton.Flyout>
                     <Flyout>
                         <Flyout.FlyoutPresenterStyle>
                             <Style TargetType="FlyoutPresenter">
@@ -187,8 +314,23 @@
                         </Flyout.FlyoutPresenterStyle>
                         <local:ExportView ColorPoints="{StaticResource ColorPoints}" />
                     </Flyout>
-                </Button.Flyout>
-            </Button>
-        </Grid>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+
+            <CommandBar.SecondaryCommands>
+                <!--<AppBarButton Icon="Like"
+                              Label="Like"
+                              Click="AppBarButton_Click" />-->
+                <AppBarButton Icon="Help"
+                              Label="About">
+                    <AppBarButton.Flyout>
+                        <Flyout>
+                            <local:AboutView />
+                        </Flyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+
     </Grid>
 </Page>

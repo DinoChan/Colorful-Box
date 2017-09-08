@@ -12,21 +12,19 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Toolkit.Uwp.Helpers;
 
-// https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
+// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace ColorfulBox
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class AboutView : UserControl
     {
-        public MainPage()
+        public AboutView()
         {
             this.InitializeComponent();
-    
+            VersionElement.Text =
+                $"{SystemInformation.ApplicationVersion.Major}.{SystemInformation.ApplicationVersion.Minor}.{SystemInformation.ApplicationVersion.Build}.{SystemInformation.ApplicationVersion.Revision}";
         }
-
     }
 }

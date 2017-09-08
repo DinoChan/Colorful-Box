@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="ColorfulBox.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:ColorfulBox"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <Grid  
+           Padding="20">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Colorful Box"
+                            FontSize="20"/>
+                <Image Source="Assets/SmallTile.png"
+                       Height="42"
+                       Margin="0,-8,-10,-10" />
+            </StackPanel>
+            <TextBlock Text="Developer : Dino.C"
+                       FontSize="20" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Version : "
+                           FontSize="20" />
+                <TextBlock x:Name="VersionElement"
+                           FontSize="20" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
