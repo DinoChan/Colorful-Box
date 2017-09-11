@@ -318,9 +318,9 @@
             </AppBarButton>
 
             <CommandBar.SecondaryCommands>
-                <!--<AppBarButton Icon="Like"
+                <AppBarButton Icon="Like"
                               Label="Like"
-                              Click="AppBarButton_Click" />-->
+                              Click="OnLickButtonClick" />
                 <AppBarButton Icon="Help"
                               Label="About">
                     <AppBarButton.Flyout>

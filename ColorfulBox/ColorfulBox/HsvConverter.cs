@@ -15,15 +15,15 @@ namespace ColorfulBox
 
         public Color ToColor(Color color, double value)
         {
-          var hsv=  color.ToHsv();
+          var hsv=  color.ToHsvEx();
             switch (Model)
             {
                 case HsvModel.Hue:
-                    return ColorHelper.FromHsv(value, hsv.S, hsv.V);
+                    return ColorExtensions.FromHsvEx(value, hsv.S, hsv.V);
                 case HsvModel.Saturation:
-                    return ColorHelper.FromHsv(hsv.H, value, hsv.V);
+                    return ColorExtensions.FromHsvEx(hsv.H, value, hsv.V);
                 case HsvModel.Value:
-                    return ColorHelper.FromHsv(hsv.H, hsv.S, value);
+                    return ColorExtensions.FromHsvEx(hsv.H, hsv.S, value);
             }
 
             return Color.FromArgb(0, 0, 0, 0);

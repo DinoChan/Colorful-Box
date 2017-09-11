@@ -27,7 +27,7 @@ namespace ColorfulBox
                 if (primaryColorPoint == null)
                     return;
 
-                var primaryHsv = primaryColorPoint.Color.ToHsv();
+                var primaryHsv = primaryColorPoint.Color.ToHsvEx();
 
                 var primatyIndex = colorPoints.IndexOf(primaryColorPoint);
                 for (int i = 0; i < colorPoints.Count; i++)
@@ -36,7 +36,7 @@ namespace ColorfulBox
                         continue;
 
                     var colorPoint = colorPoints[i];
-                    var hsvColor = colorPoint.Color.ToHsv();
+                    var hsvColor = colorPoint.Color.ToHsvEx();
                     var hue = primaryHsv.H + (i - primatyIndex) * _degree;
                     while (hue < 0)
                     {
@@ -47,7 +47,7 @@ namespace ColorfulBox
                         hue -= 360;
                     }
 
-                    colorPoint.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsv(hue, primaryHsv.S, primaryHsv.V);
+                    colorPoint.Color = ColorExtensions.FromHsvEx(hue, primaryHsv.S, primaryHsv.V);
                 }
             }
             finally
@@ -72,8 +72,8 @@ namespace ColorfulBox
                 if (primaryPoint != colorPoint)
                 {
                     var index = colorPoints.IndexOf(colorPoint);
-                    var hsv = colorPoint.Color.ToHsv();
-                    var primaryHsv = primaryPoint.Color.ToHsv();
+                    var hsv = colorPoint.Color.ToHsvEx();
+                    var primaryHsv = primaryPoint.Color.ToHsvEx();
                     var primaryIndex = colorPoints.IndexOf(primaryPoint);
                     var degreeDifference = hsv.H - primaryHsv.H;
                     if (degreeDifference < -180)

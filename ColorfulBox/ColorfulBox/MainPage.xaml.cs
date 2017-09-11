@@ -28,5 +28,9 @@ namespace ColorfulBox
     
         }
 
+        private async void OnLickButtonClick(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store:REVIEW?PFN=24329C-Soft.ColorfulBox_nzvxjwp4batka"));
+        }
     }
 }

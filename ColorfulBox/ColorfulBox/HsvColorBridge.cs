@@ -48,7 +48,7 @@ namespace ColorfulBox
             _isIgnoreColorChanged = true;
             try
             {
-                var hsv = newValue.ToHsv();
+                var hsv = newValue.ToHsvEx();
                 if (H != hsv.H)
                     H = hsv.H;
 
@@ -140,7 +140,7 @@ namespace ColorfulBox
             if (_isIgnoreColorChanged)
                 return;
 
-            Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsv(H, S, V);
+            Color = ColorExtensions.FromHsvEx(H, S, V);
         }
 
 

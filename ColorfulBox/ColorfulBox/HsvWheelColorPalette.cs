@@ -81,9 +81,9 @@ namespace ColorfulBox
                 theta += 2 * Math.PI;
 
 
-            var orginalHsvColor = orginalColor.ToHsv();
+            var orginalHsvColor = orginalColor.ToHsvEx();
             var hue = (int)(theta / (Math.PI * 2) * 360.0);
-            var color = ColorHelper.FromHsv(hue, saturation, orginalHsvColor.V);
+            var color = ColorExtensions.FromHsvEx(hue, saturation, orginalHsvColor.V);
             return color;
         }
     }
