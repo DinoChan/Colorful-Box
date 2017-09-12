@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="24329C-Soft.ColorfulBox" Publisher="CN=6D7AEB3B-3956-49A6-AD32-C4737FDDCD52" Version="1.1.6.0" />
+  <Identity Name="24329C-Soft.ColorfulBox" Publisher="CN=6D7AEB3B-3956-49A6-AD32-C4737FDDCD52" Version="1.2.7.0" />
   <mp:PhoneIdentity PhoneProductId="1d19683a-532f-4c81-bb21-acbe687aec8d" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ColorfulBox</DisplayName>

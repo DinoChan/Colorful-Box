@@ -39,7 +39,7 @@ namespace ColorfulBox
         {
             base.OnColorPointVisualDragDelta(colorPointVisual, position);
             _dragOrginalPosition = new Point(_dragOrginalPosition.X + position.X, _dragOrginalPosition.Y + position.Y);
-            Debug.WriteLine(_dragOrginalPosition.X + "   " + _dragOrginalPosition.Y);
+            //Debug.WriteLine(_dragOrginalPosition.X + "   " + _dragOrginalPosition.Y);
             colorPointVisual.ColorPoint.Color = GetColor(_dragOrginalPosition, colorPointVisual.ColorPoint.Color);
         }
 

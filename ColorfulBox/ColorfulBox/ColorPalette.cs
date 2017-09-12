@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Windows.Input;
 using Windows.Foundation;
 using Windows.UI;
@@ -137,6 +138,7 @@ namespace ColorfulBox
 
         private void OnColorPointVisualDragDelta(object sender, Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs e)
         {
+            //Debug.WriteLine(e.Delta.Translation.Y);
             OnColorPointVisualDragDelta(sender as ColorPointVisual, new Point(e.Delta.Translation.X, e.Delta.Translation.Y));
         }
 

@@ -243,7 +243,7 @@
                 </ComboBoxItem.Tag>
             </ComboBoxItem>-->
         </ComboBox>
-        <Pivot Grid.Column="1" x:Name="TemplateSelector" Width="300">
+        <Pivot Grid.Column="1" x:Name="TemplateSelector" Width="230" VerticalAlignment="Bottom" Margin="95,0,0,0" HorizontalAlignment="Left">
             <PivotItem Header="Rgb" Tag="{StaticResource ArgbModelTemplate}"/>
             <PivotItem Header="Hsv" Tag="{StaticResource HsvbModelTemplate}"/>
         </Pivot>
@@ -251,6 +251,7 @@
                                     ColorPaletteStrategy="{Binding SelectedItem.Tag,ElementName=StrategySelector}"
                                     Margin="20"
                                     Grid.Row="1"
+                                   
                                     ItemsSource="{StaticResource ColorPoints}">
 
         </local:HsvWheelColorPalette>

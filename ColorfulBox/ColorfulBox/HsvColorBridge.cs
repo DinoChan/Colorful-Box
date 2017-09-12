@@ -43,12 +43,14 @@ namespace ColorfulBox
 
         protected virtual void OnColorChanged(Color oldValue, Color newValue)
         {
-
+            if (_isIgnoreColorChanged)
+                return;
 
             _isIgnoreColorChanged = true;
             try
             {
                 var hsv = newValue.ToHsvEx();
+               
                 if (H != hsv.H)
                     H = hsv.H;
 
@@ -140,7 +142,15 @@ namespace ColorfulBox
             if (_isIgnoreColorChanged)
                 return;
 
-            Color = ColorExtensions.FromHsvEx(H, S, V);
+            _isIgnoreColorChanged = true;
+            try
+            {
+                Color = ColorExtensions.FromHsvEx(H, S, V);
+            }
+            finally
+            {
+                _isIgnoreColorChanged = false;
+            }
         }
 
 
