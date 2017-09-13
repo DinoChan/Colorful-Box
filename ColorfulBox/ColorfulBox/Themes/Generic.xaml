@@ -23,7 +23,7 @@
                                 <VisualState x:Name="UnSelected" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                                <Ellipse x:Name="ellipse"
+                        <Ellipse x:Name="ellipse"
                                  Stroke="White"
                                  StrokeThickness="3"
                                  Fill="{Binding ColorPoint.Color, Converter={StaticResource ColorToBrushConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
@@ -35,7 +35,8 @@
     </Style>
 
 
-    <Style x:Key="HsvWheelColorPointVisualStyle" TargetType="local:ColorPointVisual">
+    <Style x:Key="HsvWheelColorPointVisualStyle"
+           TargetType="local:ColorPointVisual">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ColorPointVisual">
@@ -46,7 +47,7 @@
                            RenderTransformOrigin="0.5,0.5"
                            ManipulationMode="TranslateY,TranslateX"
                            x:Name="LayoutRoot">
-                      
+
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -67,7 +68,8 @@
                                 </VisualState>
                                 <VisualState x:Name="Selected">
                                     <VisualState.Setters>
-                                        <Setter Target="ellipse.(Shape.StrokeThickness)" Value="4"/>
+                                        <Setter Target="ellipse.(Shape.StrokeThickness)"
+                                                Value="4" />
                                     </VisualState.Setters>
                                     <Storyboard>
 
@@ -76,12 +78,14 @@
                                 </VisualState>
                                 <VisualState x:Name="PointerOverSelected">
                                     <VisualState.Setters>
-                                        <Setter Target="ellipse.(Shape.StrokeThickness)" Value="4"/>
+                                        <Setter Target="ellipse.(Shape.StrokeThickness)"
+                                                Value="4" />
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PressedSelected">
                                     <VisualState.Setters>
-                                        <Setter Target="ellipse.(Shape.StrokeThickness)" Value="4"/>
+                                        <Setter Target="ellipse.(Shape.StrokeThickness)"
+                                                Value="4" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -109,15 +113,15 @@
                             </TransformGroup>
                         </Grid.RenderTransform>
 
-                      
+
                         <!--<Ellipse Stroke="Black"
                                  StrokeThickness="1" />-->
                         <Ellipse x:Name="ellipse"
                                  Stroke="White"
                                  StrokeThickness="3"
                                  Fill="{Binding Color, Converter={StaticResource ColorToBrushConverter}}" />
-                     
-                      
+
+
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -131,16 +135,17 @@
                 <ControlTemplate TargetType="local:HsvWheelColorPalette">
                     <Grid Background="{TemplateBinding Background}">
                         <Image Source="ms-appx:///Assets/Wheel.png" />
-                        <ItemsPresenter/>
+                        <ItemsPresenter />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource HsvWheelColorPointVisualStyle}"/>
+        <Setter Property="ItemContainerStyle"
+                Value="{StaticResource HsvWheelColorPointVisualStyle}" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <Grid/>
+                    <Grid />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -180,9 +185,7 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Thumb">
                                             <Ellipse Stroke="{TemplateBinding BorderBrush}"
-                                                    StrokeThickness="{TemplateBinding BorderThickness}"
-                                                 
-                                                  />
+                                                     StrokeThickness="{TemplateBinding BorderThickness}" />
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
@@ -304,15 +307,14 @@
                               Control.IsTemplateFocusTarget="True"
                               Grid.Row="1">
                             <Grid x:Name="HorizontalTemplate"
-                               Height="20">
+                                  Height="20">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                               
-                                <Rectangle x:Name="HorizontalTrackRect"
-                                           Grid.ColumnSpan="3"
+
+                                <Rectangle Grid.ColumnSpan="3"
                                            Grid.RowSpan="3"
                                            Grid.Row="0">
                                     <Rectangle.Fill>
@@ -325,9 +327,14 @@
                                         </LinearGradientBrush>
                                     </Rectangle.Fill>
                                 </Rectangle>
+                                <Rectangle Fill="{TemplateBinding Background}"
+                                           x:Name="HorizontalTrackRect"
+                                           Grid.ColumnSpan="3"
+                                           Grid.RowSpan="3"
+                                           Grid.Row="0" />
                                 <Rectangle x:Name="HorizontalDecreaseRect"
                                            Fill="{TemplateBinding Foreground}"
-                                      Opacity="0"/>
+                                           Opacity="0" />
                                 <TickBar x:Name="TopTickBar"
                                          Grid.ColumnSpan="3"
                                          Fill="{ThemeResource SliderTickBarFill}"
@@ -339,14 +346,12 @@
                                          Grid.ColumnSpan="3"
                                          Fill="{ThemeResource SliderInlineTickBarFill}"
                                          Height="{ThemeResource SliderTrackThemeHeight}"
-                                     
                                          Visibility="Collapsed" />
                                 <TickBar x:Name="BottomTickBar"
                                          Grid.ColumnSpan="3"
                                          Fill="{ThemeResource SliderTickBarFill}"
                                          Height="{ThemeResource SliderOutsideTickBarThemeHeight}"
                                          Margin="0,4,0,0"
-                                       
                                          Visibility="Collapsed"
                                          VerticalAlignment="Top" />
                                 <Thumb x:Name="HorizontalThumb"
@@ -355,7 +360,6 @@
                                        DataContext="{TemplateBinding Value}"
                                        FocusVisualMargin="-14,-6,-14,-6"
                                        Height="20"
-                                  
                                        Style="{StaticResource SliderThumbStyle}"
                                        Width="20" />
                             </Grid>
