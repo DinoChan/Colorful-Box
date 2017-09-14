@@ -44,11 +44,7 @@
                                              Color="{Binding Color}"
                                              Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
                                              ColorConverter="{StaticResource RedConverter}" />
-                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
-                                                       Maximum="255"
-                                                       ValueBarVisibility="Collapsed"
-                                                       Foreground="White"
-                                                       Grid.Column="1" />-->
+                      
                         <TextBlock Text="R:"
                                    Grid.Column="1"
                                    Foreground="White" />
@@ -70,11 +66,7 @@
                                              Color="{Binding Color}"
                                              Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
                                              ColorConverter="{StaticResource GreenConverter}" />
-                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
-                                                       Maximum="255"
-                                                       Foreground="White"
-                                                       ValueBarVisibility="Collapsed"
-                                                       Grid.Column="1" />-->
+                      
                         <TextBlock Text="G:"
                                    Grid.Column="1"
                                    Foreground="White" />
@@ -96,11 +88,7 @@
                                              Color="{Binding Color}"
                                              Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
                                              ColorConverter="{StaticResource BlueConverter}" />
-                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
-                                                       Maximum="255"
-                                                       Foreground="White"
-                                                       ValueBarVisibility="Collapsed"
-                                                       Grid.Column="1" />-->
+                    
                         <TextBlock Text="B:"
                                    Grid.Column="1"
                                    Foreground="White" />
@@ -135,7 +123,7 @@
                         <local:ColorGradient Width="200"
                                              Margin=" 5,0"
                                              Minimum="0"
-                                             Maximum="360"
+                                             Maximum="359"
                                              Color="{Binding Color}"
                                              Value="{Binding Source={StaticResource HsvColorBridge},Path=H,Mode=TwoWay}"
                                              ColorConverter="{StaticResource HueConverter}">
@@ -220,12 +208,8 @@
                                 </LinearGradientBrush>
                             </local:ColorGradient.Background>
                         </local:ColorGradient>
-                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
-                                                       Maximum="255"
-                                                       ValueBarVisibility="Collapsed"
-                                                       Foreground="White"
-                                                       Grid.Column="1" />-->
-                        <TextBlock Text="R:"
+                      
+                        <TextBlock Text="H:"
                                    Grid.Column="1"
                                    Foreground="White" />
                         <TextBlock Text="{Binding Source={StaticResource HsvColorBridge},Path=H,Mode=TwoWay}"
@@ -243,16 +227,12 @@
                         <local:ColorGradient Width="200"
                                              Minimum="0"
                                              Maximum="1"
-                                             StepFrequency="0.001" SmallChange="0"
+                                             StepFrequency="0.01" SmallChange="0"
                                              Color="{Binding Color}"
                                              Value="{Binding Source={StaticResource HsvColorBridge},Path=S,Mode=TwoWay}"
                                              ColorConverter="{StaticResource SaturationConverter}" />
-                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
-                                                       Maximum="255"
-                                                       Foreground="White"
-                                                       ValueBarVisibility="Collapsed"
-                                                       Grid.Column="1" />-->
-                        <TextBlock Text="G:"
+                       
+                        <TextBlock Text="S:"
                                    Grid.Column="1"
                                    Foreground="White" />
                         <TextBlock Text="{Binding Source={StaticResource HsvColorBridge},Path=S,Mode=TwoWay}"
@@ -270,16 +250,12 @@
                         <local:ColorGradient Width="200"
                                              Minimum="0"
                                              Maximum="1"
-                                             StepFrequency="0.001" SmallChange="0"
+                                             StepFrequency="0.01" SmallChange="0"
                                              Color="{Binding Color}"
                                              Value="{Binding Source={StaticResource HsvColorBridge},Path=V,Mode=TwoWay}"
                                              ColorConverter="{StaticResource ValueConverter}" />
-                        <!--<toolkit:NumericUpDown Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
-                                                       Maximum="255"
-                                                       Foreground="White"
-                                                       ValueBarVisibility="Collapsed"
-                                                       Grid.Column="1" />-->
-                        <TextBlock Text="B:"
+                        
+                        <TextBlock Text="V:"
                                    Grid.Column="1"
                                    Foreground="White" />
                         <TextBlock Text="{Binding Source={StaticResource HsvColorBridge},Path=V,Mode=TwoWay}"
@@ -371,12 +347,7 @@
             </ItemsControl.ItemTemplate>
         </ListView>
 
-        <!--<Button HorizontalAlignment="Right"
-                    Content="Export">
-                <Button.Flyout>
-                  
-                </Button.Flyout>
-            </Button>-->
+      
         <CommandBar Grid.Row="2"
                     Grid.ColumnSpan="2">
             <AppBarButton Label="Export">

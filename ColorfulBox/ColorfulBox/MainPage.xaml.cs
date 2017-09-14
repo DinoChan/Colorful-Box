@@ -25,16 +25,6 @@ namespace ColorfulBox
         public MainPage()
         {
             this.InitializeComponent();
-            var temp = "";
-            for (int i = 0; i < 36; i++)
-            {
-               var color= ColorExtensions.FromHsvEx(i * 10, 1, 1);
-                temp+= string.Format("< GradientStop Color = \"{0}\" Offset = \"{1}\" />", color.ToString(), i/36d);
-                temp += Environment.NewLine;
-            }
-          var  newcolor = ColorExtensions.FromHsvEx(359, 1, 1);
-            temp += string.Format("< GradientStop Color = \"{0}\" Offset = \"{1}\" />", newcolor.ToString(), 1);
-            temp += Environment.NewLine;
         }
 
         private async void OnLickButtonClick(object sender, RoutedEventArgs e)
