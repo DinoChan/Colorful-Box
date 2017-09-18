@@ -103,18 +103,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ArgbColorBridge.cs" />
-    <Compile Include="ArgbConverter.cs" />
-    <Compile Include="ArgbModel.cs" />
-    <Compile Include="ColorAndRadiusToTransformXBridge.cs" />
-    <Compile Include="ColorGradient.cs" />
-    <Compile Include="ColorPalette.cs" />
+    <Compile Include="ColorPaletteControls\ArgbColorBridge.cs" />
+    <Compile Include="ColorPaletteControls\ArgbConverter.cs" />
+    <Compile Include="ColorPaletteControls\ArgbModel.cs" />
+    <Compile Include="ColorPaletteControls\ColorAndRadiusToTransformXBridge.cs" />
+    <Compile Include="ColorPaletteControls\ColorGradient.cs" />
+    <Compile Include="ColorPaletteControls\ColorPalette.cs" />
     <Compile Include="ColorPaletteStrategies\AnalogousStrategy.cs" />
     <Compile Include="ColorPaletteStrategies\ColorPaletteStrategy.cs" />
     <Compile Include="ColorPaletteStrategies\ComplementaryStrategy.cs" />
-    <Compile Include="ColorPoint.cs" />
-    <Compile Include="ColorPointCollection.cs" />
-    <Compile Include="ColorPointVisual.cs" />
+    <Compile Include="ColorPaletteControls\ColorPoint.cs" />
+    <Compile Include="ColorPaletteControls\ColorPointCollection.cs" />
+    <Compile Include="ColorPaletteControls\ColorPointVisual.cs" />
     <Compile Include="Common\ColorExtensions.cs" />
     <Compile Include="Common\PropertyEventArgs.cs" />
     <Compile Include="Converters\ColorToAngleConverter.cs" />
@@ -124,11 +124,11 @@
     <Compile Include="ExportView.xaml.cs">
       <DependentUpon>ExportView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HsvColorBridge.cs" />
-    <Compile Include="HsvConverter.cs" />
-    <Compile Include="HsvModel.cs" />
-    <Compile Include="HsvWheelColorPalette.cs" />
-    <Compile Include="IColorConverter.cs" />
+    <Compile Include="ColorPaletteControls\HsvColorBridge.cs" />
+    <Compile Include="ColorPaletteControls\HsvConverter.cs" />
+    <Compile Include="ColorPaletteControls\HsvModel.cs" />
+    <Compile Include="ColorPaletteControls\HsvWheelColorPalette.cs" />
+    <Compile Include="ColorPaletteControls\IColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
