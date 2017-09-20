@@ -15,30 +15,6 @@ namespace ColorfulBox
         public event EventHandler<PropertyEventArgs> ColorChanged;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        ///// <summary>
-        ///// 获取或设置Color的值
-        ///// </summary>  
-        //public Color Color
-        //{
-        //    get { return (Color)GetValue(ColorProperty); }
-        //    set { SetValue(ColorProperty, value); }
-        //}
-
-        ///// <summary>
-        ///// 标识 Color 依赖属性。
-        ///// </summary>
-        //public static readonly DependencyProperty ColorProperty =
-        //    DependencyProperty.Register("Color", typeof(Color), typeof(ColorPoint), new PropertyMetadata(default(Color), OnColorChanged));
-
-        //private static void OnColorChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        //{
-        //    ColorPoint target = obj as ColorPoint;
-        //    Color oldValue = (Color)args.OldValue;
-        //    Color newValue = (Color)args.NewValue;
-        //    if (oldValue != newValue)
-        //        target.OnColorChanged(oldValue, newValue);
-        //}
-
         protected virtual void OnColorChanged(Color oldValue, Color newValue)
         {
             ColorChanged?.Invoke(this, new PropertyEventArgs(nameof(Color), oldValue, newValue));
