@@ -124,8 +124,11 @@
     <Compile Include="ExportView.xaml.cs">
       <DependentUpon>ExportView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HslColorBridge.cs" />
     <Compile Include="HsvColorBridge.cs" />
+    <Compile Include="HslConverter.cs" />
     <Compile Include="HsvConverter.cs" />
+    <Compile Include="HslModel.cs" />
     <Compile Include="HsvModel.cs" />
     <Compile Include="HsvWheelColorPalette.cs" />
     <Compile Include="IColorConverter.cs" />
