@@ -282,7 +282,7 @@
                    Grid.ColumnSpan="10" />
         <ComboBox Margin="10"
                   x:Name="StrategySelector"
-                  Header="Rule">
+                  Header="{Binding Source={StaticResource R},Path=Labels.Rule}">
             <ComboBoxItem Content="Custom"
                           IsSelected="True">
                 <ComboBoxItem.Tag>
@@ -351,7 +351,7 @@
       
         <CommandBar Grid.Row="2"
                     Grid.ColumnSpan="2">
-            <AppBarButton Label="Export">
+            <AppBarButton Label="{Binding Source={StaticResource R},Path=Labels.Export}">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets"
                               Glyph="&#xEDE1;" />
@@ -373,10 +373,10 @@
 
             <CommandBar.SecondaryCommands>
                 <AppBarButton Icon="Like"
-                              Label="Like"
+                              Label="{Binding Source={StaticResource R},Path=Labels.Like}"
                               Click="OnLickButtonClick" />
                 <AppBarButton Icon="Help"
-                              Label="About">
+                              Label="{Binding Source={StaticResource R},Path=Labels.About}">
                     <AppBarButton.Flyout>
                         <Flyout>
                             <local:AboutView />

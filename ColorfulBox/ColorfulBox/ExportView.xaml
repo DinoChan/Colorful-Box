@@ -14,7 +14,7 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox IsReadOnly="True" Header="Copy"  Margin="{ThemeResource ContentDialogContentScrollViewerMargin}"
+        <TextBox IsReadOnly="True" Header="{Binding Source={StaticResource R},Path=Labels.Copy}"  Margin="{ThemeResource ContentDialogContentScrollViewerMargin}"
                  x:Name="ExportTextBox" ScrollViewer.VerticalScrollBarVisibility="Auto"
                  ScrollViewer.HorizontalScrollBarVisibility="Auto" AcceptsReturn="True"/>
         <Grid  Grid.Row="1">
@@ -22,10 +22,10 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <controls:InAppNotification Margin="0,0,5,0" HorizontalAlignment="Right" Content="Copoied" x:Name="InAppNotification"
+            <controls:InAppNotification Margin="0,0,5,0" HorizontalAlignment="Right" Content="{Binding Source={StaticResource R},Path=Labels.Copoied}" x:Name="InAppNotification"
                                         ShowDismissButton="False" MinHeight="0" Padding="25,0"
                                         Height="{Binding ElementName=CopyButton,Path=ActualHeight}"/>
-            <Button HorizontalAlignment="Right" Content="Copy" Click="OnCopy"
+            <Button HorizontalAlignment="Right" Content="{Binding Source={StaticResource R},Path=Labels.Copy}" Click="OnCopy"
                     Grid.Column="1"
                     x:Name="CopyButton"/>
         </Grid>
