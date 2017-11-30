@@ -89,12 +89,12 @@
                               Offset="1" />
         </LinearGradientBrush>
         <local:ColorPointCollection x:Key="ColorPoints">
-            <local:ColorPoint Color="#FF00EE82" />
-            <local:ColorPoint Color="Red" />
-            <local:ColorPoint Color="Blue"
+            <local:ColorPoint InitializationColor="#FF00EE82" />
+            <local:ColorPoint InitializationColor="Red" />
+            <local:ColorPoint InitializationColor="Blue"
                               IsPrimary="True" />
-            <local:ColorPoint Color="Yellow" />
-            <local:ColorPoint Color="Purple" />
+            <local:ColorPoint InitializationColor="Yellow" />
+            <local:ColorPoint InitializationColor="#FF00D4" />
         </local:ColorPointCollection>
         <DataTemplate x:Key="ArgbModelTemplate">
             <Grid>
@@ -329,18 +329,18 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Rectangle Fill="{Binding Color,Converter={StaticResource ColorToBrushConverter}}"
+                        <Rectangle Fill="{Binding HsvColor,Converter={StaticResource HsvColorToBrushConverter}}"
                                    Width="90"
                                    Height="90" />
 
                         <StackPanel Grid.Column="1">
-                            <ContentControl Content="{Binding}" ContentTemplate="{Binding ElementName=TemplateSelector,Path=SelectedItem.Tag}">
+                            <!--<ContentControl Content="{Binding}" ContentTemplate="{Binding ElementName=TemplateSelector,Path=SelectedItem.Tag}">
                                 <ContentControl.ContentTransitions>
                                     <TransitionCollection>
                                         <ContentThemeTransition HorizontalOffset="50" VerticalOffset="0"/>
                                     </TransitionCollection>
                                 </ContentControl.ContentTransitions>
-                            </ContentControl>
+                            </ContentControl>-->
 
                         </StackPanel>
                     </Grid>

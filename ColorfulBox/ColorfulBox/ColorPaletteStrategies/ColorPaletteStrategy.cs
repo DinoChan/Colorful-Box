@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Microsoft.Toolkit.Uwp;
 
 namespace ColorfulBox
 {
@@ -14,7 +15,7 @@ namespace ColorfulBox
 
         }
 
-        public virtual void OnColorChanged(ColorPoint colorPoint, Color oldColor, IList<ColorPoint> colorPoints)
+        public virtual void OnColorChanged(ColorPoint colorPoint, HsvColor oldColor, IList<ColorPoint> colorPoints)
         {
 
         }

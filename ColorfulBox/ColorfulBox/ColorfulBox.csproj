@@ -109,6 +109,7 @@
     <Compile Include="ColorPaletteControls\ColorAndRadiusToTransformXBridge.cs" />
     <Compile Include="ColorPaletteControls\ColorGradient.cs" />
     <Compile Include="ColorPaletteControls\ColorPalette.cs" />
+    <Compile Include="ColorPaletteControls\HsvColorAndRadiusToTransformXBridge.cs" />
     <Compile Include="ColorPaletteStrategies\AnalogousStrategy.cs" />
     <Compile Include="ColorPaletteStrategies\ColorPaletteStrategy.cs" />
     <Compile Include="ColorPaletteStrategies\ComplementaryStrategy.cs" />
@@ -121,6 +122,8 @@
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Common\DelegateCommand.cs" />
     <Compile Include="Common\DelegateCommand{T}.cs" />
+    <Compile Include="Converters\HsvColorToAngleConverter.cs" />
+    <Compile Include="Converters\HsvColorToBrushConverter.cs" />
     <Compile Include="ExportView.xaml.cs">
       <DependentUpon>ExportView.xaml</DependentUpon>
     </Compile>

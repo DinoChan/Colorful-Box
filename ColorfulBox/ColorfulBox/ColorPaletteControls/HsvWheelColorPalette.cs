@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
+using Microsoft.Toolkit.Uwp;
 using ColorHelper = Microsoft.Toolkit.Uwp.Helpers.ColorHelper;
 using Microsoft.Toolkit.Uwp.Helpers;
 
@@ -34,7 +35,7 @@ namespace ColorfulBox
             base.OnColorPointVisualDragDelta(colorPointVisual, position);
             _dragOrginalPosition = new Point(_dragOrginalPosition.X + position.X, _dragOrginalPosition.Y + position.Y);
             //Debug.WriteLine(_dragOrginalPosition.X + "   " + _dragOrginalPosition.Y);
-            colorPointVisual.ColorPoint.Color = GetColor(_dragOrginalPosition, colorPointVisual.ColorPoint.Color);
+            colorPointVisual.ColorPoint.HsvColor = GetColor(_dragOrginalPosition, colorPointVisual.ColorPoint.HsvColor);
         }
 
         protected override void OnColorPaletteStrategyChanged(ColorPaletteStrategy oldValue, ColorPaletteStrategy newValue)
@@ -44,14 +45,14 @@ namespace ColorfulBox
             newValue?.ChangeColorPoints(Items.Cast<ColorPoint>().ToList());
         }
 
-        protected override void OnColorChanged(ColorPoint colorPoint, Color oldValue, Color newValue)
+        protected override void OnColorChanged(ColorPoint colorPoint, HsvColor oldValue, HsvColor newValue)
         {
             base.OnColorChanged(colorPoint, oldValue, newValue);
 
             ColorPaletteStrategy?.OnColorChanged(colorPoint, oldValue, Items.OfType<ColorPoint>().ToList());
         }
 
-        private Color GetColor(Point point,Color orginalColor)
+        private HsvColor GetColor(Point point, HsvColor orginalColor)
         {
             var centerPoint = new Point(ActualWidth / 2, ActualHeight / 2);
             var diameter = ActualWidth < ActualHeight ? ActualWidth : ActualHeight;
@@ -71,10 +72,10 @@ namespace ColorfulBox
                 theta += 2 * Math.PI;
 
 
-            var orginalHsvColor = orginalColor.ToHsvEx();
-            var hue = (int)(theta / (Math.PI * 2) * 360.0);
-            var color = ColorExtensions.FromHsvEx(hue, saturation, orginalHsvColor.V);
-            return color;
+            //var orginalHsvColor = orginalColor.ToHsvEx();
+            var hue = (theta / (Math.PI * 2) * 360.0);
+            var result = new HsvColor {A = orginalColor.A, H = hue, S = saturation, V = orginalColor.V};
+            return result;
         }
     }
 }

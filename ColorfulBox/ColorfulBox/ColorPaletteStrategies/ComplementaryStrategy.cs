@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.UI;
 using System.Diagnostics;
+using Microsoft.Toolkit.Uwp;
 
 namespace ColorfulBox
 {
@@ -26,7 +27,7 @@ namespace ColorfulBox
                 if (primaryColorPoint == null)
                     return;
 
-                var primaryHsv = primaryColorPoint.Color.ToHsvEx();
+                var primaryHsv = primaryColorPoint.HsvColor;
                 primaryHsv.S = 0.76;
                 var primatyIndex = colorPoints.IndexOf(primaryColorPoint);
                 for (int i = 0; i < colorPoints.Count; i++)
@@ -34,7 +35,7 @@ namespace ColorfulBox
                     var colorPoint = colorPoints[i];
                     if (i == primatyIndex)
                     {
-                        colorPoint.Color =ColorExtensions.FromHsvEx(primaryHsv.H, primaryHsv.S, primaryHsv.V);
+                        colorPoint.HsvColor = primaryHsv;//.Color =ColorExtensions.FromHsvEx(primaryHsv.H, primaryHsv.S, primaryHsv.V);
                     }
                     else
                     {
@@ -57,7 +58,7 @@ namespace ColorfulBox
                         saturation *= 1 + Math.Abs(i - primatyIndex) * 0.15;
                         saturation = Math.Min(1, saturation);
 
-                        colorPoint.Color = ColorExtensions.FromHsvEx(hue, saturation, value);
+                        colorPoint.HsvColor=new HsvColor{ A= 1,H=hue,S=saturation,V=value};//  .Color = ColorExtensions.FromHsvEx(hue, saturation, value);
                     }
                 }
             }
@@ -67,7 +68,7 @@ namespace ColorfulBox
             }
         }
 
-        public override void OnColorChanged(ColorPoint colorPoint, Color oldColor, IList<ColorPoint> colorPoints)
+        public override void OnColorChanged(ColorPoint colorPoint, HsvColor oldColor, IList<ColorPoint> colorPoints)
         {
             base.OnColorChanged(colorPoint, oldColor, colorPoints);
             if (_isColorsChanging)
@@ -80,9 +81,9 @@ namespace ColorfulBox
                 if (primaryColorPoint == null)
                     return;
 
-                var primaryHsv = primaryColorPoint.Color.ToHsvEx();
+                var primaryHsv = primaryColorPoint.HsvColor;
                 var primatyIndex = colorPoints.IndexOf(primaryColorPoint);
-                var colorPointHsv = colorPoint.Color.ToHsvEx();
+                var colorPointHsv = colorPoint.HsvColor;
                 var colorPointIndex = colorPoints.IndexOf(colorPoint);
                 if (primaryColorPoint != colorPoint)
                 {
@@ -97,13 +98,13 @@ namespace ColorfulBox
                         primaryHsv.H = colorPointHsv.H;
                     }
                 }
-                var oldHsv = oldColor.ToHsvEx();
+                var oldHsv = oldColor;
                 for (int i = 0; i < colorPoints.Count; i++)
                 {
 
                     var hue = primaryHsv.H;
                     var point = colorPoints[i];
-                    var pointHsv = point.Color.ToHsvEx();
+                    var pointHsv = point.HsvColor;
                     if (i > primatyIndex)
                     {
                         hue += 180;
@@ -140,7 +141,7 @@ namespace ColorfulBox
                     //    saturationRate = 1 + Math.Abs(i - primatyIndex) * 0.15;
                     //}
                     //var saturation = primaryHsv.S / saturationRate;
-                    point.Color = ColorExtensions.FromHsvEx(hue, saturation, pointHsv.V);
+                    point.HsvColor = new HsvColor {A = 1, H = hue, S = saturation, V = pointHsv.V};//  ColorExtensions.FromHsvEx(hue, saturation, pointHsv.V);
                 }
             }
             finally

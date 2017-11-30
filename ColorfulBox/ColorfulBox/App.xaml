@@ -6,6 +6,7 @@
              RequestedTheme="Dark">
     <Application.Resources>
         <local:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+        <local:HsvColorToBrushConverter x:Key="HsvColorToBrushConverter"/>
         <localization:ApplicationResources x:Key="R"/>
     </Application.Resources>
 

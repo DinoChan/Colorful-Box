@@ -61,7 +61,7 @@ namespace ColorfulBox
                 int index = 1;
                 foreach (var item in ColorPoints)
                 {
-                    text += $"<SolidColorBrush x:Key=\"ThemeColor{index}\" Color=\"{item.Color.ToHex()}\"/>";
+                    text += $"<SolidColorBrush x:Key=\"ThemeColor{index}\" Color=\"{item.HsvColor}\"/>";
                     text += Environment.NewLine;
                     index++;
                 }

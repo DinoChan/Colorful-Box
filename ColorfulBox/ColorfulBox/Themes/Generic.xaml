@@ -3,7 +3,7 @@
                     xmlns:local="using:ColorfulBox">
 
     <local:ColorToAngleConverter x:Key="ColorToAngleConverter" />
-
+    <local:HsvColorToAngleConverter x:Key="HsvColorToAngleConverter"/>
 
 
     <Style TargetType="local:ColorPointVisual">
@@ -26,7 +26,7 @@
                         <Ellipse x:Name="ellipse"
                                  Stroke="White"
                                  StrokeThickness="3"
-                                 Fill="{Binding ColorPoint.Color, Converter={StaticResource ColorToBrushConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                                 Fill="{Binding ColorPoint.HsvColor, Converter={StaticResource HsvColorToBrushConverter}, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
 
                     </Grid>
                 </ControlTemplate>
@@ -102,14 +102,14 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid.Resources>
-                            <local:ColorAndRadiusToTransformXBridge x:Key="SaturationAndRadiusToTransformXBridge"
+                            <local:HsvColorAndRadiusToTransformXBridge x:Key="HsvColorAndRadiusToTransformXBridge"
                                                                     AttachedElement="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                                    Color="{Binding Color}" />
+                                                                    HsvColor="{Binding HsvColor}" />
                         </Grid.Resources>
                         <Grid.RenderTransform>
                             <TransformGroup>
-                                <TranslateTransform X="{Binding TranslateX, Source={StaticResource SaturationAndRadiusToTransformXBridge}}" />
-                                <RotateTransform Angle="{Binding Color, Converter={StaticResource ColorToAngleConverter}}" />
+                                <TranslateTransform X="{Binding TranslateX, Source={StaticResource HsvColorAndRadiusToTransformXBridge}}" />
+                                <RotateTransform Angle="{Binding HsvColor,Converter={StaticResource HsvColorToAngleConverter}}" />
                             </TransformGroup>
                         </Grid.RenderTransform>
 
@@ -119,7 +119,7 @@
                         <Ellipse x:Name="ellipse"
                                  Stroke="White"
                                  StrokeThickness="3"
-                                 Fill="{Binding Color, Converter={StaticResource ColorToBrushConverter}}" />
+                                 Fill="{Binding HsvColor, Converter={StaticResource HsvColorToBrushConverter}}" />
 
 
                     </Grid>

@@ -9,11 +9,11 @@ using Microsoft.Toolkit.Uwp.Helpers;
 
 namespace ColorfulBox
 {
-  public static class ColorExtensions
+    public static class ColorExtensions
     {
         public static HsvColor ToHsvEx(this Color color)
         {
-           var hsv= color.ToHsv();
+            var hsv = color.ToHsv();
             hsv.H = Math.Round(hsv.H);
             hsv.S = Math.Round(hsv.S, 2);
             hsv.V = Math.Round(hsv.V, 2);
@@ -23,7 +23,7 @@ namespace ColorfulBox
 
         public static Color FromHsvEx(double hue, double saturation, double value, double alpha = 1)
         {
-           return Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsv(Math.Round(hue), Math.Round(saturation, 2), Math.Round(value, 2), alpha);
+            return Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsv(Math.Round(hue), Math.Round(saturation, 2), Math.Round(value, 2), alpha);
         }
 
         public static HslColor ToHslEx(this Color color)
@@ -39,6 +39,19 @@ namespace ColorfulBox
         public static Color FromHslEx(double hue, double saturation, double lightness, double alpha = 1)
         {
             return Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsl(Math.Round(hue), Math.Round(saturation, 2), Math.Round(lightness, 2), alpha);
+        }
+
+        public static Color ToColor(this HsvColor hsvColor)
+        {
+            return FromHsvEx(hsvColor.H, hsvColor.S, hsvColor.V, hsvColor.A);
+        }
+
+        public static bool Equals(this HsvColor leftOperand, HsvColor rightOperand)
+        {
+            return leftOperand.A == rightOperand.A
+                   && leftOperand.H == rightOperand.H
+                   && leftOperand.S == rightOperand.S
+                   && leftOperand.V == rightOperand.V;
         }
     }
 }

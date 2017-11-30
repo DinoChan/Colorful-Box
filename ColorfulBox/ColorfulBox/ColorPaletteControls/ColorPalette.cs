@@ -7,6 +7,7 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
+using Microsoft.Toolkit.Uwp;
 
 namespace ColorfulBox
 {
@@ -84,8 +85,8 @@ namespace ColorfulBox
             }
 
             var colorPoint = item as ColorPoint;
-            colorPoint.ColorChanged -= OnColorChanged;
-            colorPoint.ColorChanged += OnColorChanged;
+            colorPoint.HsvColorChanged -= OnColorChanged;
+            colorPoint.HsvColorChanged += OnColorChanged;
         }
 
 
@@ -102,7 +103,7 @@ namespace ColorfulBox
         {
         }
 
-        protected virtual void OnColorChanged(ColorPoint colorPoint, Color oldValue, Color newValue)
+        protected virtual void OnColorChanged(ColorPoint colorPoint, HsvColor oldValue, HsvColor newValue)
         {
 
         }
@@ -144,7 +145,7 @@ namespace ColorfulBox
 
         private void OnColorChanged(object sender, PropertyEventArgs e)
         {
-            OnColorChanged(sender as ColorPoint, (Color)e.OldValue, (Color)e.NewValue);
+            OnColorChanged(sender as ColorPoint, (HsvColor)e.OldValue, (HsvColor)e.NewValue);
         }
 
 

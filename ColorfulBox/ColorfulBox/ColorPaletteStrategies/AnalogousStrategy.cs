@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.UI;
+using Microsoft.Toolkit.Uwp;
 
 namespace ColorfulBox
 {
@@ -27,7 +28,7 @@ namespace ColorfulBox
                 if (primaryColorPoint == null)
                     return;
 
-                var primaryHsv = primaryColorPoint.Color.ToHsvEx();
+                var primaryHsv = primaryColorPoint.HsvColor;
 
                 var primatyIndex = colorPoints.IndexOf(primaryColorPoint);
                 for (int i = 0; i < colorPoints.Count; i++)
@@ -36,7 +37,7 @@ namespace ColorfulBox
                         continue;
 
                     var colorPoint = colorPoints[i];
-                    var hsvColor = colorPoint.Color.ToHsvEx();
+                    var hsvColor = colorPoint.HsvColor;
                     var hue = primaryHsv.H + (i - primatyIndex) * _degree;
                     while (hue < 0)
                     {
@@ -47,7 +48,7 @@ namespace ColorfulBox
                         hue -= 360;
                     }
 
-                    colorPoint.Color = ColorExtensions.FromHsvEx(hue, primaryHsv.S, primaryHsv.V);
+                    colorPoint.HsvColor = new HsvColor {A = hsvColor.A, H = hue, S = primaryHsv.S, V = primaryHsv.V}; //  = ColorExtensions.FromHsvEx(hue, primaryHsv.S, primaryHsv.V);
                 }
             }
             finally
@@ -56,7 +57,7 @@ namespace ColorfulBox
             }
         }
 
-        public override void OnColorChanged(ColorPoint colorPoint, Color oldColor, IList<ColorPoint> colorPoints)
+        public override void OnColorChanged(ColorPoint colorPoint, HsvColor oldColor, IList<ColorPoint> colorPoints)
         {
             base.OnColorChanged(colorPoint, oldColor, colorPoints);
             if (_isColorsChanging)
@@ -72,8 +73,8 @@ namespace ColorfulBox
                 if (primaryPoint != colorPoint)
                 {
                     var index = colorPoints.IndexOf(colorPoint);
-                    var hsv = colorPoint.Color.ToHsvEx();
-                    var primaryHsv = primaryPoint.Color.ToHsvEx();
+                    var hsv = colorPoint.HsvColor;
+                    var primaryHsv = primaryPoint.HsvColor;
                     var primaryIndex = colorPoints.IndexOf(primaryPoint);
                     var degreeDifference = hsv.H - primaryHsv.H;
                     if (degreeDifference < -180)
