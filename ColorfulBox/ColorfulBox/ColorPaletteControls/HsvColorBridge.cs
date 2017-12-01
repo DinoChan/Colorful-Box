@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml;
+using Microsoft.Toolkit.Uwp;
 using Microsoft.Toolkit.Uwp.Helpers;
 
 namespace ColorfulBox
@@ -16,32 +17,33 @@ namespace ColorfulBox
 
         private bool _isIgnoreColorChanged;
 
+
+
         /// <summary>
-        /// 获取或设置Color的值
+        /// 获取或设置HsvColor的值
         /// </summary>  
-        public Color Color
+        public HsvColor HsvColor
         {
-            get { return (Color) GetValue(ColorProperty); }
-            set { SetValue(ColorProperty, value); }
+            get { return (HsvColor)GetValue(HsvColorProperty); }
+            set { SetValue(HsvColorProperty, value); }
         }
 
         /// <summary>
-        /// 标识 Color 依赖属性。
+        /// 标识 HsvColor 依赖属性。
         /// </summary>
-        public static readonly DependencyProperty ColorProperty =
-            DependencyProperty.Register("Color", typeof(Color), typeof(HsvColorBridge),
-                new PropertyMetadata(Color.FromArgb(0, 0, 0, 0), OnColorChanged));
+        public static readonly DependencyProperty HsvColorProperty =
+            DependencyProperty.Register("HsvColor", typeof(HsvColor), typeof(HsvColorBridge), new PropertyMetadata(default(HsvColor), OnHsvColorChanged));
 
-        private static void OnColorChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        private static void OnHsvColorChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             HsvColorBridge target = obj as HsvColorBridge;
-            Color oldValue = (Color) args.OldValue;
-            Color newValue = (Color) args.NewValue;
-            if (oldValue != newValue)
-                target.OnColorChanged(oldValue, newValue);
+            HsvColor oldValue = (HsvColor)args.OldValue;
+            HsvColor newValue = (HsvColor)args.NewValue;
+            if (oldValue.Equals(newValue) == false)
+                target.OnHsvColorChanged(oldValue, newValue);
         }
 
-        protected virtual void OnColorChanged(Color oldValue, Color newValue)
+        protected virtual void OnHsvColorChanged(HsvColor oldValue, HsvColor newValue)
         {
             if (_isIgnoreColorChanged)
                 return;
@@ -49,8 +51,8 @@ namespace ColorfulBox
             _isIgnoreColorChanged = true;
             try
             {
-                var hsv = newValue.ToHsvEx();
-               
+                var hsv = newValue;
+
                 if (H != hsv.H)
                     H = hsv.H;
 
@@ -66,6 +68,7 @@ namespace ColorfulBox
             }
         }
 
+      
 
         private double _H;
 
@@ -128,14 +131,14 @@ namespace ColorfulBox
 
         private int _a;
 
-     
+
 
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
+
 
         private void OnHsvChanged()
         {
@@ -145,7 +148,7 @@ namespace ColorfulBox
             _isIgnoreColorChanged = true;
             try
             {
-                Color = ColorExtensions.FromHsvEx(H, S, V);
+                HsvColor = new HsvColor {A = 1, H = H, S = S, V = V};
             }
             finally
             {

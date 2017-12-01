@@ -41,7 +41,7 @@ namespace ColorfulBox
             return Microsoft.Toolkit.Uwp.Helpers.ColorHelper.FromHsl(Math.Round(hue), Math.Round(saturation, 2), Math.Round(lightness, 2), alpha);
         }
 
-        public static Color ToColor(this HsvColor hsvColor)
+        public static Color ToArgbColor(this HsvColor hsvColor)
         {
             return FromHsvEx(hsvColor.H, hsvColor.S, hsvColor.V, hsvColor.A);
         }

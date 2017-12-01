@@ -96,11 +96,11 @@
             <local:ColorPoint InitializationColor="Yellow" />
             <local:ColorPoint InitializationColor="#FF00D4" />
         </local:ColorPointCollection>
-        <DataTemplate x:Key="ArgbModelTemplate">
+        <DataTemplate x:Key="ArgbModelTemplate" x:DataType="local:ColorPoint">
             <Grid>
                 <Grid.Resources>
                     <local:ArgbColorBridge  x:Key="ArgbColorBridge"
-                                            Color="{Binding Color,Mode=TwoWay}" />
+                                            Color="{Binding HsvColor,Mode=TwoWay,Converter={StaticResource HsvToColorConverter}}" />
                     <local:ArgbConverter x:Key="RedConverter"
                                          Model="Red" />
                     <local:ArgbConverter x:Key="GreenConverter"
@@ -119,7 +119,7 @@
                                              Margin=" 5,0"
                                              Minimum="0"
                                              Maximum="255"
-                                             Color="{Binding Color}"
+                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
                                              Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
                                              ColorConverter="{StaticResource RedConverter}" />
                       
@@ -141,7 +141,7 @@
                         <local:ColorGradient Width="200"
                                              Minimum="0"
                                              Maximum="255"
-                                             Color="{Binding Color}"
+                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
                                              Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
                                              ColorConverter="{StaticResource GreenConverter}" />
                       
@@ -163,7 +163,7 @@
                         <local:ColorGradient Width="200"
                                              Minimum="0"
                                              Maximum="255"
-                                             Color="{Binding Color}"
+                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
                                              Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
                                              ColorConverter="{StaticResource BlueConverter}" />
                     
@@ -179,11 +179,11 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
-        <DataTemplate x:Key="HsvbModelTemplate">
+        <DataTemplate x:Key="HsvModelTemplate" x:DataType="local:ColorPoint">
             <Grid>
                 <Grid.Resources>
                     <local:HsvColorBridge  x:Key="HsvColorBridge"
-                                            Color="{Binding Color,Mode=TwoWay}" />
+                                            HsvColor="{Binding HsvColor,Mode=TwoWay}" />
                     <local:HsvConverter x:Key="HueConverter"
                                          Model="Hue" />
                     <local:HsvConverter x:Key="SaturationConverter"
@@ -202,7 +202,7 @@
                                              Margin=" 5,0"
                                              Minimum="0"
                                              Maximum="360"
-                                             Color="{Binding Color}"
+                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
                                              Value="{Binding Source={StaticResource HsvColorBridge},Path=H,Mode=TwoWay}"
                                              ColorConverter="{StaticResource HueConverter}" 
                                              Background="{StaticResource HueBrush}"/>
@@ -226,7 +226,7 @@
                                              Minimum="0"
                                              Maximum="1"
                                              StepFrequency="0.01" SmallChange="0"
-                                             Color="{Binding Color}"
+                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
                                              Value="{Binding Source={StaticResource HsvColorBridge},Path=S,Mode=TwoWay}"
                                              ColorConverter="{StaticResource SaturationConverter}" />
                        
@@ -249,7 +249,7 @@
                                              Minimum="0"
                                              Maximum="1"
                                              StepFrequency="0.01" SmallChange="0"
-                                             Color="{Binding Color}"
+                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
                                              Value="{Binding Source={StaticResource HsvColorBridge},Path=V,Mode=TwoWay}"
                                              ColorConverter="{StaticResource ValueConverter}" />
                         
@@ -302,7 +302,7 @@
         </ComboBox>
         <Pivot Grid.Column="1" x:Name="TemplateSelector" Width="230" VerticalAlignment="Bottom" Margin="95,0,0,0" HorizontalAlignment="Left">
             <PivotItem Header="Rgb" Tag="{StaticResource ArgbModelTemplate}"/>
-            <PivotItem Header="Hsv" Tag="{StaticResource HsvbModelTemplate}"/>
+            <PivotItem Header="Hsv" Tag="{StaticResource HsvModelTemplate}"/>
           
         </Pivot>
         <local:HsvWheelColorPalette x:Name="ColorPalette"
@@ -334,13 +334,13 @@
                                    Height="90" />
 
                         <StackPanel Grid.Column="1">
-                            <!--<ContentControl Content="{Binding}" ContentTemplate="{Binding ElementName=TemplateSelector,Path=SelectedItem.Tag}">
+                            <ContentControl Content="{Binding}" ContentTemplate="{Binding ElementName=TemplateSelector,Path=SelectedItem.Tag}">
                                 <ContentControl.ContentTransitions>
                                     <TransitionCollection>
                                         <ContentThemeTransition HorizontalOffset="50" VerticalOffset="0"/>
                                     </TransitionCollection>
                                 </ContentControl.ContentTransitions>
-                            </ContentControl>-->
+                            </ContentControl>
 
                         </StackPanel>
                     </Grid>

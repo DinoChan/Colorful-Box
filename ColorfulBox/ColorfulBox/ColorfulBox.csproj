@@ -124,6 +124,7 @@
     <Compile Include="Common\DelegateCommand{T}.cs" />
     <Compile Include="Converters\HsvColorToAngleConverter.cs" />
     <Compile Include="Converters\HsvColorToBrushConverter.cs" />
+    <Compile Include="Converters\HsvToColorConverter.cs" />
     <Compile Include="ExportView.xaml.cs">
       <DependentUpon>ExportView.xaml</DependentUpon>
     </Compile>

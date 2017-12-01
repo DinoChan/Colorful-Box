@@ -5,24 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
 using Microsoft.Toolkit.Uwp;
 
 namespace ColorfulBox
 {
-    public class HsvColorToBrushConverter : IValueConverter
+    public class HsvToColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is HsvColor color)
-                return new SolidColorBrush(color.ToArgbColor());
+            if (value is HsvColor hsv)
+                return hsv.ToArgbColor();
 
-            return null;
+            return default(Color);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            if (value is Color color)
+                return color.ToHsvEx();
+
+            return default(HsvColor);
         }
     }
 }

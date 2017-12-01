@@ -7,6 +7,7 @@
     <Application.Resources>
         <local:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         <local:HsvColorToBrushConverter x:Key="HsvColorToBrushConverter"/>
+        <local:HsvToColorConverter x:Key="HsvToColorConverter"/>
         <localization:ApplicationResources x:Key="R"/>
     </Application.Resources>
 
