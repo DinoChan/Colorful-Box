@@ -10,9 +10,9 @@ using Microsoft.Toolkit.Uwp;
 
 namespace ColorfulBox
 {
-    public class ComplementaryStrategy : ColorPaletteStrategy
+    public class MonochromaticStrategy : ColorPaletteStrategy
     {
-        public ComplementaryStrategy()
+        public MonochromaticStrategy()
         {
         }
 
@@ -28,37 +28,24 @@ namespace ColorfulBox
                     return;
 
                 var primaryHsv = primaryColorPoint.HsvColor;
-                primaryHsv.S = 0.76;
+                primaryHsv.V = 1;
+                primaryHsv.S = 1;
                 var primatyIndex = colorPoints.IndexOf(primaryColorPoint);
                 for (int i = 0; i < colorPoints.Count; i++)
                 {
                     var colorPoint = colorPoints[i];
                     if (i == primatyIndex)
                     {
-                        colorPoint.HsvColor = primaryHsv;//.Color =ColorExtensions.FromHsvEx(primaryHsv.H, primaryHsv.S, primaryHsv.V);
+                        colorPoint.HsvColor = primaryHsv;
                     }
                     else
                     {
                         var hue = primaryHsv.H;
-
-                        if (i > primatyIndex)
-                        {
-                            hue += 180;
-                            if (hue > 360)
-                                hue -= 360;
-                        }
-                        var value = primaryHsv.V;
                         var saturation = primaryHsv.S;
-                        if (Math.Abs(i - primatyIndex) > 1)
-                        {
-                            value -= (Math.Abs(i - primatyIndex) - 1) * 0.3;
-                            value = Math.Max(0, value);
-                        }
-
-                        saturation *= 1 + Math.Abs(i - primatyIndex) * 0.15;
-                        saturation = Math.Min(1, saturation);
-
-                        colorPoint.HsvColor=new HsvColor{ A= 1,H=hue,S=saturation,V=value};//  .Color = ColorExtensions.FromHsvEx(hue, saturation, value);
+                        var value = primaryHsv.V;
+                        saturation *= 1 + Math.Min(0, i - primatyIndex) * .25;
+                        value *= 1 + Math.Min(0,  primatyIndex-i) * .25;
+                        colorPoint.HsvColor = new HsvColor { A = 1, H = hue, S = saturation, V = value };
                     }
                 }
             }
@@ -87,16 +74,7 @@ namespace ColorfulBox
                 var colorPointIndex = colorPoints.IndexOf(colorPoint);
                 if (primaryColorPoint != colorPoint)
                 {
-                    if (colorPointIndex > primatyIndex)
-                    {
-                        primaryHsv.H = colorPointHsv.H + 180;
-                        if (primaryHsv.H > 360)
-                            primaryHsv.H -= 360;
-                    }
-                    else
-                    {
                         primaryHsv.H = colorPointHsv.H;
-                    }
                 }
                 var oldHsv = oldColor;
                 for (int i = 0; i < colorPoints.Count; i++)
@@ -105,30 +83,33 @@ namespace ColorfulBox
                     var hue = primaryHsv.H;
                     var point = colorPoints[i];
                     var pointHsv = point.HsvColor;
-                    if (i > primatyIndex)
-                    {
-                        hue += 180;
-                        if (hue > 360)
-                            hue -= 360;
-                    }
-
+                    
                     var saturation = pointHsv.S;
+                    var value = pointHsv.V;
                     if (colorPoint == primaryColorPoint)
                     {
                         if (i == primatyIndex)
                             continue;
 
-                        var saturationRate =  pointHsv.S/ oldHsv.S;
+                        var saturationRate = pointHsv.S / oldHsv.S;
                         if (pointHsv.S == 1)
                         {
-                            saturationRate = 1 + Math.Abs(i - primatyIndex) * 0.15;
+                            saturationRate = 1 + Math.Min(0, i - primatyIndex) * .25;
                         }
-                        
-                        saturation = saturationRate* primaryHsv.S  ;
+                        saturation = saturationRate * primaryHsv.S;
                         saturation = Math.Min(1, saturation);
+
+                        var valueRate = pointHsv.V / oldHsv.V;
+                        if (pointHsv.V == 1)
+                        {
+                            valueRate = 1 + Math.Max(0, primatyIndex - i) * .25;
+                        }
+                        value = valueRate * primaryHsv.V;
+                        value = Math.Min(1, value);
+
                     }
-                  
-                    point.HsvColor = new HsvColor {A = 1, H = hue, S = saturation, V = pointHsv.V};
+                   
+                    point.HsvColor = new HsvColor { A = 1, H = hue, S = saturation, V = value };
                 }
             }
             finally

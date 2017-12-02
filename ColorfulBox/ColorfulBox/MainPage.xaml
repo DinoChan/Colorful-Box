@@ -294,11 +294,16 @@
                     <local:AnalogousStrategy />
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <!--<ComboBoxItem Content="Complementary">
+            <ComboBoxItem Content="Complementary">
                 <ComboBoxItem.Tag>
                     <local:ComplementaryStrategy/>
                 </ComboBoxItem.Tag>
-            </ComboBoxItem>-->
+            </ComboBoxItem>
+            <ComboBoxItem Content="Monochromatic">
+                <ComboBoxItem.Tag>
+                    <local:MonochromaticStrategy/>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
         </ComboBox>
         <Pivot Grid.Column="1" x:Name="TemplateSelector" Width="230" VerticalAlignment="Bottom" Margin="95,0,0,0" HorizontalAlignment="Left">
             <PivotItem Header="Rgb" Tag="{StaticResource ArgbModelTemplate}"/>

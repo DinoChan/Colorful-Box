@@ -116,6 +116,7 @@
     <Compile Include="ColorPaletteControls\ColorPoint.cs" />
     <Compile Include="ColorPaletteControls\ColorPointCollection.cs" />
     <Compile Include="ColorPaletteControls\ColorPointVisual.cs" />
+    <Compile Include="ColorPaletteStrategies\MonochromaticStrategy.cs" />
     <Compile Include="Common\ColorExtensions.cs" />
     <Compile Include="Common\PropertyEventArgs.cs" />
     <Compile Include="Converters\ColorToAngleConverter.cs" />
