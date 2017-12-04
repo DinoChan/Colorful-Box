@@ -304,6 +304,16 @@
                     <local:MonochromaticStrategy/>
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
+            <ComboBoxItem Content="Shades">
+                <ComboBoxItem.Tag>
+                    <local:ShadesStrategy/>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+            <ComboBoxItem Content="Triad">
+                <ComboBoxItem.Tag>
+                    <local:TriadStrategy/>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
         </ComboBox>
         <Pivot Grid.Column="1" x:Name="TemplateSelector" Width="230" VerticalAlignment="Bottom" Margin="95,0,0,0" HorizontalAlignment="Left">
             <PivotItem Header="Rgb" Tag="{StaticResource ArgbModelTemplate}"/>
