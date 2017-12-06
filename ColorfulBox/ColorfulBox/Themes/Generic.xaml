@@ -4,7 +4,7 @@
 
     <local:ColorToAngleConverter x:Key="ColorToAngleConverter" />
     <local:HsvColorToAngleConverter x:Key="HsvColorToAngleConverter"/>
-
+    <local:DoubleN2ThumbToolTipValueConverter x:Key="DoubleN2ThumbToolTipValueConverter"/>
 
     <Style TargetType="local:ColorPointVisual">
         <Setter Property="Template">
@@ -170,6 +170,8 @@
                 Value="-7,0,-7,0" />
         <Setter Property="IsFocusEngagementEnabled"
                 Value="True" />
+        <Setter Property="ThumbToolTipValueConverter"
+                Value="{StaticResource DoubleN2ThumbToolTipValueConverter}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ColorGradient">

@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:ColorfulBox"
              xmlns:localization="using:ColorfulBox.Localization"
+             xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
              RequestedTheme="Dark">
     <Application.Resources>
         <local:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         <local:HsvColorToBrushConverter x:Key="HsvColorToBrushConverter"/>
         <local:HsvToColorConverter x:Key="HsvToColorConverter"/>
+        <converters:StringFormatConverter x:Key="StringFormatConverter"/>
         <localization:ApplicationResources x:Key="R"/>
     </Application.Resources>
 

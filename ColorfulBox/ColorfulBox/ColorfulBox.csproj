@@ -125,6 +125,7 @@
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Common\DelegateCommand.cs" />
     <Compile Include="Common\DelegateCommand{T}.cs" />
+    <Compile Include="Converters\DoubleN2ThumbToolTipValueConverter.cs" />
     <Compile Include="Converters\HsvColorToAngleConverter.cs" />
     <Compile Include="Converters\HsvColorToBrushConverter.cs" />
     <Compile Include="Converters\HsvToColorConverter.cs" />

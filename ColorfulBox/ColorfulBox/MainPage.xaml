@@ -121,7 +121,8 @@
                                              Maximum="255"
                                              Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
                                              Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
-                                             ColorConverter="{StaticResource RedConverter}" />
+                                             ColorConverter="{StaticResource RedConverter}" 
+                                            />
                       
                         <TextBlock Text="R:"
                                    Grid.Column="1"
@@ -225,10 +226,10 @@
                         <local:ColorGradient Width="200"
                                              Minimum="0"
                                              Maximum="1"
-                                             StepFrequency="0.01" SmallChange="0"
+                                             StepFrequency="0.01" SmallChange="0.01"  LargeChange="0.1"
                                              Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
                                              Value="{Binding Source={StaticResource HsvColorBridge},Path=S,Mode=TwoWay}"
-                                             ColorConverter="{StaticResource SaturationConverter}" />
+                                             ColorConverter="{StaticResource SaturationConverter}"  />
                        
                         <TextBlock Text="S:"
                                    Grid.Column="1"
@@ -248,7 +249,7 @@
                         <local:ColorGradient Width="200"
                                              Minimum="0"
                                              Maximum="1"
-                                             StepFrequency="0.01" SmallChange="0"
+                                             StepFrequency="0.01" SmallChange="0.01"  LargeChange="0.1"
                                              Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
                                              Value="{Binding Source={StaticResource HsvColorBridge},Path=V,Mode=TwoWay}"
                                              ColorConverter="{StaticResource ValueConverter}" />
