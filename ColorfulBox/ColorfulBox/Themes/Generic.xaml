@@ -1,10 +1,13 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:ColorfulBox">
+                    xmlns:local="using:ColorfulBox"
+                    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters">
 
     <local:ColorToAngleConverter x:Key="ColorToAngleConverter" />
     <local:HsvColorToAngleConverter x:Key="HsvColorToAngleConverter"/>
     <local:DoubleN2ThumbToolTipValueConverter x:Key="DoubleN2ThumbToolTipValueConverter"/>
+    <converters:BoolToObjectConverter TrueValue="#77FFFFFF" FalseValue="#33FFFFFF" x:Key="ColorPointBoolToObjectConverter"/>
+    <converters:BoolToObjectConverter TrueValue="#CCFFFFFF" FalseValue="#88FFFFFF" x:Key="ColorPointBoolToObjectConverter2"/>
 
     <Style TargetType="local:ColorPointVisual">
         <Setter Property="Template">
@@ -40,14 +43,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ColorPointVisual">
-                    <Grid  Height="40"
-                           Width="40"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           RenderTransformOrigin="0.5,0.5"
-                           ManipulationMode="TranslateY,TranslateX"
-                           x:Name="LayoutRoot">
-
+                    <Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -101,27 +97,62 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+
                         <Grid.Resources>
                             <local:HsvColorAndRadiusToTransformXBridge x:Key="HsvColorAndRadiusToTransformXBridge"
                                                                     AttachedElement="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                                     HsvColor="{Binding HsvColor}" />
                         </Grid.Resources>
-                        <Grid.RenderTransform>
-                            <TransformGroup>
-                                <TranslateTransform X="{Binding TranslateX, Source={StaticResource HsvColorAndRadiusToTransformXBridge}}" />
-                                <RotateTransform Angle="{Binding HsvColor,Converter={StaticResource HsvColorToAngleConverter}}" />
-                            </TransformGroup>
-                        </Grid.RenderTransform>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="1"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="1"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <local:Triangle Grid.Column="1" Grid.Row="1" Direction="Left"
+                                                  RenderTransformOrigin="0,0.5"
+                                            HorizontalAlignment="Left"
+                                            Fill="{Binding IsPrimary,Converter={StaticResource ColorPointBoolToObjectConverter}}" Grid.ColumnSpan="2" Margin="0,-20" Height="41"
+                                            Width="{Binding TranslateX, Source={StaticResource HsvColorAndRadiusToTransformXBridge}}">
+                                <local:Triangle.RenderTransform>
+                                    <TransformGroup>
+                                        <RotateTransform Angle="{Binding HsvColor,Converter={StaticResource HsvColorToAngleConverter}}" />
+                                    </TransformGroup>
+                                </local:Triangle.RenderTransform>
+                            </local:Triangle>
+                        </Grid>
+                        <Grid  Height="41"
+                           Width="41"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           RenderTransformOrigin="0.5,0.5"
+                           ManipulationMode="TranslateY,TranslateX"
+                           x:Name="LayoutRoot">
 
 
-                        <!--<Ellipse Stroke="Black"
+                            <Grid.RenderTransform>
+                                <TransformGroup>
+                                    <TranslateTransform X="{Binding TranslateX, Source={StaticResource HsvColorAndRadiusToTransformXBridge}}" />
+                                    <RotateTransform Angle="{Binding HsvColor,Converter={StaticResource HsvColorToAngleConverter}}" />
+                                </TransformGroup>
+                            </Grid.RenderTransform>
+
+
+                            <!--<Ellipse Stroke="Black"
                                  StrokeThickness="1" />-->
-                        <Ellipse x:Name="ellipse"
-                                 Stroke="White"
+                            <Ellipse x:Name="ellipse"
+                                 Stroke="{Binding IsPrimary,Converter={StaticResource ColorPointBoolToObjectConverter2}}"
                                  StrokeThickness="3"
                                  Fill="{Binding HsvColor, Converter={StaticResource HsvColorToBrushConverter}}" />
 
 
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

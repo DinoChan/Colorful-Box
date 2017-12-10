@@ -129,6 +129,7 @@
     <Compile Include="Converters\HsvColorToAngleConverter.cs" />
     <Compile Include="Converters\HsvColorToBrushConverter.cs" />
     <Compile Include="Converters\HsvToColorConverter.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="ExportView.xaml.cs">
       <DependentUpon>ExportView.xaml</DependentUpon>
     </Compile>
@@ -144,6 +145,7 @@
     <Compile Include="Converters\SaturationToRadiusConverter.cs" />
     <Compile Include="Common\TemplatedParentBridge.cs" />
     <Compile Include="Common\VisualTreeExtensions.cs" />
+    <Compile Include="Triangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
