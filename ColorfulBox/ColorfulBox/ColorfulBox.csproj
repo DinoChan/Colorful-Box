@@ -103,19 +103,19 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPaletteControls\ArgbColorBridge.cs" />
-    <Compile Include="ColorPaletteControls\ArgbConverter.cs" />
-    <Compile Include="ColorPaletteControls\ArgbModel.cs" />
-    <Compile Include="ColorPaletteControls\ColorAndRadiusToTransformXBridge.cs" />
-    <Compile Include="ColorPaletteControls\ColorGradient.cs" />
-    <Compile Include="ColorPaletteControls\ColorPalette.cs" />
-    <Compile Include="ColorPaletteControls\HsvColorAndRadiusToTransformXBridge.cs" />
+    <Compile Include="Controls\ColorPaletteControls\ArgbColorBridge.cs" />
+    <Compile Include="Controls\ColorPaletteControls\ArgbConverter.cs" />
+    <Compile Include="Controls\ColorPaletteControls\ArgbModel.cs" />
+    <Compile Include="Controls\ColorPaletteControls\ColorAndRadiusToTransformXBridge.cs" />
+    <Compile Include="Controls\ColorPaletteControls\ColorGradient.cs" />
+    <Compile Include="Controls\ColorPaletteControls\ColorPalette.cs" />
+    <Compile Include="Controls\ColorPaletteControls\HsvColorAndRadiusToTransformXBridge.cs" />
     <Compile Include="ColorPaletteStrategies\AnalogousStrategy.cs" />
     <Compile Include="ColorPaletteStrategies\ColorPaletteStrategy.cs" />
     <Compile Include="ColorPaletteStrategies\ComplementaryStrategy.cs" />
-    <Compile Include="ColorPaletteControls\ColorPoint.cs" />
-    <Compile Include="ColorPaletteControls\ColorPointCollection.cs" />
-    <Compile Include="ColorPaletteControls\ColorPointVisual.cs" />
+    <Compile Include="Controls\ColorPaletteControls\ColorPoint.cs" />
+    <Compile Include="Controls\ColorPaletteControls\ColorPointCollection.cs" />
+    <Compile Include="Controls\ColorPaletteControls\ColorPointVisual.cs" />
     <Compile Include="ColorPaletteStrategies\MonochromaticStrategy.cs" />
     <Compile Include="ColorPaletteStrategies\ShadesStrategy.cs" />
     <Compile Include="ColorPaletteStrategies\TriadStrategy.cs" />
@@ -129,15 +129,15 @@
     <Compile Include="Converters\HsvColorToAngleConverter.cs" />
     <Compile Include="Converters\HsvColorToBrushConverter.cs" />
     <Compile Include="Converters\HsvToColorConverter.cs" />
-    <Compile Include="Direction.cs" />
+    <Compile Include="Controls\Direction.cs" />
     <Compile Include="ExportView.xaml.cs">
       <DependentUpon>ExportView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPaletteControls\HsvColorBridge.cs" />
-    <Compile Include="ColorPaletteControls\HsvConverter.cs" />
-    <Compile Include="ColorPaletteControls\HsvModel.cs" />
-    <Compile Include="ColorPaletteControls\HsvWheelColorPalette.cs" />
-    <Compile Include="ColorPaletteControls\IColorConverter.cs" />
+    <Compile Include="Controls\ColorPaletteControls\HsvColorBridge.cs" />
+    <Compile Include="Controls\ColorPaletteControls\HsvConverter.cs" />
+    <Compile Include="Controls\ColorPaletteControls\HsvModel.cs" />
+    <Compile Include="Controls\ColorPaletteControls\HsvWheelColorPalette.cs" />
+    <Compile Include="Controls\ColorPaletteControls\IColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -145,7 +145,16 @@
     <Compile Include="Converters\SaturationToRadiusConverter.cs" />
     <Compile Include="Common\TemplatedParentBridge.cs" />
     <Compile Include="Common\VisualTreeExtensions.cs" />
-    <Compile Include="Triangle.cs" />
+    <Compile Include="Controls\Triangle.cs" />
+    <Compile Include="Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyThemesPage.xaml.cs">
+      <DependentUpon>MyThemesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -225,6 +234,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyThemesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
