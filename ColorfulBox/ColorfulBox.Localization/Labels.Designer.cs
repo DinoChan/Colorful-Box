@@ -71,6 +71,24 @@ namespace ColorfulBox.Localization {
         }
         
         /// <summary>
+        ///   查找类似 Analogous 的本地化字符串。
+        /// </summary>
+        public static string Analogous {
+            get {
+                return ResourceManager.GetString("Analogous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Complementary 的本地化字符串。
+        /// </summary>
+        public static string Complementary {
+            get {
+                return ResourceManager.GetString("Complementary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Copoied 的本地化字符串。
         /// </summary>
         public static string Copoied {
@@ -85,6 +103,15 @@ namespace ColorfulBox.Localization {
         public static string Copy {
             get {
                 return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Custom 的本地化字符串。
+        /// </summary>
+        public static string Custom {
+            get {
+                return ResourceManager.GetString("Custom", resourceCulture);
             }
         }
         
@@ -107,11 +134,38 @@ namespace ColorfulBox.Localization {
         }
         
         /// <summary>
+        ///   查找类似 Monochromatic 的本地化字符串。
+        /// </summary>
+        public static string Monochromatic {
+            get {
+                return ResourceManager.GetString("Monochromatic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Rule 的本地化字符串。
         /// </summary>
         public static string Rule {
             get {
                 return ResourceManager.GetString("Rule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Shades 的本地化字符串。
+        /// </summary>
+        public static string Shades {
+            get {
+                return ResourceManager.GetString("Shades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Triad 的本地化字符串。
+        /// </summary>
+        public static string Triad {
+            get {
+                return ResourceManager.GetString("Triad", resourceCulture);
             }
         }
     }

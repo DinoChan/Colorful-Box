@@ -135,4 +135,22 @@
   <data name="Rule" xml:space="preserve">
     <value>规则</value>
   </data>
+  <data name="Analogous" xml:space="preserve">
+    <value>类比</value>
+  </data>
+  <data name="Monochromatic" xml:space="preserve">
+    <value>单色</value>
+  </data>
+  <data name="Triad" xml:space="preserve">
+    <value>三元群</value>
+  </data>
+  <data name="Complementary" xml:space="preserve">
+    <value>补色</value>
+  </data>
+  <data name="Shades" xml:space="preserve">
+    <value>浓度</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>自定</value>
+  </data>
 </root>

@@ -29,7 +29,12 @@ namespace ColorfulBox
         {
             DefaultStyleKey = typeof(ColorPointVisual);
             DataContextChanged += OnDataContextChanged;
+            RegisterPropertyChangedCallback(IsSelectedProperty, OnIsSelectedChanged);
+
+
         }
+
+
 
         private void OnDataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
@@ -63,17 +68,23 @@ namespace ColorfulBox
         }
 
 
-        protected  override void OnApplyTemplate()
+        protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
             UpdateVisualStates(false);
-          
+
         }
 
         private void UpdateVisualStates(bool useTransitions)
         {
         }
 
-  
+        private void OnIsSelectedChanged(DependencyObject source, DependencyProperty property)
+        {
+            if (IsSelected)
+                Canvas.SetZIndex(this, 1000);
+            else
+                Canvas.SetZIndex(this, 0);
+        }
     }
 }

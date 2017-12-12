@@ -135,4 +135,22 @@
   <data name="Rule" xml:space="preserve">
     <value>Rule</value>
   </data>
+  <data name="Analogous" xml:space="preserve">
+    <value>Analogous</value>
+  </data>
+  <data name="Complementary" xml:space="preserve">
+    <value>Complementary</value>
+  </data>
+  <data name="Monochromatic" xml:space="preserve">
+    <value>Monochromatic</value>
+  </data>
+  <data name="Shades" xml:space="preserve">
+    <value>Shades</value>
+  </data>
+  <data name="Triad" xml:space="preserve">
+    <value>Triad</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
 </root>

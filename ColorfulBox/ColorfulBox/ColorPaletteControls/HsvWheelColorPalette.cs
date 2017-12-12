@@ -36,6 +36,7 @@ namespace ColorfulBox
             _dragOrginalPosition = new Point(_dragOrginalPosition.X + position.X, _dragOrginalPosition.Y + position.Y);
             //Debug.WriteLine(_dragOrginalPosition.X + "   " + _dragOrginalPosition.Y);
             colorPointVisual.ColorPoint.HsvColor = GetColor(_dragOrginalPosition, colorPointVisual.ColorPoint.HsvColor);
+           
         }
 
         protected override void OnColorPaletteStrategyChanged(ColorPaletteStrategy oldValue, ColorPaletteStrategy newValue)
@@ -43,6 +44,7 @@ namespace ColorfulBox
             base.OnColorPaletteStrategyChanged(oldValue, newValue);
 
             newValue?.ChangeColorPoints(Items.Cast<ColorPoint>().ToList());
+            this.SelectedItem = Items.OfType<ColorPoint>().FirstOrDefault(c => c.IsPrimary);
         }
 
         protected override void OnColorChanged(ColorPoint colorPoint, HsvColor oldValue, HsvColor newValue)

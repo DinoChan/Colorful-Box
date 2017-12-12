@@ -284,33 +284,33 @@
         <ComboBox Margin="10"
                   x:Name="StrategySelector"
                   Header="{Binding Source={StaticResource R},Path=Labels.Rule}">
-            <ComboBoxItem Content="Custom"
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Custom}"
                           IsSelected="True">
                 <ComboBoxItem.Tag>
                     <local:ColorPaletteStrategy />
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <ComboBoxItem Content="Analogous">
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Analogous}">
                 <ComboBoxItem.Tag>
                     <local:AnalogousStrategy />
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <ComboBoxItem Content="Complementary">
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Complementary}">
                 <ComboBoxItem.Tag>
                     <local:ComplementaryStrategy/>
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <ComboBoxItem Content="Monochromatic">
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Monochromatic}">
                 <ComboBoxItem.Tag>
                     <local:MonochromaticStrategy/>
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <ComboBoxItem Content="Shades">
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Shades}">
                 <ComboBoxItem.Tag>
                     <local:ShadesStrategy/>
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
-            <ComboBoxItem Content="Triad">
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Triad}">
                 <ComboBoxItem.Tag>
                     <local:TriadStrategy/>
                 </ComboBoxItem.Tag>
