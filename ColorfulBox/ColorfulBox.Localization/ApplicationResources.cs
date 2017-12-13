@@ -16,8 +16,11 @@ namespace ColorfulBox.Localization
         public ApplicationResources()
         {
             Labels = new Labels();
+            //ApplicationLanguages.PrimaryLanguageOverride = "";
             if (string.IsNullOrWhiteSpace(ApplicationLanguages.PrimaryLanguageOverride) == false)
                 Language = ApplicationLanguages.PrimaryLanguageOverride;
+            else
+                Language = Windows.System.UserProfile.GlobalizationPreferences.Languages.FirstOrDefault();
 
             Current = this;
         }
