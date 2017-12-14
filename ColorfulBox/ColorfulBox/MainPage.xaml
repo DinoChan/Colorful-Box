@@ -10,397 +10,63 @@
       d:DesignWidth="600"
       mc:Ignorable="d">
     <Page.Resources>
-        <LinearGradientBrush x:Key="HueBrush"
-                             StartPoint="0,0.5"
-                             EndPoint="1,0.5">
-                <GradientStop Color="#FFFF0000"
-                              Offset="0" />
-                <GradientStop Color="#FFFF2A00"
-                              Offset="0.0277777777777778" />
-                <GradientStop Color="#FFFF5400"
-                              Offset="0.0555555555555556" />
-                <GradientStop Color="#FFFF7F00"
-                              Offset="0.0833333333333333" />
-                <GradientStop Color="#FFFFAA00"
-                              Offset="0.111111111111111" />
-                <GradientStop Color="#FFFFD400"
-                              Offset="0.138888888888889" />
-                <GradientStop Color="#FFFFFF00"
-                              Offset="0.166666666666667" />
-                <GradientStop Color="#FFD4FF00"
-                              Offset="0.194444444444444" />
-                <GradientStop Color="#FFAAFF00"
-                              Offset="0.222222222222222" />
-                <GradientStop Color="#FF7FFF00"
-                              Offset="0.25" />
-                <GradientStop Color="#FF54FF00"
-                              Offset="0.277777777777778" />
-                <GradientStop Color="#FF2AFF00"
-                              Offset="0.305555555555556" />
-                <GradientStop Color="#FF00FF00"
-                              Offset="0.333333333333333" />
-                <GradientStop Color="#FF00FF2A"
-                              Offset="0.361111111111111" />
-                <GradientStop Color="#FF00FF55"
-                              Offset="0.388888888888889" />
-                <GradientStop Color="#FF00FF7F"
-                              Offset="0.416666666666667" />
-                <GradientStop Color="#FF00FFA9"
-                              Offset="0.444444444444444" />
-                <GradientStop Color="#FF00FFD4"
-                              Offset="0.472222222222222" />
-                <GradientStop Color="#FF00FFFF"
-                              Offset="0.5" />
-                <GradientStop Color="#FF00D4FF"
-                              Offset="0.527777777777778" />
-                <GradientStop Color="#FF00A9FF"
-                              Offset="0.555555555555556" />
-                <GradientStop Color="#FF007FFF"
-                              Offset="0.583333333333333" />
-                <GradientStop Color="#FF0055FF"
-                              Offset="0.611111111111111" />
-                <GradientStop Color="#FF002AFF"
-                              Offset="0.638888888888889" />
-                <GradientStop Color="#FF0000FF"
-                              Offset="0.666666666666667" />
-                <GradientStop Color="#FF2A00FF"
-                              Offset="0.694444444444444" />
-                <GradientStop Color="#FF5400FF"
-                              Offset="0.722222222222222" />
-                <GradientStop Color="#FF7F00FF"
-                              Offset="0.75" />
-                <GradientStop Color="#FFAA00FF"
-                              Offset="0.777777777777778" />
-                <GradientStop Color="#FFD400FF"
-                              Offset="0.805555555555556" />
-                <GradientStop Color="#FFFF00FF"
-                              Offset="0.833333333333333" />
-                <GradientStop Color="#FFFF00D4"
-                              Offset="0.861111111111111" />
-                <GradientStop Color="#FFFF00AA"
-                              Offset="0.888888888888889" />
-                <GradientStop Color="#FFFF007F"
-                              Offset="0.916666666666667" />
-                <GradientStop Color="#FFFF0054"
-                              Offset="0.944444444444444" />
-                <GradientStop Color="#FFFF002A"
-                              Offset="0.972222222222222" />
-                <GradientStop Color="#FFFF0004"
-                              Offset="1" />
-        </LinearGradientBrush>
-        <local:ColorPointCollection x:Key="ColorPoints">
-            <local:ColorPoint InitializationColor="#FF00EE82" />
-            <local:ColorPoint InitializationColor="Red" />
-            <local:ColorPoint InitializationColor="Blue"
-                              IsPrimary="True" />
-            <local:ColorPoint InitializationColor="Yellow" />
-            <local:ColorPoint InitializationColor="#FF00D4" />
-        </local:ColorPointCollection>
-        <DataTemplate x:Key="ArgbModelTemplate" x:DataType="local:ColorPoint">
+        <DataTemplate x:Key="HamburgerMenuItem">
             <Grid>
-                <Grid.Resources>
-                    <local:ArgbColorBridge  x:Key="ArgbColorBridge"
-                                            Color="{Binding HsvColor,Mode=TwoWay,Converter={StaticResource HsvToColorConverter}}" />
-                    <local:ArgbConverter x:Key="RedConverter"
-                                         Model="Red" />
-                    <local:ArgbConverter x:Key="GreenConverter"
-                                         Model="Green" />
-                    <local:ArgbConverter x:Key="BlueConverter"
-                                         Model="Blue" />
-                </Grid.Resources>
-                <StackPanel >
-                    <Grid Margin="0,7">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <local:ColorGradient Width="200"
-                                             Margin=" 5,0"
-                                             Minimum="0"
-                                             Maximum="255"
-                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
-                                             Value="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
-                                             ColorConverter="{StaticResource RedConverter}" 
-                                            />
-                      
-                        <TextBlock Text="R:"
-                                   Grid.Column="1"
-                                   Foreground="White" />
-                        <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=R,Mode=TwoWay}"
-                                   Foreground="White"
-                                   Width="30"
-                                   Margin="3,0,0,0"
-                                   Grid.Column="2" />
-                    </Grid>
-                    <Grid Margin="0,7">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <local:ColorGradient Width="200"
-                                             Minimum="0"
-                                             Maximum="255"
-                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
-                                             Value="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
-                                             ColorConverter="{StaticResource GreenConverter}" />
-                      
-                        <TextBlock Text="G:"
-                                   Grid.Column="1"
-                                   Foreground="White" />
-                        <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=G,Mode=TwoWay}"
-                                   Foreground="White"
-                                   Width="30"
-                                   Margin="3,0,0,0"
-                                   Grid.Column="2" />
-                    </Grid>
-                    <Grid Margin="0,7">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <local:ColorGradient Width="200"
-                                             Minimum="0"
-                                             Maximum="255"
-                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
-                                             Value="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
-                                             ColorConverter="{StaticResource BlueConverter}" />
-                    
-                        <TextBlock Text="B:"
-                                   Grid.Column="1"
-                                   Foreground="White" />
-                        <TextBlock Text="{Binding Source={StaticResource ArgbColorBridge},Path=B,Mode=TwoWay}"
-                                   Foreground="White"
-                                   Width="30"
-                                   Margin="3,0,0,0"
-                                   Grid.Column="2" />
-                    </Grid>
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="HsvModelTemplate" x:DataType="local:ColorPoint">
-            <Grid>
-                <Grid.Resources>
-                    <local:HsvColorBridge  x:Key="HsvColorBridge"
-                                            HsvColor="{Binding HsvColor,Mode=TwoWay}" />
-                    <local:HsvConverter x:Key="HueConverter"
-                                         Model="Hue" />
-                    <local:HsvConverter x:Key="SaturationConverter"
-                                         Model="Saturation" />
-                    <local:HsvConverter x:Key="ValueConverter"
-                                         Model="Value" />
-                </Grid.Resources>
-                <StackPanel >
-                    <Grid Margin="0,7">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <local:ColorGradient Width="200"
-                                             Margin=" 5,0"
-                                             Minimum="0"
-                                             Maximum="360"
-                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
-                                             Value="{Binding Source={StaticResource HsvColorBridge},Path=H,Mode=TwoWay}"
-                                             ColorConverter="{StaticResource HueConverter}" 
-                                             Background="{StaticResource HueBrush}"/>
-
-                        <TextBlock Text="H:"
-                                   Grid.Column="1"
-                                   Foreground="White" />
-                        <TextBlock Text="{Binding Source={StaticResource HsvColorBridge},Path=H,Mode=TwoWay}"
-                                   Foreground="White"
-                                   Width="30"
-                                   Margin="3,0,0,0"
-                                   Grid.Column="2" />
-                    </Grid>
-                    <Grid Margin="0,7">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <local:ColorGradient Width="200"
-                                             Minimum="0"
-                                             Maximum="1"
-                                             StepFrequency="0.01" SmallChange="0.01"  LargeChange="0.1"
-                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
-                                             Value="{Binding Source={StaticResource HsvColorBridge},Path=S,Mode=TwoWay}"
-                                             ColorConverter="{StaticResource SaturationConverter}"  />
-                       
-                        <TextBlock Text="S:"
-                                   Grid.Column="1"
-                                   Foreground="White" />
-                        <TextBlock Text="{Binding Source={StaticResource HsvColorBridge},Path=S,Mode=TwoWay}"
-                                   Foreground="White"
-                                   Width="30"
-                                   Margin="3,0,0,0"
-                                   Grid.Column="2" />
-                    </Grid>
-                    <Grid Margin="0,7">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <local:ColorGradient Width="200"
-                                             Minimum="0"
-                                             Maximum="1"
-                                             StepFrequency="0.01" SmallChange="0.01"  LargeChange="0.1"
-                                             Color="{Binding HsvColor,Converter={StaticResource HsvToColorConverter}}"
-                                             Value="{Binding Source={StaticResource HsvColorBridge},Path=V,Mode=TwoWay}"
-                                             ColorConverter="{StaticResource ValueConverter}" />
-                        
-                        <TextBlock Text="V:"
-                                   Grid.Column="1"
-                                   Foreground="White" />
-                        <TextBlock Text="{Binding Source={StaticResource HsvColorBridge},Path=V,Mode=TwoWay}"
-                                   Foreground="White"
-                                   Width="30"
-                                   Margin="3,0,0,0"
-                                   Grid.Column="2" />
-                    </Grid>
-                </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <FontIcon Grid.Column="0" 
+                          FontSize="16"
+                          FontFamily="Segoe MDL2 Assets" 
+                          Glyph="{Binding Glyph}" 
+                          Foreground="Black" />
+           
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding Label}" 
+                           Foreground="Black" 
+                           FontSize="16" 
+                           VerticalAlignment="Center" />
             </Grid>
         </DataTemplate>
 
-    
+        <DataTemplate x:Key="HamburgerMenuImageItem">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding Thumbnail}" Stretch="UniformToFill" Margin="16,12" />
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding Label}" 
+                           Foreground="Black" 
+                           FontSize="16" 
+                           VerticalAlignment="Center" />
+            </Grid>
+        </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Rectangle Fill="{ThemeResource CommandBarBackground}"
-                   Grid.ColumnSpan="10" />
-        <ComboBox Margin="10"
-                  x:Name="StrategySelector"
-                  Header="{Binding Source={StaticResource R},Path=Labels.Rule}">
-            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Custom}"
-                          IsSelected="True">
-                <ComboBoxItem.Tag>
-                    <local:ColorPaletteStrategy />
-                </ComboBoxItem.Tag>
-            </ComboBoxItem>
-            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Analogous}">
-                <ComboBoxItem.Tag>
-                    <local:AnalogousStrategy />
-                </ComboBoxItem.Tag>
-            </ComboBoxItem>
-            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Complementary}">
-                <ComboBoxItem.Tag>
-                    <local:ComplementaryStrategy/>
-                </ComboBoxItem.Tag>
-            </ComboBoxItem>
-            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Monochromatic}">
-                <ComboBoxItem.Tag>
-                    <local:MonochromaticStrategy/>
-                </ComboBoxItem.Tag>
-            </ComboBoxItem>
-            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Shades}">
-                <ComboBoxItem.Tag>
-                    <local:ShadesStrategy/>
-                </ComboBoxItem.Tag>
-            </ComboBoxItem>
-            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Triad}">
-                <ComboBoxItem.Tag>
-                    <local:TriadStrategy/>
-                </ComboBoxItem.Tag>
-            </ComboBoxItem>
-        </ComboBox>
-        <Pivot Grid.Column="1" x:Name="TemplateSelector" Width="230" VerticalAlignment="Bottom" Margin="95,0,0,0" HorizontalAlignment="Left">
-            <PivotItem Header="Rgb" Tag="{StaticResource ArgbModelTemplate}"/>
-            <PivotItem Header="Hsv" Tag="{StaticResource HsvModelTemplate}"/>
-          
-        </Pivot>
-        <local:HsvWheelColorPalette x:Name="ColorPalette"
-                                    ColorPaletteStrategy="{Binding SelectedItem.Tag,ElementName=StrategySelector}"
-                                    Margin="20"
-                                    Grid.Row="1"
-                                   
-                                    ItemsSource="{StaticResource ColorPoints}">
-
-        </local:HsvWheelColorPalette>
-        <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  Grid.Row="1"
-                  Grid.Column="1"
-                  ItemsSource="{StaticResource ColorPoints}"
-                  SelectedItem="{Binding ElementName=ColorPalette,Path=SelectedItem,Mode=TwoWay}"
-                  Margin="0,20,20,20">
-
-            <ItemsControl.ItemTemplate>
-                <DataTemplate x:Name="ColorPointDataTemplate"
-                              x:DataType="local:ColorPoint">
-                    <Grid>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Rectangle Fill="{Binding HsvColor,Converter={StaticResource HsvColorToBrushConverter}}"
-                                   Width="90"
-                                   Height="90" />
-
-                        <StackPanel Grid.Column="1">
-                            <ContentControl Content="{Binding}" ContentTemplate="{Binding ElementName=TemplateSelector,Path=SelectedItem.Tag}">
-                                <ContentControl.ContentTransitions>
-                                    <TransitionCollection>
-                                        <ContentThemeTransition HorizontalOffset="50" VerticalOffset="0"/>
-                                    </TransitionCollection>
-                                </ContentControl.ContentTransitions>
-                            </ContentControl>
-
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ListView>
-
-      
-        <CommandBar Grid.Row="2"
-                    Grid.ColumnSpan="2">
-            <AppBarButton Label="{Binding Source={StaticResource R},Path=Labels.Export}">
-                <AppBarButton.Icon>
-                    <FontIcon FontFamily="Segoe MDL2 Assets"
-                              Glyph="&#xEDE1;" />
-                </AppBarButton.Icon>
-                <AppBarButton.Flyout>
-                    <Flyout>
-                        <Flyout.FlyoutPresenterStyle>
-                            <Style TargetType="FlyoutPresenter">
-                                <Setter Property="MinHeight"
-                                        Value="300" />
-                                <Setter Property="MinWidth"
-                                        Value="600" />
-                            </Style>
-                        </Flyout.FlyoutPresenterStyle>
-                        <local:ExportView ColorPoints="{StaticResource ColorPoints}" />
-                    </Flyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
-
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Like"
-                              Label="{Binding Source={StaticResource R},Path=Labels.Like}"
-                              Click="OnLickButtonClick" />
-                <AppBarButton Icon="Help"
-                              Label="{Binding Source={StaticResource R},Path=Labels.About}">
-                    <AppBarButton.Flyout>
-                        <Flyout>
-                            <local:AboutView />
-                        </Flyout>
-                    </AppBarButton.Flyout>
-                </AppBarButton>
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-
+        <controls:HamburgerMenu x:Name="HamburgerMenu"
+                                PaneBackground="LightGray"
+                                PaneForeground="Black"
+                                SelectedIndex="0"
+                                ItemTemplate="{StaticResource HamburgerMenuItem}"
+                                OptionsItemTemplate="{StaticResource HamburgerMenuItem}"
+                                OpenPaneLength="240"
+                                DisplayMode="CompactInline"
+                                CompactPaneLength="48"
+                                HamburgerHeight="48"
+                                HamburgerVisibility="Visible"
+                                IsPaneOpen="False"
+                                UseNavigationViewWhenPossible="True">
+            <controls:HamburgerMenu.ItemsSource>
+                <controls:HamburgerMenuItemCollection>
+                    <controls:HamburgerMenuGlyphItem Glyph="&#xE115;" Label="Settings" />
+                </controls:HamburgerMenuItemCollection>
+            </controls:HamburgerMenu.ItemsSource>
+            <Grid x:Name="ContentGrid">
+                
+            </Grid>
+        </controls:HamburgerMenu>
     </Grid>
 </Page>

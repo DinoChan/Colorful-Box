@@ -5,9 +5,146 @@
     xmlns:local="using:ColorfulBox.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:colorfulBox="using:ColorfulBox"
+
+    d:DesignHeight="300"
+    d:DesignWidth="600"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Rectangle Fill="{ThemeResource CommandBarBackground}"
+                   Grid.ColumnSpan="10" />
+        <ComboBox Margin="10"
+                  x:Name="StrategySelector"
+                  Header="{Binding Source={StaticResource R},Path=Labels.Rule}">
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Custom}"
+                          IsSelected="True">
+                <ComboBoxItem.Tag>
+                    <colorfulBox:ColorPaletteStrategy />
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Analogous}">
+                <ComboBoxItem.Tag>
+                    <colorfulBox:AnalogousStrategy />
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Complementary}">
+                <ComboBoxItem.Tag>
+                    <colorfulBox:ComplementaryStrategy/>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Monochromatic}">
+                <ComboBoxItem.Tag>
+                    <colorfulBox:MonochromaticStrategy/>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Shades}">
+                <ComboBoxItem.Tag>
+                    <colorfulBox:ShadesStrategy/>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+            <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Triad}">
+                <ComboBoxItem.Tag>
+                    <colorfulBox:TriadStrategy/>
+                </ComboBoxItem.Tag>
+            </ComboBoxItem>
+        </ComboBox>
+        <Pivot Grid.Column="1" x:Name="TemplateSelector" Width="230" VerticalAlignment="Bottom" Margin="95,0,0,0" HorizontalAlignment="Left">
+            <PivotItem Header="Rgb" Tag="{StaticResource ArgbModelTemplate}"/>
+            <PivotItem Header="Hsv" Tag="{StaticResource HsvModelTemplate}"/>
+
+        </Pivot>
+        <colorfulBox:HsvWheelColorPalette x:Name="ColorPalette"
+                                    ColorPaletteStrategy="{Binding SelectedItem.Tag,ElementName=StrategySelector}"
+                                    Margin="20"
+                                    Grid.Row="1"
+                                   
+                                    ItemsSource="{StaticResource ColorPoints}">
+
+        </colorfulBox:HsvWheelColorPalette>
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  ItemsSource="{StaticResource ColorPoints}"
+                  SelectedItem="{Binding ElementName=ColorPalette,Path=SelectedItem,Mode=TwoWay}"
+                  Margin="0,20,20,20">
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:Name="ColorPointDataTemplate"
+                              x:DataType="colorfulBox:ColorPoint">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="{Binding HsvColor,Converter={StaticResource HsvColorToBrushConverter}}"
+                                   Width="90"
+                                   Height="90" />
+
+                        <StackPanel Grid.Column="1">
+                            <ContentControl Content="{Binding}" ContentTemplate="{Binding ElementName=TemplateSelector,Path=SelectedItem.Tag}">
+                                <ContentControl.ContentTransitions>
+                                    <TransitionCollection>
+                                        <ContentThemeTransition HorizontalOffset="50" VerticalOffset="0"/>
+                                    </TransitionCollection>
+                                </ContentControl.ContentTransitions>
+                            </ContentControl>
+
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ListView>
+
+
+        <CommandBar Grid.Row="2"
+                    Grid.ColumnSpan="2">
+            <AppBarButton Label="{Binding Source={StaticResource R},Path=Labels.Export}">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets"
+                              Glyph="&#xEDE1;" />
+                </AppBarButton.Icon>
+                <AppBarButton.Flyout>
+                    <Flyout>
+                        <Flyout.FlyoutPresenterStyle>
+                            <Style TargetType="FlyoutPresenter">
+                                <Setter Property="MinHeight"
+                                        Value="300" />
+                                <Setter Property="MinWidth"
+                                        Value="600" />
+                            </Style>
+                        </Flyout.FlyoutPresenterStyle>
+                        <colorfulBox:ExportView ColorPoints="{StaticResource ColorPoints}" />
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Like"
+                              Label="{Binding Source={StaticResource R},Path=Labels.Like}"
+                              Click="OnLickButtonClick" />
+                <AppBarButton Icon="Help"
+                              Label="{Binding Source={StaticResource R},Path=Labels.About}">
+                    <AppBarButton.Flyout>
+                        <Flyout>
+                            <colorfulBox:AboutView />
+                        </Flyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
 
     </Grid>
 </Page>
+
