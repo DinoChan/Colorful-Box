@@ -103,6 +103,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\TitleBarHelper.cs" />
+    <Compile Include="Common\VisualHelpers.cs" />
     <Compile Include="Controls\ColorPaletteControls\ArgbColorBridge.cs" />
     <Compile Include="Controls\ColorPaletteControls\ArgbConverter.cs" />
     <Compile Include="Controls\ColorPaletteControls\ArgbModel.cs" />
@@ -138,6 +140,7 @@
     <Compile Include="Controls\ColorPaletteControls\HsvModel.cs" />
     <Compile Include="Controls\ColorPaletteControls\HsvWheelColorPalette.cs" />
     <Compile Include="Controls\ColorPaletteControls\IColorConverter.cs" />
+    <Compile Include="INavigationRoot.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,11 @@
     <Compile Include="Common\TemplatedParentBridge.cs" />
     <Compile Include="Common\VisualTreeExtensions.cs" />
     <Compile Include="Controls\Triangle.cs" />
+    <Compile Include="Services\FrameAdapter.cs" />
+    <Compile Include="Services\IFrameAdapter.cs" />
+    <Compile Include="Services\INavigationService.cs" />
+    <Compile Include="Services\NavigationAnimationHelpers.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -251,14 +259,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>4.6.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.5</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp">
-      <Version>2.1.0</Version>
+      <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>2.1.0</Version>
+      <Version>2.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

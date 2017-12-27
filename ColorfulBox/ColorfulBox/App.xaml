@@ -4,13 +4,49 @@
              xmlns:local="using:ColorfulBox"
              xmlns:localization="using:ColorfulBox.Localization"
              xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
-             RequestedTheme="Dark">
+          RequestedTheme="Dark" >
     <Application.Resources>
         <local:ColorToBrushConverter x:Key="ColorToBrushConverter" />
         <local:HsvColorToBrushConverter x:Key="HsvColorToBrushConverter"/>
         <local:HsvToColorConverter x:Key="HsvToColorConverter"/>
         <converters:StringFormatConverter x:Key="StringFormatConverter"/>
         <localization:ApplicationResources x:Key="R"/>
+
+        <SolidColorBrush x:Key="ThemeControlForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}" />
+
+        <x:Double x:Key="LargeFontSize">32</x:Double>
+        <x:Double x:Key="MediumFontSize">16</x:Double>
+
+        <Thickness x:Key="PageTopPosition">0,45,0,0</Thickness>
+
+        <Thickness x:Key="PageMargin">24,35,0,0</Thickness>
+        <Thickness x:Key="PagePadding">24,35,24,0</Thickness>
+
+        <!--Custom size margins-->
+        <Thickness x:Key="PageTitleMargin">12,0,12,25</Thickness>
+        <Thickness x:Key="SettingsSubheaderMargin">12, 0, 0, 25</Thickness>
+
+        <!--Medium size margins-->
+        <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
+        <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,12</Thickness>
+
+        <!--Small size margins-->
+        <Thickness x:Key="EightTopMargin">0, 8, 0, 0</Thickness>
+        <Style x:Key="PageTitleStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="FontSize" Value="{StaticResource LargeFontSize}"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="Margin" Value="{StaticResource PageTitleMargin}"/>
+        </Style>
+
+        <Style x:Key="BodyTextStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
     </Application.Resources>
 
 </Application>
