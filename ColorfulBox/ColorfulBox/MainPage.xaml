@@ -20,11 +20,11 @@
                           FontSize="16"
                           FontFamily="Segoe MDL2 Assets" 
                           Glyph="{Binding Glyph}" 
-                          Foreground="Black" />
+                       />
 
                 <TextBlock Grid.Column="1" 
                            Text="{Binding Label}" 
-                           Foreground="Black" 
+                       
                            FontSize="16" 
                            VerticalAlignment="Center" />
             </Grid>
@@ -192,9 +192,8 @@
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <controls:HamburgerMenu x:Name="HamburgerMenu"
-                               
-                                PaneBackground="LightGray"
-                                PaneForeground="Black"
+                                Template="{StaticResource HamburgerMenuTemplate}"
+                              
                                 SelectedIndex="0"
                                 ItemTemplate="{StaticResource HamburgerMenuItem}"
                                 OptionsItemTemplate="{StaticResource HamburgerMenuItem}"
@@ -205,6 +204,8 @@
                                 HamburgerVisibility="Visible"
                                 UseNavigationViewWhenPossible="True"
                                 IsPaneOpen="True"
+                                PaneBackground="{ThemeResource SystemControlBackgroundAltHighBrush}"
+                                PaneForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
                                 ItemInvoked="HamburgerMenu_ItemInvoked">
             <controls:HamburgerMenu.ItemsSource>
                 <controls:HamburgerMenuItemCollection>
