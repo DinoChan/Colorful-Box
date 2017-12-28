@@ -143,6 +143,15 @@ namespace ColorfulBox.Localization {
         }
         
         /// <summary>
+        ///   查找类似 You must restart your app before the new setting will take effect. 的本地化字符串。
+        /// </summary>
+        public static string RestartMessage {
+            get {
+                return ResourceManager.GetString("RestartMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Rule 的本地化字符串。
         /// </summary>
         public static string Rule {

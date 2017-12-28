@@ -153,4 +153,7 @@
   <data name="Custom" xml:space="preserve">
     <value>自定</value>
   </data>
+  <data name="RestartMessage" xml:space="preserve">
+    <value>你的设置将在重启后生效。</value>
+  </data>
 </root>

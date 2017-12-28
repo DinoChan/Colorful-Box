@@ -153,4 +153,7 @@
   <data name="Custom" xml:space="preserve">
     <value>Custom</value>
   </data>
+  <data name="RestartMessage" xml:space="preserve">
+    <value>You must restart your app before the new setting will take effect.</value>
+  </data>
 </root>

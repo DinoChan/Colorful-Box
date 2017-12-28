@@ -52,7 +52,7 @@ namespace ColorfulBox
                 {
                     rootElement.RequestedTheme = value;
                 }
-
+                SetupTitlebar();
                 ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
             }
         }
@@ -187,18 +187,18 @@ namespace ColorfulBox
 
         public static ElementTheme TrueTheme()
         {
-            //if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
-            //{
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
+            {
+                var frameworkElement = Window.Current.Content as FrameworkElement;
+                return frameworkElement.ActualTheme;
+            }
+            else
+            {
                 if (Application.Current.RequestedTheme == ApplicationTheme.Light)
                     return ElementTheme.Light;
                 else
                     return ElementTheme.Dark;
-            //}
-            //else
-            //{
-            //    var frameworkElement = Window.Current.Content as FrameworkElement;
-            //    return frameworkElement.ActualTheme;
-            //}
+            }
         }
     }
 }

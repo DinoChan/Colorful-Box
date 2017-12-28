@@ -8,7 +8,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:colorfulBox="using:ColorfulBox"
 
-    d:DesignHeight="300"
+    d:DesignHeight="500"
     d:DesignWidth="600"
     mc:Ignorable="d">
     <Page.Resources>
@@ -271,7 +271,26 @@
 
 
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid   Margin="{StaticResource PageMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Text="调色板"
+                       x:Name="TitleElement"
+                       FontWeight="Light"
+                       Style="{StaticResource PageTitleStyle}" />
+
+      
+    <Grid x:Name="ContentElement" Grid.Row="1"
+        >
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
@@ -279,11 +298,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+     
+       
         <Rectangle Fill="{ThemeResource CommandBarBackground}"
-                   Grid.ColumnSpan="10" />
-        <ComboBox Margin="10"
+                   Grid.ColumnSpan="10" Height="1" VerticalAlignment="Bottom" />
+        <ComboBox 
+            Margin="10,0,10,10"
                   x:Name="StrategySelector"
                   Header="{Binding Source={StaticResource R},Path=Labels.Rule}">
             <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Custom}"
@@ -318,7 +339,7 @@
                 </ComboBoxItem.Tag>
             </ComboBoxItem>
         </ComboBox>
-        <Pivot Grid.Column="1" x:Name="TemplateSelector" Width="230" VerticalAlignment="Bottom" Margin="95,0,0,0" HorizontalAlignment="Left">
+        <Pivot  Grid.Column="1" x:Name="TemplateSelector" Width="230" VerticalAlignment="Bottom" Margin="95,0,0,0" HorizontalAlignment="Left">
             <PivotItem Header="Rgb" Tag="{StaticResource ArgbModelTemplate}"/>
             <PivotItem Header="Hsv" Tag="{StaticResource HsvModelTemplate}"/>
 
@@ -365,10 +386,13 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ListView>
+            </Grid>
 
 
-        <CommandBar Grid.Row="2"
-                    Grid.ColumnSpan="2">
+
+        </Grid>
+        <CommandBar Grid.Row="1"
+                 >
             <AppBarButton Label="{Binding Source={StaticResource R},Path=Labels.Export}">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets"
@@ -403,7 +427,6 @@
                 </AppBarButton>
             </CommandBar.SecondaryCommands>
         </CommandBar>
-
     </Grid>
 </Page>
 
