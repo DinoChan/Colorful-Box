@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:fcu="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
       xmlns:colorfulBox="using:ColorfulBox"
       d:DesignHeight="500"
       d:DesignWidth="600"
@@ -393,7 +394,7 @@
             </Grid>
 
             <CommandBar Grid.Row="1"
-                        Style="{StaticResource CommandBarRevealStyle}">
+                        fcu:Style="{StaticResource CommandBarRevealStyle}">
                 <AppBarButton Label="{Binding Source={StaticResource R},Path=Labels.Export}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets"
