@@ -153,7 +153,40 @@
   <data name="Custom" xml:space="preserve">
     <value>自定</value>
   </data>
+  <data name="AboutAppMessage" xml:space="preserve">
+    <value>一个简单实用的调色板应用，可以通过一个HSV色轮选择颜色并保存为XAML。</value>
+  </data>
+  <data name="Chinese" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="ColorPalette" xml:space="preserve">
+    <value>调色板</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>暗</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>跟随系统</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>英文</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>亮</value>
+  </data>
+  <data name="Personalization" xml:space="preserve">
+    <value>个性化</value>
+  </data>
   <data name="RestartMessage" xml:space="preserve">
     <value>你的设置将在重启后生效。</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="ThemeMode" xml:space="preserve">
+    <value>主题模式</value>
   </data>
 </root>

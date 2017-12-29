@@ -153,7 +153,40 @@
   <data name="Custom" xml:space="preserve">
     <value>Custom</value>
   </data>
+  <data name="AboutAppMessage" xml:space="preserve">
+    <value>A simple and useful palette application that allows you to select colors from a HSV color wheel and save them as XAML.</value>
+  </data>
+  <data name="Chinese" xml:space="preserve">
+    <value>Chinese</value>
+  </data>
+  <data name="ColorPalette" xml:space="preserve">
+    <value>Color Palette</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>UseSystemSetting</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Personalization" xml:space="preserve">
+    <value>Personalization</value>
+  </data>
   <data name="RestartMessage" xml:space="preserve">
     <value>You must restart your app before the new setting will take effect.</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ThemeMode" xml:space="preserve">
+    <value>Theme Mode</value>
   </data>
 </root>

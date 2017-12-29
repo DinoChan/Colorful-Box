@@ -13,44 +13,45 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
-                   Text="Settings"
+                   Text="{Binding Source={StaticResource R},Path=Labels.Settings}"
                    x:Name="TitleElement"
                    FontWeight="Light"
                    Style="{StaticResource PageTitleStyle}" />
         <StackPanel Grid.Row="1"
                     x:Name="ContentElement">
             <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
-                <TextBlock Text="Personalization"
+                <TextBlock Text="{Binding Source={StaticResource R},Path=Labels.Personalization}"
                            Style="{StaticResource SubtitleTextBlockStyle}" />
 
-                <TextBlock Text="Theme Mode"
-                           Style="{StaticResource BodyTextStyle}" />
+                <TextBlock Text="{Binding Source={StaticResource R},Path=Labels.ThemeMode}"
+                           Style="{StaticResource BodyTextStyle}"
+                           Margin="{StaticResource EightTopMargin}" />
 
                 <StackPanel x:Name="ThemePanel"
                             Margin="{StaticResource EightTopMargin}">
                     <RadioButton Tag="Light"
                                  Checked="OnThemeRadioButtonChecked"
-                                 Content="Light" />
+                                 Content="{Binding Source={StaticResource R},Path=Labels.Light}" />
                     <RadioButton Tag="Dark"
                                  Checked="OnThemeRadioButtonChecked"
-                                 Content="Dark" />
+                                 Content="{Binding Source={StaticResource R},Path=Labels.Dark}" />
                     <RadioButton Tag="Default"
                                  Checked="OnThemeRadioButtonChecked"
-                                 Content="Use system setting" />
+                                 Content="{Binding Source={StaticResource R},Path=Labels.Default}" />
                 </StackPanel>
 
 
 
-                <TextBlock Text="Language"
+                <TextBlock Text="{Binding Source={StaticResource R},Path=Labels.Language}"
                            Style="{StaticResource BodyTextStyle}"
                            Margin="0,12,0,0" />
 
                 <StackPanel x:Name="LanguagePanel"
                             Margin="{StaticResource EightTopMargin}">
-                    <RadioButton Content="English"
+                    <RadioButton Content="{Binding Source={StaticResource R},Path=Labels.English}"
                                  Checked="OnLanguageRadioButtonChecked"
                                  Tag="en-US" />
-                    <RadioButton Content="Chinese"
+                    <RadioButton Content="{Binding Source={StaticResource R},Path=Labels.Chinese}"
                                  Checked="OnLanguageRadioButtonChecked"
                                  Tag="zh-Hans-CN" />
                     <TextBlock x:Name="NoteElement"
@@ -62,34 +63,37 @@
             </StackPanel>
 
             <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
-                <TextBlock Text="About"
+                <TextBlock Text="{Binding Source={StaticResource R},Path=Labels.About}"
                            Style="{StaticResource SubtitleTextBlockStyle}" />
 
                 <StackPanel Margin="{StaticResource EightTopMargin}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Colorful Box"
-                                   />
-                        <Image Source="Assets/SmallTile.png"
+                                   Style="{StaticResource BodyTextStyle}" />
+                        <Image Source="ms-appx:///Assets/SmallTile.png"
                                Height="42"
                                Margin="0,-8,-10,-10" />
                     </StackPanel>
 
-                    <TextBlock      Margin="{StaticResource EightTopMargin}"
-                                    Text="一个简单的调色板应用" />
-                    
+                    <TextBlock Margin="{StaticResource EightTopMargin}"
+                               Text="{Binding Source={StaticResource R},Path=Labels.AboutAppMessage}" />
+
                     <TextBlock Text="Developer : Dino.C"
                                Margin="{StaticResource EightTopMargin}" />
                     <StackPanel Orientation="Horizontal"
                                 Margin="{StaticResource EightTopMargin}">
-                        <TextBlock Text="Version : "
-                                    />
-                        <TextBlock x:Name="VersionElement"
-                                  />
+                        <TextBlock Text="Version : " />
+                        <TextBlock x:Name="VersionElement" />
                     </StackPanel>
-                   
+
                     <HyperlinkButton Margin="{StaticResource EightTopMargin}"
                                      Content="GitHub"
                                      NavigateUri="https://github.com/DinoChan/Colorful-Box" />
+
+                    <HyperlinkButton Margin="{StaticResource EightTopMargin}"
+                                     Content="{Binding Source={StaticResource R},Path=Labels.Like}"
+                                     NavigateUri="ms-windows-store:REVIEW?PFN=24329C-Soft.ColorfulBox_nzvxjwp4batka" />
+
                 </StackPanel>
             </StackPanel>
         </StackPanel>

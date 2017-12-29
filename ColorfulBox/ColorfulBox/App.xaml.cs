@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Autofac;
 using ColorfulBox.Services;
+using System.Threading.Tasks;
 
 namespace ColorfulBox
 {
@@ -121,6 +122,7 @@ namespace ColorfulBox
                     mainPage.InitializeNavigationService(Container.Resolve<INavigationService>());
                     adapter.NavigationFailed += OnNavigationFailed;
 
+                    RootTheme = LoadThemeFromSettingsAsync();
                     SetupTitlebar();
 
                 }
@@ -199,6 +201,19 @@ namespace ColorfulBox
                 else
                     return ElementTheme.Dark;
             }
+        }
+
+        private static  ElementTheme LoadThemeFromSettingsAsync()
+        {
+            ElementTheme cacheTheme = ElementTheme.Default;
+            if (ApplicationData.Current.LocalSettings.Values.ContainsKey(SelectedAppThemeKey))
+            {
+                string themeName = ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] as string;
+                if (string.IsNullOrWhiteSpace(themeName) == false)
+                    Enum.TryParse(themeName, out cacheTheme);
+            }
+
+            return cacheTheme;
         }
     }
 }

@@ -209,8 +209,10 @@
                                 ItemInvoked="HamburgerMenu_ItemInvoked">
             <controls:HamburgerMenu.ItemsSource>
                 <controls:HamburgerMenuItemCollection>
-                    <controls:HamburgerMenuGlyphItem  Glyph="&#xF126;" Label="Color Palette" Tag="Home"/>
-                    <controls:HamburgerMenuGlyphItem Glyph="&#xE115;" Label="Settings" Tag="Settings"/>
+                    <controls:HamburgerMenuGlyphItem  Glyph="&#xF126;"
+                                                      Label="{Binding Source={StaticResource R},Path=Labels.ColorPalette}" Tag="Home"/>
+                    <controls:HamburgerMenuGlyphItem Glyph="&#xE115;"
+                                                     Label="{Binding Source={StaticResource R},Path=Labels.Settings}" Tag="Settings"/>
                 </controls:HamburgerMenuItemCollection>
             </controls:HamburgerMenu.ItemsSource>
             <Frame x:Name="RootFrame"

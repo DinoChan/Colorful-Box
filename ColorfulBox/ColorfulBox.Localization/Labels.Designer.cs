@@ -71,11 +71,38 @@ namespace ColorfulBox.Localization {
         }
         
         /// <summary>
+        ///   查找类似 A simple and useful palette application that allows you to select colors from a HSV color wheel and save them as XAML. 的本地化字符串。
+        /// </summary>
+        public static string AboutAppMessage {
+            get {
+                return ResourceManager.GetString("AboutAppMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Analogous 的本地化字符串。
         /// </summary>
         public static string Analogous {
             get {
                 return ResourceManager.GetString("Analogous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Chinese 的本地化字符串。
+        /// </summary>
+        public static string Chinese {
+            get {
+                return ResourceManager.GetString("Chinese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Color Palette 的本地化字符串。
+        /// </summary>
+        public static string ColorPalette {
+            get {
+                return ResourceManager.GetString("ColorPalette", resourceCulture);
             }
         }
         
@@ -116,11 +143,56 @@ namespace ColorfulBox.Localization {
         }
         
         /// <summary>
+        ///   查找类似 Dark 的本地化字符串。
+        /// </summary>
+        public static string Dark {
+            get {
+                return ResourceManager.GetString("Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 UseSystemSetting 的本地化字符串。
+        /// </summary>
+        public static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 English 的本地化字符串。
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Export 的本地化字符串。
         /// </summary>
         public static string Export {
             get {
                 return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Language 的本地化字符串。
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Light 的本地化字符串。
+        /// </summary>
+        public static string Light {
+            get {
+                return ResourceManager.GetString("Light", resourceCulture);
             }
         }
         
@@ -143,6 +215,15 @@ namespace ColorfulBox.Localization {
         }
         
         /// <summary>
+        ///   查找类似 Personalization 的本地化字符串。
+        /// </summary>
+        public static string Personalization {
+            get {
+                return ResourceManager.GetString("Personalization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 You must restart your app before the new setting will take effect. 的本地化字符串。
         /// </summary>
         public static string RestartMessage {
@@ -161,11 +242,29 @@ namespace ColorfulBox.Localization {
         }
         
         /// <summary>
+        ///   查找类似 Settings 的本地化字符串。
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Shades 的本地化字符串。
         /// </summary>
         public static string Shades {
             get {
                 return ResourceManager.GetString("Shades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Theme Mode 的本地化字符串。
+        /// </summary>
+        public static string ThemeMode {
+            get {
+                return ResourceManager.GetString("ThemeMode", resourceCulture);
             }
         }
         
