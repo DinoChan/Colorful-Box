@@ -76,6 +76,7 @@
                     </StackPanel>
 
                     <TextBlock Margin="{StaticResource EightTopMargin}"
+                               TextWrapping="Wrap"
                                Text="{Binding Source={StaticResource R},Path=Labels.AboutAppMessage}" />
 
                     <TextBlock Text="Developer : Dino.C"

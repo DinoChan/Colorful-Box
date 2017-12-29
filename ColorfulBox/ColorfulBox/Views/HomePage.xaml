@@ -301,7 +301,7 @@
                            Grid.ColumnSpan="10"
                            Height="1"
                            VerticalAlignment="Bottom" />
-                <ComboBox Margin="10,0,10,10"
+                <ComboBox Margin="8,0,8,8"
                           x:Name="StrategySelector"
                           Header="{Binding Source={StaticResource R},Path=Labels.Rule}">
                     <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Custom}"
@@ -340,7 +340,7 @@
                         x:Name="TemplateSelector"
                         Width="230"
                         VerticalAlignment="Bottom"
-                        Margin="95,0,0,0"
+                        Margin="96,0,0,0"
                         HorizontalAlignment="Left">
                     <PivotItem Header="Rgb"
                                Tag="{StaticResource ArgbModelTemplate}" />
@@ -350,7 +350,7 @@
                 </Pivot>
                 <colorfulBox:HsvWheelColorPalette x:Name="ColorPalette"
                                                   ColorPaletteStrategy="{Binding SelectedItem.Tag,ElementName=StrategySelector}"
-                                                  Margin="20"
+                                                  Margin="16"
                                                   Grid.Row="1"
                                                   ItemsSource="{StaticResource ColorPoints}">
 
@@ -360,7 +360,7 @@
                           Grid.Column="1"
                           ItemsSource="{StaticResource ColorPoints}"
                           SelectedItem="{Binding ElementName=ColorPalette,Path=SelectedItem,Mode=TwoWay}"
-                          Margin="0,20,20,20">
+                          Margin="0,16,16,16">
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate x:Name="ColorPointDataTemplate"
