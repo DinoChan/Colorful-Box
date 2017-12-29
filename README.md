@@ -3,3 +3,9 @@
 
 简洁的UI设计，灵感来自 Micorsoft Fluent Design System。
 
+## 下载地址
+[Microsoft Store](https://www.microsoft.com/store/apps/9NLT3NBK3PJM)
+
+## 截图
+![](https://github.com/DinoChan/Colorful-Box/blob/master/1.png)
+![](https://github.com/DinoChan/Colorful-Box/blob/master/4.png)
