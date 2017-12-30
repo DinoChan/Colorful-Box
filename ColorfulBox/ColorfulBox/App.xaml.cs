@@ -189,7 +189,7 @@ namespace ColorfulBox
 
         public static ElementTheme TrueTheme()
         {
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
+            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract",5))
             {
                 var frameworkElement = Window.Current.Content as FrameworkElement;
                 return frameworkElement.ActualTheme;
