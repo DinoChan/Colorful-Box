@@ -270,22 +270,22 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   Margin="{StaticResource PageMargin}"
-                   Text="{Binding Source={StaticResource R},Path=Labels.ColorPalette}"
-                   x:Name="TitleElement"
-                   FontWeight="Light"
-                   Style="{StaticResource PageTitleStyle}" />
+        <Grid     Margin="{StaticResource PageMargin}">
+            <TextBlock Text="{Binding Source={StaticResource R},Path=Labels.ColorPalette}"
+                       x:Name="TitleElement"
+                       FontWeight="Light"
+                       Style="{StaticResource PageTitleStyle}" />
+        </Grid>
 
-
-        <Grid x:Name="ContentElement" Grid.Row="1">
+        <Grid x:Name="ContentElement"
+              Grid.Row="1"
+            >
 
             <Grid.RowDefinitions>
-                <RowDefinition  />
-                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid 
-                   Margin="24,0,0,0">
+            <Grid   Margin="36,0,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
@@ -301,7 +301,7 @@
                            Grid.ColumnSpan="10"
                            Height="1"
                            VerticalAlignment="Bottom" />
-                <ComboBox Margin="8,0,8,8"
+                <ComboBox Margin="0,0,8,8"
                           x:Name="StrategySelector"
                           Header="{Binding Source={StaticResource R},Path=Labels.Rule}">
                     <ComboBoxItem Content="{Binding Source={StaticResource R},Path=Labels.Custom}"
