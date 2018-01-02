@@ -200,10 +200,12 @@ namespace ColorfulBox
             }
             else
             {
-                if (Application.Current.RequestedTheme == ApplicationTheme.Light)
-                    return ElementTheme.Light;
-                else
-                    return ElementTheme.Dark;
+                var frameworkElement = Window.Current.Content as FrameworkElement;
+               return frameworkElement.RequestedTheme;
+                //if (Application.Current.RequestedTheme == ApplicationTheme.Light)
+                //    return ElementTheme.Light;
+                //else
+                //    return ElementTheme.Dark;
             }
         }
 
